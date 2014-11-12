@@ -5,12 +5,7 @@ require_once('dev_options.php');
 $config = array(
     # Database
     "db" => array(
-        "db1" => array(
-            "dbname" => "db.sqlite3",
-            "username" => "a",
-            "password" => "a",
-            "host" => "localhost"
-        )
+        "db1" => "../db.sqlite3",
     ),
     # URL for page -> defined in dev_options
     "urls" => array(
@@ -29,9 +24,12 @@ defined("LIB_PATH")
 defined("TEMPLATES_PATH")
     or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/templates'));
 
+defined("MODELS_PATH")
+    or define("MODELS_PATH", realpath(dirname(__FILE__) . '/models'));
 
 # ERROR REPORT
 # THIS SETTING IS USED FOR DEBUG
 ini_set("error_reporting", "true");
 error_reporting(E_ALL|E_STRICT);
+
 ?>
