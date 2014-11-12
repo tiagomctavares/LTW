@@ -33,6 +33,8 @@ resources | Holds all libraries, configs and any code used as resource in projec
 + templates | Location for all reusable components that make up the layout
 ++ pages | Location for the non-reusable content of the pages
 
+Legend: Each + sign represents a new level in a directory
+
 ##### Main Files
 
 File | Description
