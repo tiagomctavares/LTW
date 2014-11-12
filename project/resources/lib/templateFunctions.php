@@ -1,7 +1,7 @@
 <?php 
     function renderLayoutWithContentFile($contentFile, $variables = array())
     {
-        $contentFileFullPath = TEMPLATES_PATH . "/" . $contentFile;
+        $contentFileFullPath = TEMPLATES_PATH . "/pages/" . $contentFile;
      
         // making sure passed in variables are in scope of the template
         // each key in the $variables array will become a variable
@@ -19,7 +19,7 @@
            . "\t<div id=\"content\">\n";
         */
         if (file_exists($contentFileFullPath)) {
-            require_once('pages/'.$contentFileFullPath);
+            require_once($contentFileFullPath);
         } else {
             /*
                 If the file isn't found the error can be handled in lots of ways.
