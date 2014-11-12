@@ -16,6 +16,13 @@ Report bugs or new features by:
 
 ### Project Structure
 
+For each request the flow is as follows:
+
+1. HTTP Request for page **index.php**
+2. **index.php** roots the request by parameter to the correct **view**
+3. **view** does operations fetches data from **models** builds that data in a **"dictionary/variables"** to be used in **templates** and calls the proper **template**
+
+
 ##### Folders
 **Folder** | **Description**
 ------ | -----------
@@ -25,9 +32,10 @@ public_html | Holds all public files to be accessed by clients
 + js | Location for all js files
 resources | Holds all libraries, configs and any code used as resource in project
 + lib | Location for all libraries
-+ models | Contains classes to get database data
++ models | Location for files to get database data
++ views | Location of files with functions with actions. Control the request and builds the result template
 + templates | Location for all reusable components that make up the layout
-++ pages | Location for the non-reusable content of the pages
+++ pages | Location for the non-reusable content of the layout
 
 **Legend**: Each + sign represents a new level in a directory (for example css is a subfolder of public_html)
 
@@ -53,12 +61,24 @@ mypdo.php | Used to get data from database faster
 ### Models
 **Model** | **Description**
 -------- | -----------
+user.php | Class that fetch User data from database
 
 ---
 
-### Common Templates
+### Views
+**Model** | **Description**
+-------- | -----------
+user.php | Functions for user actions (Example: Register)
+
+---
+
+### Common/Global Templates
 **Template** | **Description**
 -------- | -----------
 error.php | Included when there is a rooting error or bad request
 header.php | Header to be included in every page
 footer.php | Footer to be included in every page
+
+### Templates
+**Page** | **Description**
+-------- | -----------

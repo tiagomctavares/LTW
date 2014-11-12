@@ -53,7 +53,8 @@ class myPDO extends PDO implements imyPDO
 	}
 
 	function bind($args) {
-		if(isset($this->stmt)) {
+
+		if($this->stmt !== false) {
 			$i = 1;
 			foreach($args as $arg) {
 				$this->stmt->bindValue($i, $arg->value, $arg->type);
@@ -75,9 +76,9 @@ class myPDO extends PDO implements imyPDO
 		if (preg_match('/^(select|describe|pragma|call)/i', $this->query)) {
 			# SELECTING ROWS
 			return $this->stmt->fetchAll(PDO::FETCH_CLASS);
-		} else if (preg_match('/^(delete|insert|update)/i', $query)) {
+		} else if (preg_match('/^(delete|insert|update)/i', $this->query)) {
 			# AFFECTED ROWS
-			return $this->db->rowCount();
+			return $this->stmt->rowCount();
 		}
 	}
 }

@@ -27,6 +27,9 @@ defined("TEMPLATES_PATH")
 defined("MODELS_PATH")
     or define("MODELS_PATH", realpath(dirname(__FILE__) . '/models'));
 
+defined("VIEWS_PATH")
+    or define("VIEWS_PATH", realpath(dirname(__FILE__) . '/views'));
+
 # ERROR REPORT
 # THIS SETTING IS USED FOR DEBUG
 ini_set("error_reporting", "true");
