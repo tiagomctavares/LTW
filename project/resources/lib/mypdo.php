@@ -82,7 +82,7 @@ class myPDO extends PDO implements imyPDO
 	}
 }
 
-class myPDO_param implements imyPDOparam
+class myPDOparam implements imyPDOparam
 {
 	public $value;
 	public $type;

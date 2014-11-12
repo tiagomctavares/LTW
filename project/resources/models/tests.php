@@ -11,4 +11,16 @@ function getAllTests() {
 
 	return $result;
 }
+
+function getTest($id) {
+    try {
+	    $pdo = new myPDO();
+	    $args[] = new myPDOparam($id, PDO::PARAM_INT);
+	    $result = $pdo->query('SELECT * FROM test WHERE id=?;', $args);
+	} catch(Exception $e) {
+		throw $e->getMessage();
+	}
+
+	return $result[0];
+}
 ?>

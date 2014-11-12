@@ -25,6 +25,7 @@ public_html | Holds all public files to be accessed by clients
 + js | Location for all js files
 resources | Holds all libraries, configs and any code used as resource in project
 + lib | Location for all libraries
++ models | Contains classes to get database data
 + templates | Location for all reusable components that make up the layout
 ++ pages | Location for the non-reusable content of the pages
 
@@ -45,6 +46,13 @@ resources/dev_options.php | Used in config.php and ignored by repo storing envir
 **Library** | **Description**
 ------- | -----------
 templateFunctions.php | Used to render templates, so devs don't have to include the same pages for each page
+mypdo.php | Used to get data from database faster
+
+---
+
+### Models
+**Model** | **Description**
+-------- | -----------
 
 ---
 
