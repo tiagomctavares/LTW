@@ -16,13 +16,8 @@ Report bugs or new features by:
 
 ### Project Structure
 
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
-
 ##### Folders
-Folder | Description
+**Folder** | **Description**
 ------ | -----------
 public_html | Holds all public files to be accessed by clients
 + Img | Location for all the static images of the application
@@ -33,11 +28,11 @@ resources | Holds all libraries, configs and any code used as resource in projec
 + templates | Location for all reusable components that make up the layout
 ++ pages | Location for the non-reusable content of the pages
 
-Legend: Each + sign represents a new level in a directory
+**Legend**: Each + sign represents a new level in a directory (for example css is a subfolder of public_html)
 
 ##### Main Files
 
-File | Description
+**File** | **Description**
 ---- | -----------
 db.sqlite3 | Database of the application
 public_html/index.php | Only accessible page for the clients, serving as root for the application
@@ -47,14 +42,14 @@ resources/dev_options.php | Used in config.php and ignored by repo storing envir
 ---
 
 ### Libraries
-Library | Description
+**Library** | **Description**
 ------- | -----------
 templateFunctions.php | Used to render templates, so devs don't have to include the same pages for each page
 
 ---
 
 ### Common Templates
-Template | Description
+**Template** | **Description**
 -------- | -----------
 error.php | Included when there is a rooting error or bad request
 header.php | Header to be included in every page
