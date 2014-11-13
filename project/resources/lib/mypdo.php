@@ -1,19 +1,25 @@
 <?php 
 interface imyPDO {
-	# RECEIVES THE DATABASE CONNECTION IDENTIFIER
-	public function __construct($database_identifier);
+	/* Opens the database connection by identifier (defined in config.php)
+	* @param (string) database_identifier - the array identifer in config default = db1
+	*/
+	function __construct($database_identifier);
 
-	# EXECUTES A QUERY AND RETURNS THE VALUE AS ARRAY OF OBJECTS
-	# ARGS IS AN ARRAY OF myPDOparam's
-	# QUERY EXAMPLE SELECT * FROM table WHERE id=? AND name like ?;
-	public function query($query, $args);
+	/* EXECUTES A QUERY AND RETURNS THE VALUE AS ARRAY OF OBJECTS 
+	* @param (string) query - The query to be executed
+	* @param (array) args - Array of myPDOparam to be binded to the query
+	* @return (array) Array of objects. Each array position represents a database row
+	* Example: SELECT * FROM table WHERE id=? AND name like ?;
+	*/
+	function query($query, $args);
 }
 
 interface imyPDOparam {
-	# Receives the value and the type of param
-	# Used when binding values to stmt
-	# $type is PDO CONSTANTS http://php.net/manual/en/pdo.constants.php
-	public function __construct($value, $type);
+	/* Used when binding values to stmt
+	* @param (mixed) value - value to be binded to query
+	* @param (int) type - PDO CONSTANTS http://php.net/manual/en/pdo.constants.php
+	*/
+	 function __construct($value, $type);
 }
 
 class myPDO extends PDO implements imyPDO

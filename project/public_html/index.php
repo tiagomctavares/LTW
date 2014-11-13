@@ -1,10 +1,19 @@
 <?php
+    # This is the first version of the structure DEPRECATED!
+
+    # This is the first version of the structure DEPRECATED!
+
+    # This is the first version of the structure DEPRECATED!
+
+    # This is the first version of the structure DEPRECATED!
+
+    # MORE INFO IN README.md section FLOW
     require_once realpath(dirname(__FILE__) . "/../resources/config.php");
 
-    require_once LIB_PATH."/template_functions.php";
+    require_once LIB_PATH."/renderTemplate.php";
     require_once MODELS_PATH."/tests.php";
 
-    # This is the first version of the structure
+    # This is the first version of the structure DEPRECATED!
     $tests = getAllTests();
     $test = getTest(1);
     
@@ -16,5 +25,6 @@
         'setInIndexDotPhp' => $setInIndexDotPhp
     );
      
-    renderLayoutWithContentFile("home.php", $variables);
+    $template = new myTemplate();
+    $template->render("home.php", $variables);
 ?>

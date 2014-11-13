@@ -1,6 +1,7 @@
 <?php
 # Config file for each user developing
-require_once('dev_options.php');
+require_once('session_config.php');
+require_once('developer_config.php');
 
 $config = array(
     # Database
@@ -29,6 +30,9 @@ defined("MODELS_PATH")
 
 defined("VIEWS_PATH")
     or define("VIEWS_PATH", realpath(dirname(__FILE__) . '/views'));
+
+defined("TESTS_PATH")
+    or define("TESTS_PATH", realpath(dirname(__FILE__) . '/tests'));
 
 # ERROR REPORT
 # THIS SETTING IS USED FOR DEBUG

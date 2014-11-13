@@ -32,15 +32,15 @@ class mUser implements iUser {
 	function insertEntry($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_STR);
-		var_dump($data);
+		//var_dump($data);
 		$data[] = new myPDOparam(hash('sha256', $params[1]), PDO::PARAM_STR);
-		var_dump($data);
+		//var_dump($data);
 		$data[] = new myPDOparam(@date("Y-m-d H:i:s"), PDO::PARAM_STR);
-		var_dump($data);
+		//var_dump($data);
 
 		$result = $pdo->query('INSERT INTO User (username, password, createDate) VALUES(?, ?, ?);', $data);
 
-		var_dump($result);
+		//var_dump($result);
 
 		return $result[0]==0;
 

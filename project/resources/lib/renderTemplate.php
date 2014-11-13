@@ -1,6 +1,20 @@
 <?php 
-    function renderLayoutWithContentFile($contentFile, $variables = array())
+interface imyTemplate {
+    /* Renders a page with the common predefined templates
+    * @param (string) $contentFile - The file to render
+    * @param (array) $variables - Dictionary with the variables to be sent to the template
+    */
+    function render($contentFile, $variables=array());
+}
+
+class myTemplate implements imyTemplate {
+
+    function render($contentFile, $variables = array())
     {
+        # IF TESTING ACTIVE DONT RENDER PAGES
+        if(defined("TESTING"))
+            return ;
+
         $contentFileFullPath = TEMPLATES_PATH . "/pages/" . $contentFile;
     
         if (count($variables) > 0) {
@@ -25,4 +39,6 @@
         
         require_once(TEMPLATES_PATH . "/footer.php");
     }
+
+}
 ?>
