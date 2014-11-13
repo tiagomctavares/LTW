@@ -95,6 +95,8 @@ footer.php | Footer to be included in every page
 **Page** | **Description**
 -------- | -----------
 
+---
+
 ### Tests
 **Model** | **Description**
 -------- | -----------
