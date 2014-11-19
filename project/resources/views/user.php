@@ -138,6 +138,16 @@ function logoutUser() {
 }
 
 function newPoll() {
+	/*if(!$_SESSION['valid_login']) {
+		$errors[] = 'Please login to perform this operation';
+		$return -10;
+	}
+
+	$user = $_SESSION['user']['id'];*/
+
+	# FOR TESTING
+	$user = 1;
+
 	$title = isset($_POST['title'])?$_POST['title']:'';
 	$question = isset($_POST['question'])?$_POST['question']:'';
 	$image = isset($_POST['image'])?$_POST['image']:'';
@@ -177,8 +187,8 @@ function newPoll() {
 	# No errors
 	if(empty($errors)) {
 		require_once(MODELS_PATH.'/poll.php');
-		$user = new mPoll();
-		$result = $user->insertEntry(array($title, $question, $image, $answers));
+		$poll = new mPoll();
+		$result = $poll->insertEntry(array($user, $title, $question, $image, $answers));
 		if($result > 0) {
 			$variables = array(
 				'success'=>'Poll added with success',
@@ -186,7 +196,7 @@ function newPoll() {
 			$return = $result;
 		} else {
 			$errors[] = 'Poll Error';
-			$return = -10;
+			$return = -99;
 		}
 	}
 	# No success

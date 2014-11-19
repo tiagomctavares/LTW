@@ -5,6 +5,7 @@ interface iPoll {
 	/* Add Poll in Database
 	*  
 	* @param (array) with
+	* (int) user identifier
 	* (text) title
 	* (text) question
 	* (text) image_server_name
@@ -20,16 +21,17 @@ class mPoll implements iPoll {
 		$answer_id = array();
 
 		$pdo = new myPDO();
-		$data[] = new myPDOparam($params[0], PDO::PARAM_STR);
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
 		$data[] = new myPDOparam($params[1], PDO::PARAM_STR);
 		$data[] = new myPDOparam($params[2], PDO::PARAM_STR);
-		$result = $pdo->query('INSERT INTO poll (title, question, image) VALUES(?, ?, ?);', $data);
+		$data[] = new myPDOparam($params[3], PDO::PARAM_STR);
+		$result = $pdo->query('INSERT INTO poll (id_user, title, question, image) VALUES(?, ?, ?, ?);', $data);
 
 		if($result == 1) {
 			// Select last insert id
 			$poll_id = $pdo->last_insert_id();
 
-			foreach($params[3] as $answer) {
+			foreach($params[4] as $answer) {
 				$data = array();
 				$data[] = new myPDOparam($poll_id, PDO::PARAM_INT);
 				$data[] = new myPDOparam($answer, PDO::PARAM_STR);
