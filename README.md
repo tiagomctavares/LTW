@@ -74,13 +74,15 @@ mypdo.php | Used to get data from database easier
 **Model** | **Description**
 -------- | -----------
 user.php | Class that fetch User data from database
+poll.php | Class that fetch Poll data from database
 
 ---
 
 ### Views
 **Model** | **Description**
 -------- | -----------
-user.php | Functions for user actions (Example: Register)
+user_actions.php | Functions for user actions (Example: Register)
+pages.php | Functions for user actions (Example: Register)
 
 ---
 

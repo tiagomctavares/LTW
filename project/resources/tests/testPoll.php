@@ -1,7 +1,6 @@
 <?php
-require_once(VIEWS_PATH.'/user.php');
 
-class testM2_actions extends UnitTestCase {
+class testPoll extends UnitTestCase {
 	private $poll;
 
 	function test_newPoll() {
@@ -16,13 +15,13 @@ class testM2_actions extends UnitTestCase {
 	    $this->assertOutsideMargin($poll, -10, 0);
 	}
 
-	/*function test_cleanDB() {
+	function test_cleanDB() {
 		require_once(LIB_PATH.'/mypdo.php');
 		$pdo = new myPDO();
 		$data = array(new myPDOparam($this->poll, PDO::PARAM_INT));
 		$pdo->query('DELETE FROM poll WHERE id=?;', $data);
 		$pdo->query('DELETE FROM poll_answer WHERE id_poll=?;', $data);
 		$this->assertTrue(true);
-	}*/
+	}
 }
 ?>
