@@ -16,12 +16,12 @@ function registerUser() {
 
 	$errors = array();
 
-	if(!validateUsername($username)) {
+	if(!validStrLen($username, 50)) {
 		$errors[] = 'Username not valid';
 		$return = -1;
 	}
 
-	if(!validatePassword($password)) {
+	if(!validStrLen($password, 20)) {
 		$errors[] = 'Password not valid';
 		$return = -2;
 	}
@@ -73,14 +73,14 @@ function loginUser() {
 	
 	$errors = array();
 
-	if(!validateUsername($username)) {
+	if(!validStrLen($username, 50)) {
 		$errors[] = 'Username not valid';
 		$return = -1;
 	}
 
-	if(!validatePassword($password)) {
+	if(!validStrLen($password, 20)) {
 		$errors[] = 'Password not valid';
-		return -2;
+		$return = -2;
 	}
 
 	# No errors
@@ -94,10 +94,10 @@ function loginUser() {
 			$variables = array(
 				'success'=>'Login with success',
 			);
-			$return =1;
+			$return = 1;
 		} else {
 			$errors[] = 'Wrong Credentials';
-			return -10;
+			$return = -10;
 		}
 	}
 	# No success
@@ -137,17 +137,73 @@ function logoutUser() {
 	return $return;
 }
 
+function newPoll() {
+	$title = isset($_POST['title'])?$_POST['title']:'';
+	$question = isset($_POST['question'])?$_POST['question']:'';
+	$image = isset($_POST['image'])?$_POST['image']:'';
+	
+	$errors = array();
 
-# Auxiliary Functions
-function validateUsername($username) {
-	if(empty($username) || strlen($username) > 50)
-		return false;
+	if(!validStrLen($title, 50)) {
+		$errors[] = 'Title not valid';
+		$return = -1;
+	}
 
-	return true;
+	if(!validStrLen($question, 500)) {
+		$errors[] = 'Password not valid';
+		$return = -2;
+	}
+
+	if(!validStrLen($image, 255)) {
+		$errors[] = 'Password not valid';
+		$return = -3;
+	}
+
+	$answers = array();
+	$i = 1;
+	//print_r($_POST['answer'.$i]);
+	//exit;
+	do {
+		$answer = isset($_POST['answer'.$i])?$_POST['answer'.$i]:'';
+		//echo $_POST['answer'.$i];
+		if($answer != '') {
+			if(validStrLen($answer, 100)) {
+				$answers[] = $answer;
+			}
+			$i++;
+		}
+	}while($answer != '');
+
+	# No errors
+	if(empty($errors)) {
+		require_once(MODELS_PATH.'/poll.php');
+		$user = new mPoll();
+		$result = $user->insertEntry(array($title, $question, $image, $answers));
+		if($result > 0) {
+			$variables = array(
+				'success'=>'Poll added with success',
+			);
+			$return = $result;
+		} else {
+			$errors[] = 'Poll Error';
+			$return = -10;
+		}
+	}
+	# No success
+	if(!isset($variables))
+		$variables = array(
+			'errors'=>$errors
+		);
+
+	$template = new myTemplate();
+	$template->render("test_output.php", $variables);
+	return $return;
 }
 
-function validatePassword($password) {
-	if(empty($password) || (strlen($password)>20 && strlen($password) < 4))
+
+# Auxiliary Functions
+function validStrLen($str, $size) {
+	if(empty($str) || strlen($str) > $size)
 		return false;
 
 	return true;

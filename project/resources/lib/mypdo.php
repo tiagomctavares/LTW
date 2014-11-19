@@ -12,6 +12,11 @@ interface imyPDO {
 	* Example: SELECT * FROM table WHERE id=? AND name like ?;
 	*/
 	function query($query, $args);
+
+	/* RETURNS LAST INSERT ID
+	* @return (int) id of last inserted object
+	*/
+	function last_insert_id();
 }
 
 interface imyPDOparam {
@@ -52,13 +57,17 @@ class myPDO extends PDO implements imyPDO
 		return $this->fetch();
 	}
 
-	function prep($args) {
+	function last_insert_id() {
+		return $this->db->lastInsertId();
+	}
+
+	private function prep($args) {
 		$this->stmt = $this->db->prepare($this->query);
 		$this->bind($args);
 		$this->execQuery();
 	}
 
-	function bind($args) {
+	private function bind($args) {
 
 		if($this->stmt !== false) {
 			$i = 1;
@@ -70,7 +79,7 @@ class myPDO extends PDO implements imyPDO
 			throw 'Error binding parameters';
 	}
 
-	function execQuery() {
+	private function execQuery() {
 		try {
 			$this->stmt->execute();
 		} catch(PDOException $e) {
@@ -78,7 +87,7 @@ class myPDO extends PDO implements imyPDO
 		}
 	}
 
-	function fetch() {
+	private function fetch() {
 		if (preg_match('/^(select|describe|pragma|call)/i', $this->query)) {
 			# SELECTING ROWS
 			return $this->stmt->fetchAll(PDO::FETCH_CLASS);

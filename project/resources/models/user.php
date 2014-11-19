@@ -38,7 +38,7 @@ class mUser implements iUser {
 		$data[] = new myPDOparam(@date("Y-m-d H:i:s"), PDO::PARAM_STR);
 		//var_dump($data);
 
-		$result = $pdo->query('INSERT INTO User (username, password, createDate) VALUES(?, ?, ?);', $data);
+		$result = $pdo->query('INSERT INTO user (username, password, createDate) VALUES(?, ?, ?);', $data);
 
 		//var_dump($result);
 
@@ -51,7 +51,7 @@ class mUser implements iUser {
 		$data[] = new myPDOparam($params[0], PDO::PARAM_STR);
 		$data[] = new myPDOparam(hash('sha256', $params[1]), PDO::PARAM_STR);
 		
-		$result = $pdo->query('SELECT id FROM User WHERE username LIKE ? AND password LIKE ?;', $data);
+		$result = $pdo->query('SELECT id FROM user WHERE username LIKE ? AND password LIKE ?;', $data);
 		
 		$result = empty($result)?0:$result[0]->id;
 
@@ -60,7 +60,7 @@ class mUser implements iUser {
 			$data = array();
 			$data[] = new myPDOparam(@date("Y-m-d H:i:s"), PDO::PARAM_STR);
 			$data[] = new myPDOparam($result[0], PDO::PARAM_INT);
-			$pdo->query('UPDATE User SET lastLogin=? WHERE id=?', $data);
+			$pdo->query('UPDATE user SET lastLogin=? WHERE id=?', $data);
 		}
 
 		return $result;
@@ -70,7 +70,7 @@ class mUser implements iUser {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($username, PDO::PARAM_STR);
 
-		$result = $pdo->query('SELECT COUNT(*) as res FROM User WHERE username LIKE ?;', $data);
+		$result = $pdo->query('SELECT COUNT(*) as res FROM user WHERE username LIKE ?;', $data);
 		
 		return ($result[0]->res)>0;
 	}
