@@ -11,8 +11,6 @@
     require_once realpath(dirname(__FILE__) . "/../resources/config.php");
     require_once VIEWS_PATH.'/pages.php';
 
-    require_once (VIEWS_PATH . "/user.php");
-
     $page = isset($_GET['page'])?$_GET['page']:'';
     switch ($page) {
     	case 'register':
