@@ -138,21 +138,19 @@ function logoutUser() {
 }
 
 function newPoll() {
-	/*if(!$_SESSION['valid_login']) {
+	$errors = array();
+
+	if(!$_SESSION['valid_login']) {
 		$errors[] = 'Please login to perform this operation';
-		$return -10;
+		$return = -10;
 	}
 
-	$user = $_SESSION['user']['id'];*/
-
-	# FOR TESTING
-	$user = 1;
+	$user = $_SESSION['user']['id'];
 
 	$title = isset($_POST['title'])?$_POST['title']:'';
 	$question = isset($_POST['question'])?$_POST['question']:'';
 	$image = isset($_POST['image'])?$_POST['image']:'';
 	
-	$errors = array();
 
 	if(!validStrLen($title, 50)) {
 		$errors[] = 'Title not valid';
@@ -197,6 +195,96 @@ function newPoll() {
 		} else {
 			$errors[] = 'Poll Error';
 			$return = -99;
+		}
+	}
+	# No success
+	if(!isset($variables))
+		$variables = array(
+			'errors'=>$errors
+		);
+
+	$template = new myTemplate();
+	$template->render("test_output.php", $variables);
+	return $return;
+}
+
+function managePoll() {
+	$errors = array();
+	if(!$_SESSION['valid_login']) {
+		$errors[] = 'Please login to perform this operation';
+		$return = -10;
+	} else {
+		$user = $_SESSION['user']['id'];
+	}
+
+	$poll_id = isset($_POST['poll'])?$_POST['poll']:'';
+	$title = isset($_POST['title'])?$_POST['title']:'';
+	$question = isset($_POST['question'])?$_POST['question']:'';
+	$image = isset($_POST['image'])?$_POST['image']:'';
+	
+
+	if(!is_numeric($poll_id)) {
+		$errors[] = 'Poll not valid';
+		$return = -1;
+	}
+
+	if(!validStrLen($title, 50)) {
+		$errors[] = 'Title not valid';
+		$return = -2;
+	}
+
+	if(!validStrLen($question, 500)) {
+		$errors[] = 'Password not valid';
+		$return = -3;
+	}
+
+	if(!validStrLen($image, 255)) {
+		$errors[] = 'Password not valid';
+		$return = -4;
+	}
+
+	$answers = array();
+	$i = 1;
+	//print_r($_POST['answer'.$i]);
+	//exit;
+	do {
+		$answer = isset($_POST['answer'.$i])?$_POST['answer'.$i]:'';
+		//echo $_POST['answer'.$i];
+		if($answer != '') {
+			if(validStrLen($answer, 100)) {
+				$answers[] = $answer;
+			}
+			$i++;
+		}
+	}while($answer != '');
+
+	# No errors
+	if(empty($errors)) {
+		require_once MODELS_PATH.'/poll.php';
+		$poll = new mPoll();
+		# Check if the entry already exists
+		if($poll->existEntry(array($poll_id))) {
+			if($poll->userOwnsEntry(array($user, $poll_id))) {
+				# All ok update entry
+				$params = array(
+					$poll_id, $title, $question, $image, $answers
+				);
+				if(!$poll->updateEntry($params)) {
+					$errors[] = 'Error while updating poll';
+					$return = -102;
+				}else {
+					$variables = array(
+						'success'=>'Poll updated with success'
+					);
+					$return = 1; # Sucess
+				}
+			} else {
+				$errors[] = 'This poll does not belong to the user';
+				$return = -101;
+			}
+		} else {
+			$errors[] = 'This poll does not exist';
+			$return = -100;
 		}
 	}
 	# No success
