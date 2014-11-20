@@ -6,6 +6,11 @@ function home() {
 	$template->render('home.php');
 }
 
+function page_register() {
+	$template = new myTemplate();
+	$template->render('register.php');
+}
+
 function listPolls() {
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();

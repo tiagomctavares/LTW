@@ -13,16 +13,11 @@
 
     $page = isset($_GET['page'])?$_GET['page']:'';
     switch ($page) {
-    	case 'register':
-    		page_register();
-    		break;
-    	
-    	case 'login':
-    		page_login();
-    		break;
-    	
+    	case 'home':
     	default:
-    		# code...
+    		home();
+    	
+    		
     		break;
     }
     //listPolls();
