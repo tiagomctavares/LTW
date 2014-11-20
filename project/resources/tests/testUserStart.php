@@ -1,9 +1,10 @@
 <?php
 
 class testUserStart extends UnitTestCase {
-	$username = '___ttavares';
+	var $username;
 
 	function test_register() {
+		$this->username = '___ttavares';
 	    $_POST['username'] = $this->username;
 	    $_POST['password'] = '1234';
 	    $this->assertEqual(registerUser(), 1);

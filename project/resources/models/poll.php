@@ -66,7 +66,7 @@ class mPoll implements iPoll {
 		// Select last insert id
 		$poll_id = $pdo->last_insert_id();
 
-		foreach($params[4] as $answer) {
+		foreach($params[4] as $answer)
 			$answer_id[] = $this->insertPollAnswer(array($poll_id, $answer));
 	
 
@@ -77,7 +77,7 @@ class mPoll implements iPoll {
 	}
 
 	# INSERT POLL ANSWER IF ALREADY EXISTS RETURNS THE ID
-	private function insertPollAnswer($params) {
+	function insertPollAnswer($params) {
 		$pdo = new myPDO();
 		$data = array();
 		# Poll ID
@@ -98,7 +98,7 @@ class mPoll implements iPoll {
 		}
 	}
 
-	private function removePollAnswer($params) {
+	function removePollAnswer($params) {
 		$pdo = new myPDO();
 		$data = array();
 		# Answer ID
@@ -107,7 +107,7 @@ class mPoll implements iPoll {
 		return $result;
 	}
 
-	private function existEntryAnswer($params) {
+	function existEntryAnswer($params) {
 		$data = array();
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);

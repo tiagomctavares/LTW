@@ -15,7 +15,7 @@ class testPoll extends UnitTestCase {
 	    $this->assertOutsideMargin($poll, -10, 0);
 	}
 
-	function test_managePoll() {
+	/*function test_managePoll() {
 	    $_POST['title'] = 'Poll 1';
 	    $_POST['question'] = 'What?';
 	    $_POST['image'] = 'myImage';
@@ -23,7 +23,7 @@ class testPoll extends UnitTestCase {
 	    $_POST['answer2'] = 'a2';
 	    $_POST['answer3'] = 'a3';
 	    $this->poll = managePoll();
-	}
+	}*/
 
 	function test_cleanDB() {
 		require_once(LIB_PATH.'/mypdo.php');
