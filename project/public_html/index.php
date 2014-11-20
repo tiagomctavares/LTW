@@ -12,4 +12,5 @@
     require_once VIEWS_PATH.'/pages.php';
 
     home();
+    //listPolls();
 ?>

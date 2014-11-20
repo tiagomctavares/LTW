@@ -167,6 +167,12 @@ class mPoll implements iPoll {
 		return 1;
 	}
 
+	function getPolls($params = array()) {
+		$pdo = new myPDO();
+		$result = $pdo->query('SELECT * FROM poll;');
+		return $result;
+	}
+
 	function getPollAnswers($params) {
 		$data = array();
 		$pdo = new myPDO();
