@@ -74,13 +74,15 @@ mypdo.php | Used to get data from database easier
 **Model** | **Description**
 -------- | -----------
 user.php | Class that fetch User data from database
+poll.php | Class that fetch Poll data from database
 
 ---
 
 ### Views
 **Model** | **Description**
 -------- | -----------
-user.php | Functions for user actions (Example: Register)
+user_actions.php | Functions for user actions (Example: Register)
+pages.php | Functions for user actions (Example: Register)
 
 ---
 
@@ -99,7 +101,9 @@ footer.php | Footer to be included in every page
 **Model** | **Description**
 -------- | -----------
 all_tests.php | Suite test that includes and runs all tests for the application. To include a new test file just add the file with tests and fill one more array position in constructor with the filename.
-testM1_actions.php | Unitary tests for the first milestone of the project
+testUserStart.php | Unitary Test to register and login user (incomplete)
+testPoll.php | Unitary Test to add Poll, manage it and delete it (incomplete)
+testUserEnd.php | Unitary Test to logout user and delete data of user from database (incomplete)
 
 
 Notes: 
