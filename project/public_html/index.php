@@ -13,4 +13,7 @@
 
     home();
     //listPolls();
+    //listPollsUser();
+    //listPollsSearch();
+    //showPoll();
 ?>

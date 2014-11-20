@@ -167,18 +167,38 @@ class mPoll implements iPoll {
 		return 1;
 	}
 
+	function getPollAnswers($params) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$result = $pdo->query('SELECT id, answer FROM poll_answer WHERE id_poll=?;', $data);
+		return $result;
+	}
+
 	function getPolls($params = array()) {
 		$pdo = new myPDO();
 		$result = $pdo->query('SELECT * FROM poll;');
 		return $result;
 	}
 
-	function getPollAnswers($params) {
-		$data = array();
+	function getPollsUser($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		$result = $pdo->query('SELECT id, answer FROM poll_answer WHERE id_poll=?;', $data);
+		$result = $pdo->query('SELECT * FROM poll WHERE id_user=?;', $data);
 		return $result;
+	}
+
+	function getPollsSearch($params) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam("%$params[0]%", PDO::PARAM_STR);
+		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ?;', $data);
+		return $result;
+	}
+
+	function getPoll($params) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$result = $pdo->query('SELECT * FROM poll WHERE id = ?;', $data);
+		return $result[0];
 	}
 }
 ?>
