@@ -10,6 +10,12 @@ require_once(LIB_PATH.'/renderTemplate.php');
 * -10: Duplicate User
 * 1:  Success
 */
+function test(){
+
+	$template = new myTemplate();
+	$template->render("home.php");
+}
+
 function registerUser() {
 	$username = isset($_POST['username'])?$_POST['username']:'';
 	$password = isset($_POST['password'])?$_POST['password']:'';

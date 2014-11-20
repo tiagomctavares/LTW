@@ -26,6 +26,7 @@ class myTemplate implements imyTemplate {
         }
      
         require_once(TEMPLATES_PATH . "/header.php");
+        require_once(TEMPLATES_PATH . "/navbar.php");
      
         if (file_exists($contentFileFullPath)) {
             require_once($contentFileFullPath);

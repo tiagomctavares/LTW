@@ -34,6 +34,10 @@ defined("VIEWS_PATH")
 defined("TESTS_PATH")
     or define("TESTS_PATH", realpath(dirname(__FILE__) . '/tests'));
 
+
+defined("HOME_URL")
+    or define("HOME_URL", $config['urls']['baseUrl']);
+
 # ERROR REPORT
 # THIS SETTING IS USED FOR DEBUG
 ini_set("error_reporting", "true");
