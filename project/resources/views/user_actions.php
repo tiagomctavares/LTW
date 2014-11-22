@@ -54,9 +54,9 @@ function registerUser() {
 			'username'=>$username
 		);
 	}
-	
+
 	$template = new myTemplate();
-	$template->render("test_output.php", $variables);
+	$template->render("home.php", $variables);
 	return $return; // Used for unit Testing
 }
 
