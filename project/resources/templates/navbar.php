@@ -1,18 +1,32 @@
 <div class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
-		<a href="#" class="navbar-brand">LTW Project</a>
-		
-		<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">LTW Project</a>
+
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+		</div>
 
 		<div class="collapse navbar-collapse navHeaderCollapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#" class="active">Home</a></li>
 				<li><a href="#">View Polls</a></li>
-				<li><a href="#">Option</a></li>
+				<li>
+					<form class="navbar-form" role="search">
+				          <div class="input-group">
+				            <input type="text" class="form-control" placeholder="Search Polls" name="searchPoll" id="searchPoll" action="">
+				            <div class="input-group-btn">
+				              <button class="btn btn-default" type="submit">
+				              	<i class="glyphicon glyphicon-search"></i>
+				              </button>
+				            </div>
+				          </div>
+        			</form>
+        		</li>
 				<li><a href="#" data-toggle="modal" data-target="#login">Login</a></li>
 			</ul>			
 		</div>
@@ -30,20 +44,18 @@
 			</div>
 
 			<div class="modal-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=userLogin" method="POST">
 					<div class="form-group has-feedback">
-					    <!--<label for="username" class="col-lg-2 control-label">Username</label>-->
 					    <div class="inner-addon left-addon col-lg-12">
 					    	<i class="form-control-feedback glyphicon glyphicon-user"></i>
-					   		<input type="text" class="form-control" id="username" placeholder="Username">
+					   		<input type="text" class="form-control" id="username" placeholder="Username" name="username">
 						</div>
 					</div>
 					  	
 					<div class="form-group has-feedback has-feedback-left">
-					   	<!--<label for="password" class="col-lg-2 control-label">Password</label>-->
 					    <div class="inner-addon left-addon col-lg-12">
 					    	<i class="form-control-feedback glyphicon glyphicon-lock"></i>
-					    	<input type="password" class="form-control" id="password" placeholder="Password">
+					    	<input type="password" class="form-control" id="password" placeholder="Password" name="password">
 					    </div>
 					</div>
 
@@ -70,11 +82,11 @@
 			</div>
 
 			<div class="modal-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=userRegister" method="POST">
 					<div class="form-group has-feedback">
 					    <!--<label for="username" class="col-lg-2 control-label">Username</label>-->
 					    <div class="inner-addon left-addon col-lg-12">
-					   		<input type="text" class="form-control" id="username" placeholder="Username">
+					   		<input type="text" class="form-control" id="username" placeholder="Username" name="username">
 					    	<i class="form-control-feedback glyphicon glyphicon-user"></i>
 						</div>
 					</div>
@@ -82,7 +94,7 @@
 					<div class="form-group has-feedback">
 					   	<!--<label for="password" class="col-lg-2 control-label">Password</label>-->
 					    <div class="inner-addon left-addon col-lg-12">
-					    	<input type="password" class="form-control" id="password" placeholder="Password">
+					    	<input type="password" class="form-control" id="password" placeholder="Password" name="password">
 					    	<i class="form-control-feedback glyphicon glyphicon-lock"></i>
 					    </div>
 					</div>

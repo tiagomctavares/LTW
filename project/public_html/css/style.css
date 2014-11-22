@@ -1,3 +1,17 @@
+/* GENERAL */
+
+/* NAVBAR */
+
+.navbar{
+	margin-bottom: 0px;
+}
+
+/* FOOTER */
+
+footer{
+	margin: 0px;
+}
+
 /* LOGIN AND REGISTER CSS */
 
 /* enable absolute positioning */
@@ -8,7 +22,7 @@
 /* style icon */
 .inner-addon .glyphicon{
   position: absolute;
-  padding: 10px, 0;
+  padding: 10px, 0px;
   pointer-events: none;
 }
 
@@ -26,4 +40,35 @@
 }
 .right-addon input{ 
 	padding-right: 30px; 
+}
+
+
+/* HOMEPAGE: JUMBOTRON IMAGE AND TEXT; */
+
+.jumbotron{
+	margin: 0px;
+	padding: 0px;
+	height: 602px;
+
+	background: url("../img/homeJumbotron.jpg") no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.jumbotron .jumbotronText{
+	color: red;
+	z-index: 4;
+}
+
+.jumbotron .overlay {
+	background-color: #22A39F;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 2;
+	opacity: 0.40;
 }

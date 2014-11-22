@@ -10,14 +10,21 @@
     # MORE INFO IN README.md section FLOW
     require_once realpath(dirname(__FILE__) . "/../resources/config.php");
     require_once VIEWS_PATH.'/pages.php';
+    require_once VIEWS_PATH.'/user_actions.php';
 
     $page = isset($_GET['page'])?$_GET['page']:'';
     switch ($page) {
     	case 'home':
-    	default:
-    		home();
-    	
-    		
+            home();
+            break;
+        case 'userRegister':
+            registerUser();
+            break;
+        case 'userLogin':
+            loginuser();
+            break;
+        default:
+            home(); 
     		break;
     }
     //listPolls();
