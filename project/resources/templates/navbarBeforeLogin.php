@@ -58,6 +58,7 @@
 					    	<input type="password" class="form-control" id="password" placeholder="Password" name="password">
 					    </div>
 					</div>
+		
 
 					<div class="form-group">
 					    <div class="col-lg-12 text-right">
@@ -98,6 +99,12 @@
 					    	<i class="form-control-feedback glyphicon glyphicon-lock"></i>
 					    </div>
 					</div>
+
+					<?php if((isset($success))): ?>
+					<div class="col-lg-12">
+					    <input type="help" class="form-control" id="" value="<?=$success?>">
+					</div>	
+					<?php endif; ?>
 					
 					<div class="form-group">
 					    <div class="col-lg-12 text-right">

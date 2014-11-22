@@ -21,7 +21,7 @@
             registerUser();
             break;
         case 'userLogin':
-            loginuser();
+            loginUser();
             break;
         default:
             home(); 

@@ -26,7 +26,11 @@ class myTemplate implements imyTemplate {
         }
      
         require_once(TEMPLATES_PATH . "/header.php");
-        require_once(TEMPLATES_PATH . "/navbar.php");
+
+        if($_SESSION['valid_login'])
+            require_once(TEMPLATES_PATH . "/navbarAfterLogin.php");
+        else
+            require_once(TEMPLATES_PATH . "/navbarBeforeLogin.php");
      
         if (file_exists($contentFileFullPath)) {
             require_once($contentFileFullPath);

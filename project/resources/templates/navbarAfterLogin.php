@@ -1,0 +1,36 @@
+<div class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">LTW Project</a>
+
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+		</div>
+
+		<div class="collapse navbar-collapse navHeaderCollapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" class="active">Home</a></li>
+				<li><a href="#">View Polls</a></li>
+				<li>
+					<form class="navbar-form" role="search">
+				          <div class="input-group">
+				            <input type="text" class="form-control" placeholder="Search Polls" name="searchPoll" id="searchPoll" action="">
+				            <div class="input-group-btn">
+				              <button class="btn btn-default" type="submit">
+				              	<i class="glyphicon glyphicon-search"></i>
+				              </button>
+				            </div>
+				          </div>
+        			</form>
+        		</li>
+				<li>Welcome <?=$_SESSION['user']['username'] ?></li>
+			</ul>			
+		</div>
+
+	</div>
+
+</div>
