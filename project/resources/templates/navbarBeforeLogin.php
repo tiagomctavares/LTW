@@ -1,5 +1,5 @@
 <div class="navbar navbar-inverse navbar-static-top">
-	<div class="container">
+	<div class="container myNavbar">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">LTW Project</a>
 

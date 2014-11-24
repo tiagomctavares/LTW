@@ -133,7 +133,7 @@ function logoutUser() {
 	}
 	
 	$template = new myTemplate();
-	$template->render("test_output.php", $variables);
+	$template->render("home.php", $variables);
 	return $return;
 }
 

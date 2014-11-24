@@ -23,6 +23,9 @@
         case 'userLogin':
             loginUser();
             break;
+        case 'userLogout':
+            logoutUser();
+            break;
         default:
             home(); 
     		break;

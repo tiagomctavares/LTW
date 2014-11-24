@@ -1,5 +1,5 @@
 <div class="navbar navbar-inverse navbar-static-top">
-	<div class="container">
+	<div class="container myNavbar">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">LTW Project</a>
 
@@ -27,7 +27,12 @@
 				          </div>
         			</form>
         		</li>
-				<li>Welcome <?=$_SESSION['user']['username'] ?></li>
+				<li><a href="#">Welcome <?=$_SESSION['user']['username'] ?></a></li>
+				<li>
+					<a href="<?=HOME_URL ?>/?page=userLogout">
+						<i class="glyphicon glyphicon-log-out" title="Logout"></i>
+					</a>
+				</li>
 			</ul>			
 		</div>
 
