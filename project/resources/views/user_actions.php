@@ -204,7 +204,7 @@ function newPoll() {
 		);
 
 	$template = new myTemplate();
-	$template->render("test_output.php", $variables);
+	$template->render("newPoll.php", $variables);
 	return $return;
 }
 

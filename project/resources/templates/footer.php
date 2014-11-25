@@ -50,6 +50,6 @@
 	
 	<script src="<?=HOME_URL ?>/js/jquery-2.1.1.min.js"></script>
 	<script src="<?=HOME_URL ?>/js/bootstrap.js"></script>
-	
+	<script src="<?=HOME_URL ?>/js/script.js"></script>	
 </body>
 </html>
