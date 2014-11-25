@@ -29,6 +29,11 @@
         		</li>
 				<li><a href="#">Welcome <?=$_SESSION['user']['username'] ?></a></li>
 				<li>
+					<a href="<?=HOME_URL ?>/?page=newPoll">
+						<i class="glyphicon glyphicon-plus" title="New Poll"></i>
+					</a>
+				</li>
+				<li>
 					<a href="<?=HOME_URL ?>/?page=userLogout">
 						<i class="glyphicon glyphicon-log-out" title="Logout"></i>
 					</a>

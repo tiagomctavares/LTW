@@ -26,6 +26,9 @@
         case 'userLogout':
             logoutUser();
             break;
+        case 'newPoll':
+            newPoll();
+            break;
         default:
             home(); 
     		break;
