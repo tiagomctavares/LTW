@@ -27,20 +27,32 @@
 				          </div>
         			</form>
         		</li>
-				<li><a href="#">Welcome <?=$_SESSION['user']['username'] ?></a></li>
-				<li>
+
+        		<li>
 					<a href="<?=HOME_URL ?>/?page=newPoll">
 						<i class="glyphicon glyphicon-plus" title="New Poll"></i>
 					</a>
 				</li>
 				<li>
-					<a href="<?=HOME_URL ?>/?page=userLogout">
-						<i class="glyphicon glyphicon-log-out" title="Logout"></i>
-					</a>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" role="button" aria-expanded="false" >
+	    					Welcome <?=$_SESSION['user']['username'] ?> <b class="caret"></b></a>
+		  					<ul class="dropdown-menu" role="menu">
+							    <li>
+							    	<a href="#"> Manage Polls
+							    		<i class="glyphicon glyphicon-pencil" title="Manage Polls"></i>
+							    	</a>
+							    </li>
+							    <li>
+							    	<a href="<?=HOME_URL ?>/?page=userLogout">Logout
+							    		<i class="glyphicon glyphicon-log-out" title="Logout"></i>
+							    	</a>
+							    </li>
+							</ul>
+					</li>
 				</li>
 			</ul>			
 		</div>
-
-	</div>
-
+			
+		</div>
 </div>

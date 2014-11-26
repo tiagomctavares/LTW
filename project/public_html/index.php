@@ -40,7 +40,6 @@
             home(); 
     		break;
     }
-    //listPolls();
     //listPollsUser();
     //listPollsSearch();
     //showPoll();

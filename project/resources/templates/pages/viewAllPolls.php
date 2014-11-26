@@ -5,7 +5,7 @@
   			
   			
 			<?php foreach($polls as $poll): ?>
-				<a class="media-left" href="<?=HOME_URL ?>/?page=showPoll">
+				<a class="media-left" href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>">
   			<div class="media-body">
     			<h4 class="media-heading"><?=$poll->title ?></h4>
     			<p><?=$poll->question ?></p>

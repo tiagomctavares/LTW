@@ -51,18 +51,25 @@ function listPollsSearch() {
 }
 
 function showPoll() {
-	# for test
-	$poll_id = 1;
+	# for test - how can i get the position from polls list?
+	$poll_id = isset($_GET['poll'])?$_GET['poll']:0;
+	if(is_numeric($poll_id)) {
 
-	require_once MODELS_PATH.'/poll.php';
-	$poll = new mPoll();
-	$polls = $poll->getPoll(array($poll_id));
-	$answers = $poll->getPollAnswers(array($poll_id));
-	$variables = array(
-		'polls' => $polls,
-		'answers' => $answers
-	);
-	$template = new myTemplate();
-	$template->render('test_output.php', $variables);
+		require_once MODELS_PATH.'/poll.php';
+		$poll = new mPoll();
+		$polls = $poll->getPoll(array($poll_id));
+		if(empty($polls))
+			listPolls();
+		$answers = $poll->getPollAnswers(array($poll_id));
+		$variables = array(
+			'polls' => $polls,
+			'answers' => $answers
+		);
+		$template = new myTemplate();
+		$template->render('showPoll.php', $variables);
+	} else {
+		listPolls();
+	}
+
 }
 ?>
