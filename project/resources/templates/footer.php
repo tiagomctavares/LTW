@@ -1,15 +1,13 @@
-	
-	<footer class="footer">
-		<!--<div class="navbar navbar-default navbar-fixed-bottom">-->
-			<div class="container">
-				<p class="navbar-text pull-left"> Built by Tiago Tavares, Pedro Faria and Mário Macedo</p>
-				<a href="#" class="pull-right" id="qrcode" data-toggle="modal" data-target="#students">
-					<i class="glyphicon glyphicon-qrcode navbar-text"></i>
-				</a>
-			</div>
-		<!--</div>-->
-	</footer>
 
+
+	<footer class="footer navbar-fixed-bottom branco">
+    	<div class="container">
+        	<p class="navbar-text pull-left"> Built by Tiago Tavares, Pedro Faria and Mário Macedo</p>
+			<a href="#" class="pull-right" id="qrcode" data-toggle="modal" data-target="#students">
+				<i class="glyphicon glyphicon-qrcode navbar-text"></i>
+			</a>
+    	</div>
+	</footer>
 
 	<!--STUDENTS MODAL-->
 	<div class="modal fade" id="students" role="dialog">

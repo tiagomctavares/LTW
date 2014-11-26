@@ -13,6 +13,7 @@
     require_once VIEWS_PATH.'/user_actions.php';
 
     $page = isset($_GET['page'])?$_GET['page']:'';
+    
     switch ($page) {
     	case 'home':
             home();
@@ -28,6 +29,12 @@
             break;
         case 'newPoll':
             newPoll();
+            break;
+        case 'viewAllPolls':
+            listPolls();
+            break;
+        case 'showPoll':
+            showPoll();
             break;
         default:
             home(); 

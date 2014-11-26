@@ -1,7 +1,7 @@
-<div class="navbar navbar-inverse navbar-static-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container myNavbar">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">LTW Project</a>
+			<a class="navbar-brand" href="<?=HOME_URL ?>/?page=home">LTW Project</a>
 
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
 				<span class="icon-bar"></span>
@@ -13,8 +13,8 @@
 
 		<div class="collapse navbar-collapse navHeaderCollapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" class="active">Home</a></li>
-				<li><a href="#">View Polls</a></li>
+				<li><a href="<?=HOME_URL ?>/?page=home" class="active">Home</a></li>
+				<li><a href="<?=HOME_URL ?>/?page=viewAllPolls">View Polls</a></li>
 				<li>
 					<form class="navbar-form" role="search">
 				          <div class="input-group">

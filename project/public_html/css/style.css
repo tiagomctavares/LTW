@@ -19,6 +19,10 @@
 	position: fixed;
 }
 
+.branco{
+	background-color: rgba(255, 255, 255, 0.75);
+}
+
 /* LOGIN AND REGISTER CSS */
 
 /* enable absolute positioning */
@@ -78,4 +82,26 @@
 	right: 0px;
 	z-index: 2;
 	opacity: 0.40;
+}
+
+/* VIEW ALL POLLS */
+
+
+.media-body{
+	border-style: none;
+    border-color: rgba(0, 0, 255, 1);
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	width:700px;
+}
+
+.media-body h4{
+	text-decoration: none;
+	color: black;
+}
+
+.media-body p{
+	text-decoration: none;
+	color: black;
+	text-align: left;
 }

@@ -19,7 +19,7 @@ function listPolls() {
 		'polls' => $polls
 	);
 	$template = new myTemplate();
-	$template->render('test_output.php', $variables);
+	$template->render('viewAllPolls.php', $variables);
 }
 
 function listPollsUser() {
