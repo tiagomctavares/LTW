@@ -37,13 +37,11 @@
             newPoll();
             break;
         case 'viewAllPolls':
+        case 'search':
             listPolls();
             break;
         case 'showPoll':
             showPoll();
-            break;
-        case 'search':
-            listPollsSearch();
             break;
         default:
             home(); 

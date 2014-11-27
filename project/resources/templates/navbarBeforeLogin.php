@@ -34,3 +34,5 @@
 	</div>
 
 </div>
+
+<div class="navbar navbar-inverse"></div>

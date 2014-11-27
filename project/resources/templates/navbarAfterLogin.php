@@ -30,7 +30,7 @@
 
         		<li>
 					<a href="<?=HOME_URL ?>/?page=newPoll">
-						<i class="glyphicon glyphicon-plus" title="New Poll"></i>
+						<i class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="New Poll"></i>
 					</a>
 				</li>
 				<li>
@@ -56,3 +56,5 @@
 			
 		</div>
 </div>
+
+<div class="navbar navbar-inverse"></div>
