@@ -17,37 +17,26 @@ function page_login() {
 }
 
 function listPolls() {
+	$search = isset($_POST['search'])?isset($_POST['search']):'';
+
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();
-	$polls = $poll->getPolls();
+	$polls = $poll->getPolls(array($search));
 	$variables = array(
-		'polls' => $polls
+		'polls' => $polls,
+		'search'=> ($search!=''),
+		'search_value'=> $search
 	);
 	$template = new myTemplate();
 	$template->render('viewAllPolls.php', $variables);
 }
 
 function listPollsUser() {
-	# for test
-	$user_id = 1;
+	$user_id = $_SESSION['user']['id'];
 
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();
 	$polls = $poll->getPollsUser(array($user_id));
-	$variables = array(
-		'polls' => $polls
-	);
-	$template = new myTemplate();
-	$template->render('test_output.php', $variables);
-}
-
-function listPollsSearch() {
-	# for test
-	$search = 'My';
-
-	require_once MODELS_PATH.'/poll.php';
-	$poll = new mPoll();
-	$polls = $poll->getPollsSearch(array($search));
 	$variables = array(
 		'polls' => $polls
 	);

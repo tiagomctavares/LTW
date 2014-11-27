@@ -176,7 +176,8 @@ class mPoll implements iPoll {
 
 	function getPolls($params = array()) {
 		$pdo = new myPDO();
-		$result = $pdo->query('SELECT * FROM poll;');
+		$data[] = new myPDOparam("%$params[0]%", PDO::PARAM_STR);
+		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ?;', $data);
 		return $result;
 	}
 
@@ -188,10 +189,6 @@ class mPoll implements iPoll {
 	}
 
 	function getPollsSearch($params) {
-		$pdo = new myPDO();
-		$data[] = new myPDOparam("%$params[0]%", PDO::PARAM_STR);
-		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ?;', $data);
-		return $result;
 	}
 
 	function getPoll($params) {
