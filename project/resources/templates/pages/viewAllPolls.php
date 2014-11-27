@@ -24,7 +24,3 @@
     </div>
 	</div>
 </div>
-
-<?php var_dump($polls); ?>
-
-<br><br><br>

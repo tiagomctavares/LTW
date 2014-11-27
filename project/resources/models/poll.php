@@ -188,9 +188,6 @@ class mPoll implements iPoll {
 		return $result;
 	}
 
-	function getPollsSearch($params) {
-	}
-
 	function getPoll($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
