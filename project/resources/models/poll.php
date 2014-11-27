@@ -2,53 +2,35 @@
 require_once(LIB_PATH.'/mypdo.php');
 
 interface iPoll {
+	# POLL
+	function insertPoll($params);
+	function existPoll($params);
+	function userOwnsPoll($params);
+	function updatePoll($params);
+	function getPoll($params);
+
+	#POLLS
+	function getPolls($params);
+	function getPollsUser($params);
+
+	# ANSWER
+	function existPollAnswer($params);
+}
+# Model Poll
+class mPoll implements iPoll {
 	/* Add Poll in Database
 	*  
 	* @param (array) with
 	* (int) user identifier
-	* (text) title
-	* (text) question
-	* (text) image_server_name
+	* (str) title
+	* (str) question
+	* (int) isPublic
+	* (str) image_server_name
 	* (array) answers
-	*		(text) answer n
+	*		(str) answer n
 	* @ return (int) poll_id
 	*/
-	function insertEntry($params);
-
-	/* Checks if a poll with sent identifier exists
-	*  
-	* @param (array) with
-	* (int) poll identifier
-	* @ return (boolean)
-	*/
-	function existEntry($params);
-
-	/* Checks if a poll belongs to User
-	*  
-	* @param (array) with
-	* (int) user identifier
-	* (int) poll identifier
-	* @ return (boolean)
-	*/
-	function userOwnsEntry($params);
-
-		/* Manage a Poll in Database
-	*  
-	* @param (array) with
-	* (int) user identifier
-	* (int) poll identifier
-	* (text) title
-	* (text) question
-	* (text) image_server_name
-	* (array) answers
-	*		(text) answer n
-	* @ return (int) poll_id
-	*/
-	function updateEntry($params);
-}
-# Model Poll
-class mPoll implements iPoll {
-	function insertEntry($params) {
+	function insertPoll($params) {
 		$answer_id = array();
 
 		$pdo = new myPDO();
@@ -77,49 +59,30 @@ class mPoll implements iPoll {
 		return $poll_id;
 	}
 
-	# INSERT POLL ANSWER IF ALREADY EXISTS RETURNS THE ID
-	function insertPollAnswer($params) {
-		$pdo = new myPDO();
+	/* Checks if answer with sent poll identifier exists
+	*  
+	* @param (array) with
+	* (int) poll identifier
+	* (str) answer
+	* @ return (boolean)
+	*/
+	function existPollAnswer($params) {
 		$data = array();
-		# Poll ID
+		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		# Answer
 		$data[] = new myPDOparam($params[1], PDO::PARAM_STR);
-
-		if(!$this->existEntryAnswer($params)) {
-
-			$result = $pdo->query('INSERT INTO poll_answer (id_poll, answer) VALUES(?, ?);', $data);
-			return $pdo->last_insert_id();
-
-		} else {
-
-			$result = $pdo->query('SELECT id FROM poll_answer WHERE id_poll=? AND answer=?;', $data);
-			return $result[0]->id;
-
-		}
-	}
-
-	function removePollAnswer($params) {
-		$pdo = new myPDO();
-		$data = array();
-		# Answer ID
-		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		$result = $pdo->query('DELETE FROM poll_answer WHERE id=?;', $data);
-		return $result;
-	}
-
-	function existEntryAnswer($params) {
-		$data = array();
-		$pdo = new myPDO();
-		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		$data[] = new myPDOparam($params[0], PDO::PARAM_STR);
 		$result = $pdo->query('SELECT COUNT(*) as result FROM poll_answer WHERE id_poll=? AND answer=?;', $data);
 
 		return ($result[0]->result > 0);
 	}
 
-
-	function existEntry($params) {
+	/* Checks if a poll with sent identifier exists
+	*  
+	* @param (array) with
+	* (int) poll identifier
+	* @ return (boolean)
+	*/
+	function existPoll($params) {
 		$data = array();
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
@@ -128,7 +91,14 @@ class mPoll implements iPoll {
 		return $result[0]->result;
 	}
 
-	function userOwnsEntry($params) {
+	/* Checks if a poll belongs to User
+	*  
+	* @param (array) with
+	* (int) user identifier
+	* (int) poll identifier
+	* @ return (boolean)
+	*/
+	function userOwnsPoll($params) {
 		$data = array();
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
@@ -138,7 +108,19 @@ class mPoll implements iPoll {
 		return $result[0]->result;
 	}
 
-	function updateEntry($params) {
+	/* Manage a Poll in Database
+	*  
+	* @param (array) with
+	* (int) user identifier
+	* (int) poll identifier
+	* (str) title
+	* (str) question
+	* (str) image_server_name
+	* (array) answers
+	*		(str) answer n
+	* @ return (int) poll_id
+	*/
+	function updatePoll($params) {
 		$data = array();
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params['title'], PDO::PARAM_STR);
@@ -168,20 +150,23 @@ class mPoll implements iPoll {
 		return 1;
 	}
 
-	function getPollAnswers($params) {
-		$pdo = new myPDO();
-		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		$result = $pdo->query('SELECT id, answer FROM poll_answer WHERE id_poll=?;', $data);
-		return $result;
-	}
-
-	function getPolls($params = array()) {
+	/*
+	* @param (array) with
+	* (text) filter for title - '' for all
+	* @return array(objects) objects are polls
+	*/
+	function getPolls($params = array(0=>'')) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam("%$params[0]%", PDO::PARAM_STR);
 		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1;', $data);
 		return $result;
 	}
 
+	/*
+	* @param (array) with
+	* (int) user_identifier
+	* @return array(objects) objects are polls
+	*/
 	function getPollsUser($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
@@ -189,11 +174,75 @@ class mPoll implements iPoll {
 		return $result;
 	}
 
+	/*
+	* @param (array) with
+	* (int) poll identifier
+	* @return (object) poll
+	*/
 	function getPoll($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
 		$result = $pdo->query('SELECT * FROM poll WHERE id = ? AND isPublic=1;', $data);
-		return $result[0];
+		$result = $result[0];
+		if(!empty($result))
+			$result->answers = $this->getPollAnswers($params);
+
+		return $result;
+	}
+
+	/** INSERT POLL ANSWER IF ALREADY EXISTS RETURNS THE ID
+	*  
+	* @param (array) with
+	* (int) poll identifier
+	* (str) answer n
+	* @ return (int) answer_id
+	*/
+	private function insertPollAnswer($params) {
+		$pdo = new myPDO();
+		$data = array();
+		# Poll ID
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		# Answer
+		$data[] = new myPDOparam($params[1], PDO::PARAM_STR);
+
+		if(!$this->existPollAnswer($params)) {
+
+			$result = $pdo->query('INSERT INTO poll_answer (id_poll, answer) VALUES(?, ?);', $data);
+			return $pdo->last_insert_id();
+
+		} else {
+
+			$result = $pdo->query('SELECT id FROM poll_answer WHERE id_poll=? AND answer=?;', $data);
+			return $result[0]->id;
+
+		}
+	}
+
+	/* Delete poll answer
+	*  
+	* @param (array) with
+	* (str) answer identifier
+	* @ return (boolean) 
+	*/
+	private function removePollAnswer($params) {
+		$pdo = new myPDO();
+		$data = array();
+		# Answer ID
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$result = $pdo->query('DELETE FROM poll_answer WHERE id=?;', $data);
+		return $result==1;
+	}
+
+	/*
+	* @param (array) with
+	* (int) poll_identifier
+	* @return array(objects) objects are answers
+	*/
+	private function getPollAnswers($params) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$result = $pdo->query('SELECT id, answer FROM poll_answer WHERE id_poll=?;', $data);
+		return $result;
 	}
 }
 ?>

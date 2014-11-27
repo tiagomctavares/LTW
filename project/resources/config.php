@@ -7,7 +7,7 @@ require_once('developer_config.php');
 $config = array(
     # Database
     "db" => array(
-        "db1" => "../db.sqlite3",
+        "db1" => realpath(dirname(__FILE__) . "/..").'\db.sqlite3',
     ),
     # URL for page -> defined in dev_options
     "urls" => array(
@@ -44,7 +44,13 @@ defined("HOME_URL")
 ini_set("error_reporting", "true");
 error_reporting(E_ALL|E_STRICT);
 
-## Load Global LIBS and vars
+# Load Global LIBS and vars
+## LIB to manage User Information in session
 require_once('LIB'.'/userInfo.php');
 $_user = new UserInfo();
+
+## LIB to manage databaseVersion
+require_once('LIB'.'/databaseVersion.php');
+new databaseVersion($config['db']['db1']);
+
 ?>

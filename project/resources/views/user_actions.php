@@ -210,7 +210,7 @@ function newPoll() {
 			'isPublic'=>$public
 		);
 
-		$result = $poll->insertEntry();
+		$result = $poll->insertPoll();
 		if($result > 0) {
 			$variables = array(
 				'success'=>'Poll added with success',
@@ -294,8 +294,8 @@ function managePoll() {
 		require_once MODELS_PATH.'/poll.php';
 		$poll = new mPoll();
 		# Check if the entry already exists
-		if($poll->existEntry(array($poll_id))) {
-			if($poll->userOwnsEntry(array($user, $poll_id))) {
+		if($poll->existPoll(array($poll_id))) {
+			if($poll->userOwnsPoll(array($user, $poll_id))) {
 				# All ok update entry
 				$params = array(
 					'poll_id'=>$poll_id, 
@@ -305,7 +305,7 @@ function managePoll() {
 					'answers'=>$answers,
 					'isPublic'=>$public
 				);
-				if(!$poll->updateEntry($params)) {
+				if(!$poll->updatePoll($params)) {
 					$errors[] = 'Error while updating poll';
 					$return = -102;
 				}else {

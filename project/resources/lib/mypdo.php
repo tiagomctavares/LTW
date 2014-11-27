@@ -76,7 +76,7 @@ class myPDO extends PDO implements imyPDO
 				$i++;
 			}
 		} else
-			throw 'Error binding parameters';
+			throw new Exception('Error binding parameters');
 	}
 
 	private function execQuery() {

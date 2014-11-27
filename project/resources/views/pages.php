@@ -19,7 +19,6 @@ function page_login() {
 function listPolls() {
 	$search = isset($_POST['searchPoll'])?$_POST['searchPoll']:'';
 
-
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();
 	$polls = $poll->getPolls(array($search));
@@ -57,10 +56,8 @@ function showPoll() {
 		$polls = $poll->getPoll(array($poll_id));
 		if(empty($polls))
 			listPolls();
-		$answers = $poll->getPollAnswers(array($poll_id));
 		$variables = array(
-			'polls' => $polls,
-			'answers' => $answers
+			'polls' => $polls
 		);
 		$template = new myTemplate();
 		$template->render('showPoll.php', $variables);
