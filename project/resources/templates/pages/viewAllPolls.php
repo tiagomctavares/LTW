@@ -23,7 +23,7 @@
 			
 		<?php foreach($polls as $poll): ?>
 
-      <div class="col-lg-3 col-sm-6 col-md-4 pull-left">
+      <div class="col-lg-3 col-sm-6 col-xs-12 pull-left">
         <div class="thumbnail">
           <img data-src="holder.js/300x300" alt="...">
           <div class="caption">
