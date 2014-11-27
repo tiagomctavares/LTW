@@ -46,6 +46,9 @@
         case 'showPoll':
             showPoll();
             break;
+        case 'editPoll':
+            
+            break;
         default:
             home(); 
     		break;

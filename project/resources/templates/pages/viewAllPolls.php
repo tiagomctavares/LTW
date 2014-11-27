@@ -7,9 +7,13 @@
       <div class="container">
         <h4>You are now seeing all polls</h4>
       </div> 
-    <?php elseif($user_action == "search"): ?>
+    <?php elseif($user_action == "search" & sizeof($polls)!=0): ?>
       <div class="container">
         <h4>You are now seeing polls according to "<?= $search_value?>"</h4>
+      </div>
+    <?php elseif($user_action == "search" & sizeof($polls)==0): ?>
+      <div class="container">
+        <h4>No results for "<?= $search_value?>"</h4>
       </div>
     <?php elseif ($user_action == "user"): ?>
       <div class="container">
@@ -29,6 +33,12 @@
               <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary" role="button">
                 Details
               </a>
+              
+              <?php if ($user_action == "user"): ?>
+              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-default" role="button">
+                Edit
+              </a>
+              <?php endif ?>
             </p>
           </div>
         </div>
