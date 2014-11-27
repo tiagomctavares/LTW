@@ -40,8 +40,14 @@
         case 'search':
             listPolls();
             break;
+        case 'managePolls':
+            listPollsUser();
+            break;
         case 'showPoll':
             showPoll();
+            break;
+        case 'editPoll':
+            
             break;
         default:
             home(); 

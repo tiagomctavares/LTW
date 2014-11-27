@@ -39,7 +39,7 @@
 	    					Welcome <?=$_user ?> <b class="caret"></b></a>
 		  					<ul class="dropdown-menu" role="menu">
 							    <li>
-							    	<a href="#"> Manage Polls
+							    	<a href="<?=HOME_URL ?>/?page=managePolls"> Manage Polls
 							    		<i class="glyphicon glyphicon-pencil" title="Manage Polls"></i>
 							    	</a>
 							    </li>
