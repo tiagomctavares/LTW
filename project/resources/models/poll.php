@@ -141,22 +141,22 @@ class mPoll implements iPoll {
 	function updateEntry($params) {
 		$data = array();
 		$pdo = new myPDO();
-		$data[] = new myPDOparam($params[1], PDO::PARAM_STR);
-		$data[] = new myPDOparam($params[2], PDO::PARAM_STR);
-		$data[] = new myPDOparam($params[3], PDO::PARAM_STR);
-		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['title'], PDO::PARAM_STR);
+		$data[] = new myPDOparam($params['question'], PDO::PARAM_STR);
+		$data[] = new myPDOparam($params['image'], PDO::PARAM_STR);
+		$data[] = new myPDOparam($params['poll_id'], PDO::PARAM_INT);
 		$result = $pdo->query('UPDATE poll SET title=?, question=?, image=? WHERE id=?;', $data);
 
 
-		$answers_id = $this->getPollAnswers(array($params[0]));
+		$answers_id = $this->getPollAnswers(array($params['poll_id']));
 		# GET ARRAY OF ID'S
 		foreach($answers_id as &$elem)
 			$elem = $elem->id;
 
 		$new_answers_id = array();
 
-		foreach($params[4] as $answer)
-			$new_answers_id[] = $this->insertPollAnswer(array($params[0], $answer));
+		foreach($params['answers'] as $answer)
+			$new_answers_id[] = $this->insertPollAnswer(array($params['poll_id'], $answer));
 
 
 		# REMOVE ANSWERS THAT ARE NOT IN NEW ARRAY

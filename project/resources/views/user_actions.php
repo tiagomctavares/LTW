@@ -246,6 +246,7 @@ function managePoll() {
 	$title = isset($_POST['title'])?$_POST['title']:'';
 	$question = isset($_POST['question'])?$_POST['question']:'';
 	$image = isset($_POST['image'])?$_POST['image']:'';
+	$public = isset($_POST['isPublic'])?$_POST['isPublic']:'';
 	
 
 	if(!is_numeric($poll_id)) {
@@ -264,6 +265,11 @@ function managePoll() {
 	}
 
 	if(!validStrLen($image, 255)) {
+		$errors[] = 'Password not valid';
+		$return = -4;
+	}
+
+	if($public != 1 && $public !=0) {
 		$errors[] = 'Password not valid';
 		$return = -4;
 	}
@@ -292,7 +298,12 @@ function managePoll() {
 			if($poll->userOwnsEntry(array($user, $poll_id))) {
 				# All ok update entry
 				$params = array(
-					$poll_id, $title, $question, $image, $answers
+					'poll_id'=>$poll_id, 
+					'title'=>$title, 
+					'question'=>$question, 
+					'image'=>$image, 
+					'answers'=>$answers,
+					'isPublic'=>$public
 				);
 				if(!$poll->updateEntry($params)) {
 					$errors[] = 'Error while updating poll';
