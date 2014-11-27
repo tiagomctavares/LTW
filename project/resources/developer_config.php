@@ -1,3 +1,3 @@
 <?php
-$user_url = 'http://localhost/LTW/project/public_html';
+$user_url = 'http://localhost/LTW/project/project/public_html';
 ?>

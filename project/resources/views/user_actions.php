@@ -71,6 +71,7 @@ function registerUser() {
 * 1:  Success
 */
 function loginUser() {
+	global $_user;
 	$username = isset($_POST['username'])?$_POST['username']:'';
 	$password = isset($_POST['password'])?$_POST['password']:'';
 	
@@ -92,8 +93,12 @@ function loginUser() {
 		$user = new mUser();
 		$result = $user->correctCredentials(array($username, $password));
 		if($result) {
-			$_SESSION['valid_login'] = true;
-			$_SESSION['user'] = array('username'=>$username, 'id'=>$result);
+			$data = array(
+				'id'=>$result, 
+				'username'=>$username
+			);
+			
+			$_user->saveInfoLogin($data);
 			$variables = array(
 				'success'=>'Login with success',
 			);
@@ -124,13 +129,12 @@ function loginUser() {
 * 1:  Success
 */
 function logoutUser() {
+	global $_user;
 	$return = -1;
 	$variables = array();
 	
-	if($_SESSION['valid_login'] == true) {
-
-		$_SESSION['valid_login'] = false;
-		unset($_SESSION['user']);
+	if($_user->isLogged()) {
+		$_user->logout();
 
 		$variables = array(
 			'success'=>'We will be waiting for you soon'
@@ -144,19 +148,21 @@ function logoutUser() {
 }
 
 function newPoll() {
+	global $_user;
 	$errors = array();
 
-	if(!$_SESSION['valid_login']) {
+	if(!$_user->isLogged()) {
 		$errors[] = 'Please login to perform this operation';
 		$return = -10;
 	}
+		
+	$user = $_user->id();
 
-	$user = $_SESSION['user']['id'];
 
 	$title = isset($_POST['title'])?$_POST['title']:'';
 	$question = isset($_POST['question'])?$_POST['question']:'';
 	$image = isset($_POST['image'])?$_POST['image']:'';
-	
+	$public = isset($_POST['isPublic'])?$_POST['isPublic']:'';
 
 	if(!validStrLen($title, 50)) {
 		$errors[] = 'Title not valid';
@@ -173,13 +179,16 @@ function newPoll() {
 		$return = -3;
 	}
 
+	if($public != 1 && $public != 0) {
+		$errors[] = 'Visibility not valid';
+		$return = -4;
+	}
+
 	$answers = array();
 	$i = 1;
-	//print_r($_POST['answer'.$i]);
-	//exit;
 	do {
 		$answer = isset($_POST['answer'.$i])?$_POST['answer'.$i]:'';
-		//echo $_POST['answer'.$i];
+
 		if($answer != '') {
 			if(validStrLen($answer, 100)) {
 				$answers[] = $answer;
@@ -192,7 +201,16 @@ function newPoll() {
 	if(empty($errors)) {
 		require_once(MODELS_PATH.'/poll.php');
 		$poll = new mPoll();
-		$result = $poll->insertEntry(array($user, $title, $question, $image, $answers));
+		$data = array(
+			'id_user'=>$user, 
+			'title'=>$title, 
+			'question'=>$question, 
+			'image'=>$image, 
+			'answers'=>$answers,
+			'isPublic'=>$public
+		);
+
+		$result = $poll->insertEntry();
 		if($result > 0) {
 			$variables = array(
 				'success'=>'Poll added with success',
@@ -215,12 +233,13 @@ function newPoll() {
 }
 
 function managePoll() {
+	global $_user;
 	$errors = array();
-	if(!$_SESSION['valid_login']) {
+	if(!$_user->isLogged()) {
 		$errors[] = 'Please login to perform this operation';
 		$return = -10;
 	} else {
-		$user = $_SESSION['user']['id'];
+		$user = $_user->id();
 	}
 
 	$poll_id = isset($_POST['poll'])?$_POST['poll']:'';
