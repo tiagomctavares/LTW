@@ -42,11 +42,11 @@
         case 'showPoll':
             showPoll();
             break;
+        case 'search':
+            listPollsSearch();
+            break;
         default:
             home(); 
     		break;
     }
-    //listPollsUser();
-    //listPollsSearch();
-    //showPoll();
 ?>
