@@ -17,7 +17,11 @@ class myTemplate implements imyTemplate {
 
         $contentFileFullPath = TEMPLATES_PATH . "/pages/" . $contentFile;
     
-        if (count($variables) > 0) {
+        // VARIABLES THAT ARE ALWAYS SENT
+
+        $variables['errors'] = isset($variables['errors'])?$variables['errors']:array();
+
+        if (count($variables) > 0) { 
             foreach ($variables as $key => $value) {
                 if (strlen($key) > 0) {
                     ${$key} = $value;

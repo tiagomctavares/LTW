@@ -19,17 +19,17 @@
 
 				<div class="modal-body">
 					<div class="row">
-					    <div class="col-lg-4">
+					    <div class="col-lg-4 col-sm-8 col-xs-12">
 					    	<img src="<?=HOME_URL ?>/img/marioLinkedin.png">
 					    	<a href="http://goo.gl/vvodFl" class="studentsNames" target="_blank">Tiago Tavares</a>
 						</div>
 					  	
-					    <div class="col-lg-4">
+					    <div class="col-lg-4 col-sm-8 col-xs-12">
 					    	<img src="<?=HOME_URL ?>/img/marioLinkedin.png">
 					    	<a href="http://goo.gl/vvodFl" class="studentsNames" target="_blank">Pedro Faria</a>
 					    </div>
 
-					    <div class="col-lg-4">
+					    <div class="col-lg-4 col-sm-8 col-xs-12">
 					    	<img src="<?=HOME_URL ?>/img/marioLinkedin.png">
 					    	<a href="http://goo.gl/vvodFl" class="studentsNames" target="_blank">Mário Macedo</a>
 					    </div>

@@ -21,6 +21,12 @@
         case 'userRegister':
             registerUser();
             break;
+        case 'login':
+            page_login();
+            break;
+        case 'register':
+            page_register();
+            break;    
         case 'userLogin':
             loginUser();
             break;

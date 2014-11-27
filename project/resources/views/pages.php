@@ -11,6 +11,11 @@ function page_register() {
 	$template->render('register.php');
 }
 
+function page_login() {
+	$template = new myTemplate();
+	$template->render('login.php');
+}
+
 function listPolls() {
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();

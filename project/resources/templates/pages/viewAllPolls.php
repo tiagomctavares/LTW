@@ -1,20 +1,27 @@
-<div class="container">
-	<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=newPoll" method="POST">
-		<div class="media">
-		<br><br><br>
-  			
-  			
-			<?php foreach($polls as $poll): ?>
-				<a class="media-left" href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>">
-  			<div class="media-body">
-    			<h4 class="media-heading"><?=$poll->title ?></h4>
-    			<p><?=$poll->question ?></p>
-  			</div>
-  			</a>
-  			<br>
-  			<?php endforeach; ?>
-		</div>
-	</form>
+<div class="container" style="margin-top:100px;">
+	<div class="media">
+    <div class="row">
+			
+		<?php foreach($polls as $poll): ?>
+
+      <div class="col-lg-3 col-sm-6 col-md-4 pull-left">
+        <div class="thumbnail">
+          <img data-src="holder.js/300x300" alt="...">
+          <div class="caption">
+            <h3><?=$poll->title ?></h3>
+            <p><?=$poll->question ?></p>
+            <p>
+              <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary" role="button">
+                Details
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+		<?php endforeach; ?>
+    </div>
+	</div>
 </div>
 
 <?php var_dump($polls); ?>

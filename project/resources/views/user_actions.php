@@ -56,7 +56,10 @@ function registerUser() {
 	}
 
 	$template = new myTemplate();
-	$template->render("home.php", $variables);
+	if($return == 1)
+		$template->render("home.php", $variables);
+	else
+		$template->render("register.php", $variables);
 	return $return; // Used for unit Testing
 }
 
@@ -108,7 +111,10 @@ function loginUser() {
 		);
 
 	$template = new myTemplate();
-	$template->render("home.php", $variables);
+	if($return == 1)
+		$template->render("home.php", $variables);
+	else
+		$template->render("login.php", $variables);
 	return $return;
 }
 
