@@ -39,6 +39,7 @@ class databaseVersion {
 
 	private function createDB() {
 		// DELETE DB
+		unset($pdo);
 		if(@unlink($this->path) == false) {
 			echo 'Database in use please close it';
 			exit;
