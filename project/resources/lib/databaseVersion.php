@@ -10,13 +10,7 @@ class databaseVersion {
 		$this->dummy_data = true;
 
 		$this->path = $path;
-		$this->existsDB();
 		$this->checkDBVersion();
-	}
-
-	private function existsDB() {
-		if(!file_exists($this->path)) 
-			$this->createDB();
 	}
 
 	private function checkDBVersion() {
@@ -39,9 +33,11 @@ class databaseVersion {
 
 	private function createDB() {
 		// DELETE DB
-		if(@unlink($this->path) == false) {
-			echo 'Database in use please close it';
-			exit;
+		if(file_exists($this->path)) {
+			if(unlink($this->path) == false) {
+				echo 'Database in use please close it';
+				exit;
+			}
 		}
 		// CREATE TABLES
 		$this->tableVersion();
@@ -128,8 +124,8 @@ class databaseVersion {
 		$pdo->query("INSERT INTO poll_answer VALUES (2, 2, 'A2')");
 		$pdo->query("INSERT INTO poll_answer VALUES (3, 2, 'A1')");
 		$pdo->query("INSERT INTO poll_answer VALUES (4, 3, 'A1')");
-		$pdo->query("INSERT INTO poll_answer VALUES (4, 3, 'A2')");
-		$pdo->query("INSERT INTO poll_answer VALUES (4, 3, 'A3')");
+		$pdo->query("INSERT INTO poll_answer VALUES (5, 3, 'A2')");
+		$pdo->query("INSERT INTO poll_answer VALUES (6, 3, 'A3')");
 		
 	}
 }
