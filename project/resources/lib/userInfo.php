@@ -12,8 +12,8 @@ class UserInfo {
 
 	// Object
 	function saveInfoLogin($result) {
-		$_SESSION['user']['id'] = $result->id;
-		$_SESSION['user']['username'] = $result->username;
+		$_SESSION['user']['id'] = $result['id'];
+		$_SESSION['user']['username'] = $result['username'];
 
 		$_SESSION['valid_login'] = true;
 
@@ -30,15 +30,21 @@ class UserInfo {
 	}
 
 	function __toString() {
-		return $_SESSION['user']['username'];
+		return $this->username();
 	}
 
 	function username() {
-		return $_SESSION['user']['username'];
+		if(isset($_SESSION['user']['username']))
+			return $_SESSION['user']['username'];
+		else
+			return '';
 	}
 
 	function id() {
-		return $_SESSION['user']['id'];
+		if(isset($_SESSION['user']['id']))
+			return $_SESSION['user']['id'];
+		else
+			return 0;
 	}
 
 	function logout() {

@@ -52,21 +52,22 @@ class mPoll implements iPoll {
 		$answer_id = array();
 
 		$pdo = new myPDO();
-		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		$data[] = new myPDOparam($params[1], PDO::PARAM_STR);
+		$data[] = new myPDOparam($params['id_user'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['title'], PDO::PARAM_STR);
 		$result = $pdo->query('SELECT COUNT(*) as result FROM poll WHERE id_user=? AND title=?;', $data);
 		if($result[0]->result != 0) {
 			return 0;
 		}
 
-		$data[] = new myPDOparam($params[2], PDO::PARAM_STR);
-		$data[] = new myPDOparam($params[3], PDO::PARAM_STR);
-		$result = $pdo->query('INSERT INTO poll (id_user, title, question, image) VALUES(?, ?, ?, ?);', $data);
+		$data[] = new myPDOparam($params['question'], PDO::PARAM_STR);
+		$data[] = new myPDOparam($params['image'], PDO::PARAM_STR);
+		$data[] = new myPDOparam($params['isPublic'], PDO::PARAM_INT);
+		$result = $pdo->query('INSERT INTO poll (id_user, title, question, image, isPublic) VALUES(?, ?, ?, ?, ?);', $data);
 
 		// Select last insert id
 		$poll_id = $pdo->last_insert_id();
 
-		foreach($params[4] as $answer)
+		foreach($params['answers'] as $answer)
 			$answer_id[] = $this->insertPollAnswer(array($poll_id, $answer));
 	
 
@@ -177,7 +178,7 @@ class mPoll implements iPoll {
 	function getPolls($params = array()) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam("%$params[0]%", PDO::PARAM_STR);
-		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ?;', $data);
+		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1;', $data);
 		return $result;
 	}
 
@@ -191,7 +192,7 @@ class mPoll implements iPoll {
 	function getPoll($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		$result = $pdo->query('SELECT * FROM poll WHERE id = ?;', $data);
+		$result = $pdo->query('SELECT * FROM poll WHERE id = ? AND isPublic=1;', $data);
 		return $result[0];
 	}
 }

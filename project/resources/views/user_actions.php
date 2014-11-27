@@ -155,13 +155,14 @@ function newPoll() {
 		$errors[] = 'Please login to perform this operation';
 		$return = -10;
 	}
-
+		
 	$user = $_user->id();
+
 
 	$title = isset($_POST['title'])?$_POST['title']:'';
 	$question = isset($_POST['question'])?$_POST['question']:'';
 	$image = isset($_POST['image'])?$_POST['image']:'';
-	
+	$public = isset($_POST['isPublic'])?$_POST['isPublic']:'';
 
 	if(!validStrLen($title, 50)) {
 		$errors[] = 'Title not valid';
@@ -178,13 +179,16 @@ function newPoll() {
 		$return = -3;
 	}
 
+	if($public != 1 && $public != 0) {
+		$errors[] = 'Visibility not valid';
+		$return = -4;
+	}
+
 	$answers = array();
 	$i = 1;
-	//print_r($_POST['answer'.$i]);
-	//exit;
 	do {
 		$answer = isset($_POST['answer'.$i])?$_POST['answer'.$i]:'';
-		//echo $_POST['answer'.$i];
+
 		if($answer != '') {
 			if(validStrLen($answer, 100)) {
 				$answers[] = $answer;
@@ -197,7 +201,16 @@ function newPoll() {
 	if(empty($errors)) {
 		require_once(MODELS_PATH.'/poll.php');
 		$poll = new mPoll();
-		$result = $poll->insertEntry(array($user, $title, $question, $image, $answers));
+		$data = array(
+			'id_user'=>$user, 
+			'title'=>$title, 
+			'question'=>$question, 
+			'image'=>$image, 
+			'answers'=>$answers,
+			'isPublic'=>$public
+		);
+
+		$result = $poll->insertEntry();
 		if($result > 0) {
 			$variables = array(
 				'success'=>'Poll added with success',
