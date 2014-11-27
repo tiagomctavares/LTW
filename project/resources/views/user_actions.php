@@ -71,6 +71,7 @@ function registerUser() {
 * 1:  Success
 */
 function loginUser() {
+	global $_user;
 	$username = isset($_POST['username'])?$_POST['username']:'';
 	$password = isset($_POST['password'])?$_POST['password']:'';
 	
@@ -92,8 +93,12 @@ function loginUser() {
 		$user = new mUser();
 		$result = $user->correctCredentials(array($username, $password));
 		if($result) {
-			$_SESSION['valid_login'] = true;
-			$_SESSION['user'] = array('username'=>$username, 'id'=>$result);
+			$data = array(
+				'id'=>$result, 
+				'username'=>$username
+			);
+			
+			$_user->saveInfoLogin($data);
 			$variables = array(
 				'success'=>'Login with success',
 			);
@@ -124,13 +129,12 @@ function loginUser() {
 * 1:  Success
 */
 function logoutUser() {
+	global $_user;
 	$return = -1;
 	$variables = array();
 	
-	if($_SESSION['valid_login'] == true) {
-
-		$_SESSION['valid_login'] = false;
-		unset($_SESSION['user']);
+	if($_user->isLogged()) {
+		$_user->logout();
 
 		$variables = array(
 			'success'=>'We will be waiting for you soon'
@@ -144,14 +148,15 @@ function logoutUser() {
 }
 
 function newPoll() {
+	global $_user;
 	$errors = array();
 
-	if(!$_SESSION['valid_login']) {
+	if(!$_user->isLogged()) {
 		$errors[] = 'Please login to perform this operation';
 		$return = -10;
 	}
 
-	$user = $_SESSION['user']['id'];
+	$user = $_user->id();
 
 	$title = isset($_POST['title'])?$_POST['title']:'';
 	$question = isset($_POST['question'])?$_POST['question']:'';
@@ -215,12 +220,13 @@ function newPoll() {
 }
 
 function managePoll() {
+	global $_user;
 	$errors = array();
-	if(!$_SESSION['valid_login']) {
+	if(!$_user->isLogged()) {
 		$errors[] = 'Please login to perform this operation';
 		$return = -10;
 	} else {
-		$user = $_SESSION['user']['id'];
+		$user = $_user->id();
 	}
 
 	$poll_id = isset($_POST['poll'])?$_POST['poll']:'';

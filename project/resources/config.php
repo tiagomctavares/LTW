@@ -1,6 +1,7 @@
 <?php
+
+session_start();
 # Config file for each user developing
-require_once('session_config.php');
 require_once('developer_config.php');
 
 $config = array(
@@ -43,4 +44,7 @@ defined("HOME_URL")
 ini_set("error_reporting", "true");
 error_reporting(E_ALL|E_STRICT);
 
+## Load Global LIBS and vars
+require_once('LIB'.'/userInfo.php');
+$_user = new UserInfo();
 ?>

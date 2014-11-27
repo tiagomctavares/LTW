@@ -11,6 +11,7 @@ class myTemplate implements imyTemplate {
 
     function render($contentFile, $variables = array())
     {
+		global $_user;
         # IF TESTING ACTIVE DONT RENDER PAGES
         if(defined("TESTING"))
             return ;
@@ -31,7 +32,7 @@ class myTemplate implements imyTemplate {
      
         require_once(TEMPLATES_PATH . "/header.php");
 
-        if($_SESSION['valid_login'])
+        if($_user->isLogged())
             require_once(TEMPLATES_PATH . "/navbarAfterLogin.php");
         else
             require_once(TEMPLATES_PATH . "/navbarBeforeLogin.php");
