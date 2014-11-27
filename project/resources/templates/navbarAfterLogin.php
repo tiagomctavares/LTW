@@ -36,7 +36,7 @@
 				<li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" role="button" aria-expanded="false" >
-	    					Welcome <?=$_SESSION['user']['username'] ?> <b class="caret"></b></a>
+	    					Welcome <?=$_user ?> <b class="caret"></b></a>
 		  					<ul class="dropdown-menu" role="menu">
 							    <li>
 							    	<a href="#"> Manage Polls

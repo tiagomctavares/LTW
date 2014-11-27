@@ -33,7 +33,8 @@ function listPolls() {
 }
 
 function listPollsUser() {
-	$user_id = $_SESSION['user']['id'];
+	global $_user;
+	$user_id = $_user->id();
 
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();
