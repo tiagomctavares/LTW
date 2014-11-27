@@ -1,7 +1,21 @@
 
-<div class="container" style="margin-top:100px;">
+<div class="container">
 	<div class="media">
     <div class="row">
+
+    <?php if($user_action == "all"): ?>
+      <div class="container">
+        <h4>You are now seeing all polls</h4>
+      </div> 
+    <?php elseif($user_action == "search"): ?>
+      <div class="container">
+        <h4>You are now seeing polls according to "<?= $search_value?>"</h4>
+      </div>
+    <?php elseif ($user_action == "user"): ?>
+      <div class="container">
+        <h4>You are now seeing your polls</h4>
+      </div>
+    <?php endif ?>
 			
 		<?php foreach($polls as $poll): ?>
 

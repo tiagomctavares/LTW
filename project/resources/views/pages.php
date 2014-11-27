@@ -43,7 +43,7 @@ function listPollsUser() {
 		'user_action'=> 'user', ## True or false,
 	);
 	$template = new myTemplate();
-	$template->render('test_output.php', $variables);
+	$template->render('viewAllPolls.php', $variables);
 }
 
 function showPoll() {
