@@ -1,25 +1,32 @@
-
 <div class="container">
 	<div class="media">
     <div class="row">
 
-    <?php if($user_action == "all"): ?>
+    <?php if($user_action == "all" & sizeof($polls)!=0): ?>
       <div class="container">
         <h4>You are now seeing all polls</h4>
-      </div> 
+      </div>
+    <?php elseif($user_action == "all" & sizeof($polls)==0): ?>
+      <div class="container">
+        <h4>There isn't any polls!</h4>
+      </div>  
     <?php elseif($user_action == "search" & sizeof($polls)!=0): ?>
       <div class="container">
         <h4>You are now seeing polls according to "<?= $search_value?>"</h4>
       </div>
     <?php elseif($user_action == "search" & sizeof($polls)==0): ?>
       <div class="container">
-        <h4>No results for "<?= $search_value?>"</h4>
+        <h4>No results for "<?= $search_value?>"!</h4>
       </div>
-    <?php elseif ($user_action == "user"): ?>
+    <?php elseif ($user_action == "user" & sizeof($polls)!=0): ?>
       <div class="container">
         <h4>You are now seeing your polls</h4>
       </div>
-    <?php endif ?>
+    <?php elseif ($user_action == "user" & sizeof($polls)==0): ?>
+      <div class="container">
+        <h4>You have not created any poll yet!</h4>
+      </div>
+    <?php endif; ?>
 			
 		<?php foreach($polls as $poll): ?>
 
@@ -38,7 +45,7 @@
               <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-default" role="button">
                 Edit
               </a>
-              <?php endif ?>
+              <?php endif; ?>
             </p>
           </div>
         </div>
