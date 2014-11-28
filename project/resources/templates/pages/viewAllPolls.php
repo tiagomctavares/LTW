@@ -36,7 +36,7 @@
           <div class="caption">
             <h3><?=$poll->title ?></h3>
             <p><?=$poll->question ?></p>
-            <p>
+            <p class="text-right">
               <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary" role="button">
                 Details
               </a>
@@ -44,6 +44,10 @@
               <?php if ($user_action == "user"): ?>
               <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-default" role="button">
                 Edit
+              </a>
+
+              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-danger" role="button">
+                Delete
               </a>
               <?php endif; ?>
             </p>
