@@ -1,5 +1,5 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container myNavbar">
+<div class="navbar navbar-inverse navbar-fixed-top myNavbar">
+	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="<?=HOME_URL ?>/?page=home">LTW Project</a>
 
@@ -18,7 +18,7 @@
 				<li>
 					<form class="navbar-form" role="search" method="post" action="<?=HOME_URL ?>/?page=search">
 				          <div class="input-group">
-				            <input type="text" class="form-control" placeholder="Search Polls" name="searchPoll" id="searchPoll">
+				            <input type="text" class="form-control " placeholder="Search Polls" name="searchPoll" id="searchPoll">
 				            <div class="input-group-btn">
 				              <button class="btn btn-default" type="submit">
 				              	<i class="glyphicon glyphicon-search"></i>
@@ -35,4 +35,4 @@
 
 </div>
 
-<div class="navbar navbar-inverse"></div>
+<div class="navbar navbar-inverse myNavbar"></div>

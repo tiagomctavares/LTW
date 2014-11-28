@@ -1,5 +1,5 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container myNavbar">
+<div class="navbar navbar-inverse navbar-fixed-top myNavbar">
+	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="<?=HOME_URL ?>/?page=home">LTW Project</a>
 
@@ -34,7 +34,7 @@
 					</a>
 				</li>
 				<li>
-					<li class="dropdown">
+					<li class="dropdown navbarDropdown">
 						<a href="#" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" role="button" aria-expanded="false" >
 	    					Welcome <?=$_user ?> <b class="caret"></b></a>
 		  					<ul class="dropdown-menu" role="menu">
@@ -57,4 +57,4 @@
 		</div>
 </div>
 
-<div class="navbar navbar-inverse"></div>
+<div class="navbar navbar-inverse myNavbar"></div>

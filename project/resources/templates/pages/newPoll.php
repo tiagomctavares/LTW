@@ -4,7 +4,7 @@
 		<div class="form-group has-feedback">
 		    <label for="title" class="col-lg-2">Title</label>
 		    <div class="col-lg-10">
-		   		<input type="text" class="form-control" id="title" placeholder="Poll Title" name="title">
+		   		<input type="text" class="form-control" id="title" placeholder="Poll Title" name="title" required>
 			</div>
 		</div>
 		
@@ -12,7 +12,7 @@
 		<div class="form-group has-feedback">
 		    <label for="question" class="col-lg-2">Question</label>
 		    <div class="col-lg-10">
-		   		<input type="text" class="form-control" id="question" placeholder="Question" name="question">
+		   		<input type="text" class="form-control" id="question" placeholder="Question" name="question" required>
 			</div>
 		</div>
 		
@@ -20,7 +20,7 @@
 		<div class="form-group">
 			<label for="visability" class="col-lg-2">Visability</label>
 			<div class=" col-lg-2">
-				<select class="form-control">
+				<select class="form-control" id="visability" name="isPublic">
 				  <option>Public <i class="glyphicon glyphicon-eye-open" title="public"> </i></option>
 				  <option>Private <i class="glyphicon glyphicon-eye-close" title="private"> </i></option>
 				</select>
@@ -33,10 +33,8 @@
 	        <i class="glyphicon glyphicon-plus"></i>
 	        <span>Select files...</span>
 	        <!-- The file input field used as target for the file upload widget -->
-	        <input id="fileupload" type="file" name="files[]" multiple>
+	        <input id="fileupload" type="file" name="image" multiple>
 	    </span>
-	    <br>
-	    <br>
 	    <!-- The global progress bar -->
 	    <div id="progress" class="progress">
 	        <div class="progress-bar progress-bar-success"></div>

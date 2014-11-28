@@ -1,6 +1,11 @@
 <?php
 require_once(LIB_PATH.'/renderTemplate.php');
 
+function timeline() {
+	$template = new myTemplate();
+	$template->render('timeline.php');
+}
+
 function home() {
 	$template = new myTemplate();
 	$template->render('home.php');
@@ -28,7 +33,7 @@ function listPolls() {
 		'search_value'=> $search ## Search Value
 	);
 	$template = new myTemplate();
-	$template->render('viewAllPolls.php', $variables);
+	$template->render('timeline.php', $variables);
 }
 
 function listPollsUser() {
