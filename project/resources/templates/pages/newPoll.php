@@ -1,5 +1,5 @@
 <div class="container">
-	<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=newPoll" method="POST">
+	<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=action_newPoll" method="POST" enctype="multipart/form-data">
 		<!--TITLE-->	
 		<div class="form-group has-feedback">
 		    <label for="title" class="col-lg-2">Title</label>
@@ -21,9 +21,17 @@
 			<label for="visability" class="col-lg-2">Visability</label>
 			<div class=" col-lg-2">
 				<select class="form-control" id="visability" name="isPublic">
-				  <option>Public <i class="glyphicon glyphicon-eye-open" title="public"> </i></option>
-				  <option>Private <i class="glyphicon glyphicon-eye-close" title="private"> </i></option>
+				  <option value="1">Public <i class="glyphicon glyphicon-eye-open" title="public"> </i></option>
+				  <option value="0">Private <i class="glyphicon glyphicon-eye-close" title="private"> </i></option>
 				</select>
+			</div>
+		</div>
+		
+		<!-- Image -->
+		<div class="form-group">
+			<label for="image" class="col-lg-2">Image</label>
+			<div class=" col-lg-2">
+				<input type="file" id="image" name="image">
 			</div>
 		</div>
 
@@ -35,3 +43,4 @@
 		</div>
 	</form>
 </div>
+<?php var_dump($_POST); var_dump($errors); ?>

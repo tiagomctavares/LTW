@@ -6,7 +6,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 1;
+		$this->dbVersion = 2;
 		$this->dummy_data = true;
 
 		$this->path = $path;
@@ -115,9 +115,9 @@ class databaseVersion {
 		$pdo->query("INSERT INTO user VALUES (2, 'aa', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', '2014-11-27 04:12:02', null);");
 
 		#POLL
-		$pdo->query("INSERT INTO poll VALUES (1, 1, 'MyTi', 'asdads', 'dasdad', 1);");
-		$pdo->query("INSERT INTO poll VALUES (2, 1, '%My%', 'aeeee', 'wqeqwe', 1);");
-		$pdo->query("INSERT INTO poll VALUES (3, 2, 'BLA', 'asdjand', 'adjnf', 1);");
+		$pdo->query("INSERT INTO poll VALUES (1, 1, 'MyTi', 'asdads', '5478b2ab7362c_test.jpg', 1);");
+		$pdo->query("INSERT INTO poll VALUES (2, 1, '%My%', 'aeeee', '5478b2ab7362c_test.jpg', 1);");
+		$pdo->query("INSERT INTO poll VALUES (3, 2, 'BLA', 'asdjand', '5478b2ab7362c_test.jpg', 1);");
 
 		#ANSWERS
 		$pdo->query("INSERT INTO poll_answer VALUES (1, 1, 'A1')");

@@ -32,7 +32,7 @@
 
       <div class="col-lg-3 col-sm-6 col-xs-12 pull-left">
         <div class="thumbnail">
-          <img data-src="holder.js/300x300" alt="...">
+          <img data-src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
           <div class="caption">
             <h3><?=$poll->title ?></h3>
             <p><?=$poll->question ?></p>

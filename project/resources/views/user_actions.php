@@ -161,8 +161,8 @@ function newPoll() {
 
 	$title = isset($_POST['title'])?$_POST['title']:'';
 	$question = isset($_POST['question'])?$_POST['question']:'';
-	$image = isset($_POST['image'])?$_POST['image']:'';
 	$public = isset($_POST['isPublic'])?$_POST['isPublic']:'';
+	$image = isset($_FILES['image'])?$_FILES['image']:'';
 
 	if(!validStrLen($title, 50)) {
 		$errors[] = 'Title not valid';
@@ -174,15 +174,32 @@ function newPoll() {
 		$return = -2;
 	}
 
-	if(!validStrLen($image, 255)) {
-		$errors[] = 'Password not valid';
-		$return = -3;
-	}
-
 	if($public != 1 && $public != 0) {
 		$errors[] = 'Visibility not valid';
 		$return = -4;
 	}
+	
+	$server_filename = '';
+	if($image == '') {
+		$errors[] = 'Image not valid';
+		$return = -3;
+	} else {
+    	$filename = explode('.', $image['name']);
+    	// Check for extension
+    	// $filename[1] == 'auth'
+    	// build unique name for image server_name
+    	$pre = uniqid().'_';
+    	$server_filename = $filename[0];
+    	$server_filename = $pre.$image['name'];
+
+    	$move_to = UPLOAD_PATH.'/'.$server_filename;
+	}
+
+	if(!validStrLen($server_filename, 255)) {
+		$errors[] = 'Image name not valid';
+		$return = -3;
+	}
+
 
 	$answers = array();
 	$i = 1;
@@ -205,16 +222,24 @@ function newPoll() {
 			'id_user'=>$user, 
 			'title'=>$title, 
 			'question'=>$question, 
-			'image'=>$image, 
+			'image'=>$server_filename, 
 			'answers'=>$answers,
 			'isPublic'=>$public
 		);
 
-		$result = $poll->insertPoll();
+		$result = $poll->insertPoll($data);
 		if($result > 0) {
-			$variables = array(
-				'success'=>'Poll added with success',
-			);
+			// Upload Image
+   			if (move_uploaded_file($image['tmp_name'], $move_to)) {
+				$variables = array(
+					'success'=>'Poll added with success'
+				);
+   			} else {
+				$variables = array(
+					'success'=>'Poll added with success',
+					'errors'=>array('Error while uploading image')
+				);
+   			}
 			$return = $result;
 		} else {
 			$errors[] = 'Poll Error';

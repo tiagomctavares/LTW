@@ -15,11 +15,23 @@
     $page = isset($_GET['page'])?$_GET['page']:'';
     
     switch ($page) {
-    	case 'home':
-            home();
-            break;
+        ## ACTIONS
         case 'userRegister':
             registerUser();
+            break;
+        case 'userLogin':
+            loginUser();
+            break;
+        case 'userLogout':
+            logoutUser();
+            break;
+        case 'action_newPoll':
+            newPoll();
+            break;
+
+        ## PAGES
+    	case 'home':
+            home();
             break;
         case 'login':
             page_login();
@@ -27,24 +39,18 @@
         case 'register':
             page_register();
             break;    
-        case 'userLogin':
-            loginUser();
-            break;
-        case 'userLogout':
-            logoutUser();
-            break;
         case 'newPoll':
-            newPoll();
+            page_newPoll();
             break;
         case 'viewAllPolls':
         case 'search':
-            listPolls();
+            page_listPolls();
             break;
         case 'managePolls':
-            listPollsUser();
+            page_listPollsUser();
             break;
         case 'showPoll':
-            showPoll();
+            page_showPoll();
             break;
         case 'editPoll':
             

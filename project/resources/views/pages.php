@@ -21,7 +21,7 @@ function page_login() {
 	$template->render('login.php');
 }
 
-function listPolls() {
+function page_listPolls() {
 	$search = isset($_POST['searchPoll'])?$_POST['searchPoll']:'';
 
 	require_once MODELS_PATH.'/poll.php';
@@ -36,7 +36,7 @@ function listPolls() {
 	$template->render('timeline.php', $variables);
 }
 
-function listPollsUser() {
+function page_listPollsUser() {
 	global $_user;
 	$user_id = $_user->id();
 
@@ -51,8 +51,7 @@ function listPollsUser() {
 	$template->render('viewAllPolls.php', $variables);
 }
 
-function showPoll() {
-	# for test - how can i get the position from polls list?
+function page_showPoll() {
 	$poll_id = isset($_GET['poll'])?$_GET['poll']:0;
 	if(is_numeric($poll_id)) {
 
@@ -70,5 +69,10 @@ function showPoll() {
 		listPolls();
 	}
 
+}
+
+function page_newPoll() {
+	$template = new myTemplate();
+	$template->render('newPoll.php');
 }
 ?>

@@ -11,10 +11,12 @@ class myTemplate implements imyTemplate {
 
     function render($contentFile, $variables = array())
     {
-		global $_user;
         # IF TESTING ACTIVE DONT RENDER PAGES
         if(defined("TESTING"))
             return ;
+
+        // Declare globals to be used in templates
+        global $_user;
 
         $contentFileFullPath = TEMPLATES_PATH . "/pages/" . $contentFile;
     

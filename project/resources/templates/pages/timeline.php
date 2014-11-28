@@ -2,7 +2,7 @@
 	<?php foreach($polls as $poll): ?>
 	<div class="cd-timeline-block">
 		<div class="cd-timeline-img cd-picture">
-			<img src="img/marioLinkedin.png" alt="Picture">
+			<img src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="Picture">
 		</div> 
 
 		<div class="cd-timeline-content">

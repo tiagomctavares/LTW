@@ -16,6 +16,7 @@ interface iPoll {
 	# ANSWER
 	function existPollAnswer($params);
 }
+
 # Model Poll
 class mPoll implements iPoll {
 	/* Add Poll in Database

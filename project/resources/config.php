@@ -8,14 +8,6 @@ $config = array(
     # Database
     "db" => array(
         "db1" => realpath(dirname(__FILE__) . "/..").'\db.sqlite3',
-    ),
-    # URL for page -> defined in dev_options
-    "urls" => array(
-        "baseUrl" => $user_url
-    ),
-    "paths" => array(
-        "resources" => "../resources/",
-        "images" => $_SERVER["DOCUMENT_ROOT"] . "/images/upload/"
     )
 );
 
@@ -35,9 +27,16 @@ defined("VIEWS_PATH")
 defined("TESTS_PATH")
     or define("TESTS_PATH", realpath(dirname(__FILE__) . '/tests'));
 
+defined("UPLOAD_PATH")
+    or define("UPLOAD_PATH", realpath(dirname('index.php'). "/img/upload"));
 
+# USEFULL URLS
 defined("HOME_URL")
-    or define("HOME_URL", $config['urls']['baseUrl']);
+    or define("HOME_URL", $user_url);
+
+defined("UPLOAD_URL")
+    or define("UPLOAD_URL", $user_url.'/img/upload/');
+
 
 # ERROR REPORT
 # THIS SETTING IS USED FOR DEBUG
