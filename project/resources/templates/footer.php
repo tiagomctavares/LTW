@@ -18,18 +18,18 @@
 				</div>
 
 				<div class="modal-body">
-					<div class="form-grouo row">
-					    <div class="col-lg-4 col-sm-8 col-xs-12">
+					<div class="form-group row">
+					    <div class="col-lg-4 col-sm-6 col-xs-12">
 					    	<img src="<?=HOME_URL ?>/img/tiagoLinkedin.png" class="qrcode col-lg-12">
 					    	<a href="pt.linkedin.com/in/tmctavares" class="studentsNames col-lg-12 text-center" target="_blank">Tiago Tavares</a>
 						</div>
 					  	
-					    <div class="col-lg-4 col-sm-8 col-xs-12">
+					    <div class="col-lg-4 col-sm-6 col-xs-12">
 					    	<img src="<?=HOME_URL ?>/img/pedroLinkedin.png" class="qrcode col-lg-12">
 					    	<a href="https://www.linkedin.com/pub/pedro-faria/94/b35/4b4" class="studentsNames col-lg-12 text-center" target="_blank">Pedro Faria</a>
 					    </div>
 
-					    <div class="col-lg-4 col-sm-8 col-xs-12">
+					    <div class="col-lg-4 col-sm-6 col-xs-12">
 					    	<img src="<?=HOME_URL ?>/img/marioLinkedin.png" class="qrcode col-lg-12">
 					    	<a href="http://goo.gl/vvodFl" class="studentsNames col-lg-12 text-center" target="_blank">Mário Macedo</a>
 					    </div>

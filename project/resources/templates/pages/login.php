@@ -1,6 +1,6 @@
 
-<div class="container" id="login" role="form">
-	<div class="panel panel-default col-lg-6 col-sm-8 col-xs-12">
+<div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12" id="login" role="form">
+	<div class="panel panel-default col-lg-12">
 		<div class="panel-header text-center">
 			<h3>SIGN IN</h3>
 		</div>

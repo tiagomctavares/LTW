@@ -16,7 +16,7 @@
 				<li><a href="<?=HOME_URL ?>/?page=home" class="active">Home</a></li>
 				<li><a href="<?=HOME_URL ?>/?page=viewAllPolls">View Polls</a></li>
 				<li>
-					<form class="navbar-form" role="search" method="post" action="<?=HOME_URL ?>/?page=search">
+					<form class="navbar-form col-sm-6" role="search" method="post" action="<?=HOME_URL ?>/?page=search">
 				          <div class="input-group">
 				            <input type="text" class="form-control" placeholder="Search Polls" name="searchPoll" id="searchPoll">
 				            <div class="input-group-btn">
