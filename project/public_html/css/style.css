@@ -95,15 +95,82 @@ body{
 
 /* LOGIN AND REGISTER CSS */
 
-#login, #register{
+.logRegForm{
   position: absolute;
-	top: 30%;
-  left: 25%;
+	top: 20%;
+  left: 10%;
+  margin: auto 0px;
+  width: 80%;
+}
+
+.logRegForm .panel-default .panel-body{
+  left: 33.333333%;
   margin: auto 0px;
 }
 
-#login .panel-default{
+hr{
+  border-top: 0.1em solid #342800;
+  margin-right: 15px;
+  margin-left: 15px;
+  width: 98%;
+}
 
+.logRegForm h2{
+  color: #5e9ca0;
+}
+
+.logRegForm button{
+  background-color: #e2da99;
+  color: #342800;
+  border: 0.1em solid #342800;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.logRegForm button:hover{
+  background-color: #e2da99;
+  color: #5e9ca0;
+  border: 0.13em solid #5e9ca0;
+  border-radius: 10px;
+  font-size: 1.1em;
+}
+
+.logRegForm .form-group input{
+  background-color: #e2da99;
+  color: #5e9ca0;
+  border: 0.1em solid #342800;
+  border-radius: 10px;
+  font-size: 1em;
+  box-shadow: none;
+}
+
+.logRegForm .form-group .glyphicon{
+  background-color: #e2da99;
+  color: #5e9ca0;
+  border: 0.1em solid #342800;
+  font-size: 1em;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.logRegForm input::-webkit-input-placeholder {
+   color: #5e9ca0;
+}
+
+.logRegForm input:-moz-placeholder {
+   color: #5e9ca0;
+}
+
+.logRegForm input::-moz-placeholder {
+   color: #5e9ca0;
+}
+
+.logRegForm input:-ms-input-placeholder {
+   color: #5e9ca0;
+}
+
+.logRegForm .panel-default{
+  border: 0;
 }
 
 /* put glyphicons left of input field */
@@ -129,10 +196,10 @@ body{
 
 /* add padding  */
 .left-addon input{ 
-	padding-left:  30px; 
+	padding-left:  35px; 
 }
 .right-addon input{ 
-	padding-right: 30px; 
+	padding-right: 35  px; 
 }
 
 
