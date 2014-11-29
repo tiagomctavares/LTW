@@ -290,6 +290,11 @@ hr{
   border-radius: 10px;
 }
 
+/* NEW POLL */
+#newPoll label{
+  color: #5e9ca0;
+}
+
 /* TIMELINE */
 
 @media only screen and (min-width: 1170px) {
