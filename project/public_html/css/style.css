@@ -42,6 +42,7 @@ body{
 .navbar-inverse .navbar-nav>li>a:hover{
 	color: #735d41 !important;
 	background-color: #063e53 !important;
+	font-size: 1.2em;
 }
 
 .dropdown-menu>li>a:hover{
@@ -55,8 +56,9 @@ body{
 }
 
 .navbar .navbar-form button:hover{
-	color: #735d41 !important;
-	background-color: #063e53 !important;
+	/*color: #735d41 !important;
+	background-color: #063e53 !important;*/
+	border: 0.1em solid #063e53;
 }
 
 .navbar-inverse .navbar-brand:hover{
@@ -89,8 +91,8 @@ body{
 }
 
 .branco, .branco .glyphicon{
-	background-color: rgba(115, 175, 182, 0.75);
-	color: #735d41;
+	background-color: rgba(115, 93, 65, 0.65);
+	color: #063e53;
 }
 
 /* LOGIN AND REGISTER CSS */
@@ -246,6 +248,7 @@ hr{
 #students .modal-header{
   background-color: #735d41;
   color: #063e53;
+  border-bottom: 0.25em solid #063e53;
 }
 
 #students .modal-body{
@@ -257,7 +260,7 @@ hr{
   color: #735d41;
   border: 0.2em solid #735d41;
   border-radius: 10px;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 #students button:hover{
@@ -265,7 +268,7 @@ hr{
   color: #063e53;
   border: 0.2em solid #063e53;
   border-radius: 10px;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .qrcode{
