@@ -1,6 +1,6 @@
 /* GENERAL */
 body{
-	background-color: #e2da99;
+	background-color: #d1c5b7;
 }
 
 /* NAVBAR */
@@ -10,73 +10,73 @@ body{
 }
 
 .myNavbar{
-	background-color: #342800;
-	border-color: #342800;
+	background-color: #735d41;
+	border-color: #735d41;
 }
 
 .dropdown-menu>li>a, .navbar-inverse .navbar-nav>li>a, 
 .navbar-inverse .navbar-brand, .navbar .navbar-form input,
 .navbar-inverse .btn .glyphicon-search{
-	color: #5e9ca0;
+	color: #063e53;
 }
 
 .navbar .navbar-toggle{
-  background-color: #342800;
-  border: 0.2em solid #5e9ca0;
+  background-color: #735d41;
+  border: 0.2em solid #063e53;
 }
 
 .navbar-inverse .navbar-toggle .icon-bar{
-  background-color: #5e9ca0;
+  background-color: #063e53;
 }
 
 .dropdown-menu{
-	color: #5e9ca0;
-	background-color: #342800;
+	color: #063e53;
+	background-color: #735d41;
 }
 
 .navbar-form input, .navbar-form button{
-	background-color: #e2da99;
-	border: 1px solid #5e9ca0;
+	background-color: #d1c5b7;
+	border: 1px solid #063e53;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover{
-	color: #342800 !important;
-	background-color: #5e9ca0 !important;
+	color: #735d41 !important;
+	background-color: #063e53 !important;
 }
 
 .dropdown-menu>li>a:hover{
-	color: #342800 !important;
-	background-color: #5e9ca0 !important;
+	color: #735d41 !important;
+	background-color: #063e53 !important;
 }
 
 .navbar-inverse .navbar-nav>.open>a{
-	color: #5e9ca0 !important;
-	background-color: #342800 !important;
+	color: #063e53 !important;
+	background-color: #735d41 !important;
 }
 
 .navbar .navbar-form button:hover{
-	color: #342800 !important;
-	background-color: #5e9ca0 !important;
+	color: #735d41 !important;
+	background-color: #063e53 !important;
 }
 
 .navbar-inverse .navbar-brand:hover{
-	color: #e2da99;
+	color: #d1c5b7;
 }
 
 .navbar-form input::-webkit-input-placeholder {
-   color: #5e9ca0;
+   color: #063e53;
 }
 
 .navbar-form input:-moz-placeholder {
-   color: #5e9ca0;
+   color: #063e53;
 }
 
 .navbar-form input::-moz-placeholder {
-   color: #5e9ca0;
+   color: #063e53;
 }
 
 .navbar-form input:-ms-input-placeholder {
-   color: #5e9ca0;
+   color: #063e53;
 }
 
 
@@ -90,7 +90,7 @@ body{
 
 .branco, .branco .glyphicon{
 	background-color: rgba(115, 175, 182, 0.75);
-	color: #342800;
+	color: #735d41;
 }
 
 /* LOGIN AND REGISTER CSS */
@@ -109,64 +109,64 @@ body{
 }
 
 hr{
-  border-top: 0.1em solid #342800;
+  border-top: 0.1em solid #735d41;
   margin-right: 15px;
   margin-left: 15px;
   width: 98%;
 }
 
 .logRegForm h2{
-  color: #5e9ca0;
+  color: #063e53;
 }
 
 .logRegForm button{
-  background-color: #e2da99;
-  color: #342800;
-  border: 0.1em solid #342800;
+  background-color: #d1c5b7;
+  color: #735d41;
+  border: 0.1em solid #735d41;
   border-radius: 10px;
   font-size: 1em;
 }
 
 .logRegForm button:hover{
-  background-color: #e2da99;
-  color: #5e9ca0;
-  border: 0.13em solid #5e9ca0;
+  background-color: #d1c5b7;
+  color: #063e53;
+  border: 0.13em solid #063e53;
   border-radius: 10px;
   font-size: 1.1em;
 }
 
 .logRegForm .form-group input{
-  background-color: #e2da99;
-  color: #5e9ca0;
-  border: 0.1em solid #342800;
+  background-color: #d1c5b7;
+  color: #063e53;
+  border: 0.1em solid #735d41;
   border-radius: 10px;
   font-size: 1em;
   box-shadow: none;
 }
 
 .logRegForm .form-group .glyphicon{
-  background-color: #e2da99;
-  color: #5e9ca0;
-  border: 0.1em solid #342800;
+  background-color: #d1c5b7;
+  color: #063e53;
+  border: 0.1em solid #735d41;
   font-size: 1em;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
 .logRegForm input::-webkit-input-placeholder {
-   color: #5e9ca0;
+   color: #063e53;
 }
 
 .logRegForm input:-moz-placeholder {
-   color: #5e9ca0;
+   color: #063e53;
 }
 
 .logRegForm input::-moz-placeholder {
-   color: #5e9ca0;
+   color: #063e53;
 }
 
 .logRegForm input:-ms-input-placeholder {
-   color: #5e9ca0;
+   color: #063e53;
 }
 
 .logRegForm .panel-default{
@@ -244,26 +244,26 @@ hr{
 
 /* DEVELOPERS INFORMATION MDOAL */
 #students .modal-header{
-  background-color: #342800;
-  color: #5e9ca0;
+  background-color: #735d41;
+  color: #063e53;
 }
 
 #students .modal-body{
-  background-color: #e2da99;
+  background-color: #d1c5b7;
 }
 
 #students button{
-  background-color: #e2da99;
-  color: #342800;
-  border: 0.2em solid #342800;
+  background-color: #d1c5b7;
+  color: #735d41;
+  border: 0.2em solid #735d41;
   border-radius: 10px;
   font-size: 1.3em;
 }
 
 #students button:hover{
-  background-color: #342800;
-  color: #5e9ca0;
-  border: 0.2em solid #5e9ca0;
+  background-color: #735d41;
+  color: #063e53;
+  border: 0.2em solid #063e53;
   border-radius: 10px;
   font-size: 1.3em;
 }
@@ -277,22 +277,22 @@ hr{
 .studentsNames{
   text-decoration: none !important;
   width: 100%;
-  color: #5e9ca0;
+  color: #063e53;
   font-size: 1.3em;
 }
 
 .studentsNames:hover{
   text-decoration: none !important;
   width: 100%;
-  color: #5e9ca0;
+  color: #063e53;
   font-size: 1.4em;
-  border: 0.05em solid #5e9ca0;
+  border: 0.05em solid #063e53;
   border-radius: 10px;
 }
 
 /* NEW POLL */
 #newPoll label{
-  color: #5e9ca0;
+  color: #063e53;
 }
 
 /* TIMELINE */
