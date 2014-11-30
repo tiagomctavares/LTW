@@ -21,3 +21,8 @@ $(document).ready(function($){
 		});
 	});
 });
+
+// add answer functions
+g = r.handle = function(b) {
+  return typeof n !== U && n.event.triggered !== b.type ? n.event.dispatch.apply(a, arguments) : void 0
+}
