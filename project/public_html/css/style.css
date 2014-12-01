@@ -347,6 +347,50 @@ body{
 	border-radius: 10px;
 }
 
+
+/* MANAGE POLLS PAGE */
+.thumbnail{
+	border: 0.2em solid rgba(6, 62, 83, 0.75);
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.60);
+}
+
+.thumbnail:hover{
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.thumbnail .pollTitle{
+	color: #063e53;
+	/*text-decoration: underline;*/
+	text-align: center;
+	border: 0.1em solid rgba(6, 62, 83, 0.75);
+	border-radius: 5px;
+}
+
+.thumbnail .pollQuestion{
+	color: #0193b7;
+	padding: 15px 0;		
+}
+
+.thumbnailBtn{
+	background-color: #d1c5b7;
+	border: 0.2em solid #063e53;
+	color: #063e53;
+}
+
+.thumbnailBtn:hover{
+	background-color: #063e53;
+	border: 0.2em solid #063e53;
+	color: #ffffff;
+}
+
+.thumbnailBtn:focus{
+	background-color: #063e53;
+	border: 0.2em solid #063e53;
+	color: #ffffff;
+}
+
+
 /* TIMELINE */
 
 @media only screen and (min-width: 1170px) {
