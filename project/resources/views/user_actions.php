@@ -389,8 +389,7 @@ function answerPoll() {
 		$poll->addUserAnswer($data);
 	}
 
-	$template = new myTemplate();
-	$template->render("showPoll.php", $variables);
+	GO('?page=showPoll&poll='.$poll_id);
 	return $return;
 }
 

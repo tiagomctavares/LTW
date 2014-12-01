@@ -52,4 +52,15 @@ $_user = new UserInfo();
 require_once('LIB'.'/databaseVersion.php');
 new databaseVersion($config['db']['db1']);
 
+function GO($str = '') {
+    session_write_close();
+    header('Location: '. HOME_URL.'/'.$str);
+    exit;
+}
+
+function GO_ABS($str = '') {
+    session_write_close();
+    header('Location: '.$str);
+    exit;
+}
 ?>
