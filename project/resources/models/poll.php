@@ -15,6 +15,7 @@ interface iPoll {
 
 	# ANSWER
 	function existPollAnswer($params);
+	function addUserAnswer($params);
 }
 
 # Model Poll
@@ -182,6 +183,27 @@ class mPoll implements iPoll {
 	*/
 	function getPoll($params) {
 		$pdo = new myPDO();
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$result = $pdo->query('SELECT * FROM poll WHERE id = ? AND isPublic=1;', $data);
+		$result = $result[0];
+		if(!empty($result))
+			$result->answers = $this->getPollAnswers($params);
+
+		return $result;
+	}
+
+	/** INSERT ANSWER IN THE POLL
+	*  
+	* @param (array) with
+	* (int) poll - poll identifier
+	* (int) answer - answer_id
+	* (int) user - user id
+	* @ return (int) answer_id
+	*/
+	function addUserAnswer($params) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
 		$result = $pdo->query('SELECT * FROM poll WHERE id = ? AND isPublic=1;', $data);
 		$result = $result[0];

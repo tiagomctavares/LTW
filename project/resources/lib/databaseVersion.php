@@ -6,7 +6,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 2;
+		$this->dbVersion = 3;
 		$this->dummy_data = true;
 
 		$this->path = $path;
@@ -44,6 +44,7 @@ class databaseVersion {
 		$this->tableUser();
 		$this->tablePoll();
 		$this->tablePollAnswer();
+		$this->tableUserAnswer();
 
 		if($this->dummy_data)
 			$this->dummyData();
@@ -103,6 +104,19 @@ class databaseVersion {
 			"id_poll"  INTEGER NOT NULL,
 			"answer"  TEXT(100) NOT NULL
 		)';
+
+		$pdo->query($sql);
+	}
+
+	private function tableUserAnswer() {
+		$pdo = new myPDO();
+
+		$sql ='
+		CREATE TABLE user_answer (
+			id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+			id_user  INTEGER,
+			id_answer  INTEGER NOT NULL
+		);';
 
 		$pdo->query($sql);
 	}
