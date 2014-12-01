@@ -9,9 +9,9 @@ __The minimum expected requirements are the following:__
 
 - [X] Users should be able to register an account.
 - [X] Users should be able to login/logout from the system.
-- [ ] Registered users should be able to create a poll.
+- [X] Registered users should be able to create a poll.
 - [ ] Registered users should be able to manage their polls.
-- [ ] Polls should contain one image and several possible answers.
+- [X] Polls should contain one image and several possible answers.
 - [ ] Users should be able to list, search and answer to polls.
 - [ ] One user should not be able to answer twice to the same poll.
 - [ ] Poll owners and users that already answered a poll, should be able to see the poll results.
