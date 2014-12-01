@@ -48,6 +48,9 @@
 							<li>
 								<input type="text" class="form-control" id="answers" placeholder="Answers" name="answers" required>
 							</li>
+							<li>
+								<input type="text" class="form-control" id="answers" placeholder="Answers" name="answers" required>
+							</li>
 						</ul>
 						<button class="btn_add">
 							Add

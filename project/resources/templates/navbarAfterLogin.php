@@ -29,8 +29,8 @@
         		</li>
 
         		<li>
-					<a href="<?=HOME_URL ?>/?page=newPoll">
-						<i class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="New Poll"></i>
+					<a href="<?=HOME_URL ?>/?page=newPoll" data-toggle="tooltip" data-placement="bottom" title="New Poll">
+						<i class="glyphicon glyphicon-plus"></i>
 					</a>
 				</li>
 				<li>

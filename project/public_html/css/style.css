@@ -20,7 +20,23 @@ body{
 	color: #063e53;
 }
 
+.navbar-form input:focus{
+	box-shadow: none;
+	background-color: #d1c5b7;
+	border: 1px solid #063e53;
+}
+
 .navbar .navbar-toggle{
+  background-color: #735d41;
+  border: 0.2em solid #063e53;
+}
+
+.navbar .navbar-toggle:hover{
+  background-color: #d1c5b7;
+  border: 0.2em solid #063e53;
+}
+
+.navbar .navbar-toggle:focus{
   background-color: #735d41;
   border: 0.2em solid #063e53;
 }
@@ -84,10 +100,14 @@ body{
 
 /* FOOTER */
 
-#footer #container{
-	margin-top: -50px;
-	padding: 0px;
+.footer .container{
+	margin-top: -8px;
 	position: fixed;
+	height: 30px !important;
+}
+
+.footer{
+	height: 30px;
 }
 
 .branco, .branco .glyphicon{
@@ -99,7 +119,7 @@ body{
 
 .logRegForm{
   position: absolute;
-	top: 20%;
+  top: 20%;
   left: 10%;
   margin: auto 0px;
   width: 80%;
@@ -110,11 +130,14 @@ body{
   margin: auto 0px;
 }
 
-hr{
+.line{
   border-top: 0.1em solid #735d41;
   margin-right: 15px;
   margin-left: 15px;
+  margin-top: 70px;
+  margin-bottom: 15px;
   width: 98%;
+  z-index: 2;
 }
 
 .logRegForm h2{
@@ -242,6 +265,7 @@ hr{
 	right: 0px;
 	z-index: 2;
 	opacity: 0.50;
+	min-height: 100%;
 }
 
 /* DEVELOPERS INFORMATION MDOAL */
@@ -296,6 +320,31 @@ hr{
 /* NEW POLL */
 #newPoll label{
   color: #063e53;
+}
+
+#newPoll #answersGroup ul{
+	padding-left: 0;
+	list-style-type: none;
+}
+
+#addAnswerButton{
+	height: 34px;
+	width: 34px;
+}
+
+#addAnswerButton .glyphicon{
+	border:none;
+}
+
+#addAnswerButton i{
+	padding: 0 auto;
+}
+
+#newPoll select{
+	background-color: #d1c5b7;
+	color: #063e53;
+	border: 0.1em solid #735d41;
+	border-radius: 10px;
 }
 
 /* TIMELINE */

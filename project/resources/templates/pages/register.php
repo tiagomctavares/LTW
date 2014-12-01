@@ -2,7 +2,7 @@
 <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12 logRegForm" role="form">
 	<div class="panel panel-default col-lg-12">
 		<h2 class="pull-left col-lg-12">Sign up now</h2>
-		<hr>
+		<div class="line"></div>
 
 		<div class="panel-body col-lg-4 col-sm-8 col-xs-12">
 			<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=userRegister" method="POST">
