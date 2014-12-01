@@ -3,6 +3,32 @@
 ### [Project Guide](http://paginas.fe.up.pt/~arestivo/doku/doku.php/classes:years:2014:ltw:project)
 
 ---
+### Requirements
+
+__The minimum expected requirements are the following:__
+
+<input type="checkbox"> Users should be able to register an account.
+<input type="checkbox"> Users should be able to login/logout from the system.
+<input type="checkbox"> Registered users should be able to create a poll.
+<input type="checkbox"> Registered users should be able to manage their polls.
+<input type="checkbox"> Polls should contain one image and several possible answers.
+<input type="checkbox"> Users should be able to list, search and answer to polls.
+<input type="checkbox"> One user should not be able to answer twice to the same poll.
+<input type="checkbox"> Poll owners and users that already answered a poll, should be able to see the poll results.
+<input type="checkbox"> The following technologies should all be used: HTML, CSS, PHP, Javascript (by means of jQuery), Ajax/JSON, PDO/SQL (using sqlite).
+<input type="checkbox"> The web site should be as secure as possible.
+<input type="checkbox"> Code should be organized and and consistent.
+
+__Some suggested extra requirements:___
+
+<input type="checkbox"> Poll owners should be able to decide if the poll is public or private.
+<input type="checkbox"> Private polls should not appear in listings or searches. Only the poll URL should needed to access it.
+<input type="checkbox"> Polls with more than one question.
+<input type="checkbox"> Poll results with graphs or charts.
+<input type="checkbox"> Possibility to share a poll using email or a social network.
+<input type="checkbox"> And whatever you come up with…
+
+---
 
 ### Bugs and Features
 
