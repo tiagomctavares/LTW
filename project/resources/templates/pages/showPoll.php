@@ -4,14 +4,14 @@
 	  	<h1><?=$polls->title ?></h1>
 	    <h4><?=$polls->question ?></h4>
 
-		<?php foreach ($polls->answers as $answers): ?>
+		<?php foreach ($polls->answers as $answer): ?>
 	    		<div class="row">
 				  <div class="col-lg-6">
 				    <div class="input-group">
 				      <span class="input-group-addon">
-				        <input type="radio" name="answer" value="$answer->id">
+				        <input type="radio" name="answer" value="<?=$answer->id ?>" <?=$answer->id == $polls->userAnswer?"checked='checked'":'' ?>>
 				      </span>
-				      <p> <?= $answers->answer ?> </p>
+				      <p> <?= $answer->answer ?> </p>
 				    </div><!-- /input-group -->
 				  </div><!-- /.col-lg-6 -->
 				</div><!-- /.row -->
@@ -22,4 +22,3 @@
 	    </button>
     </form>
 </div>
-

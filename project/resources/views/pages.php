@@ -52,12 +52,13 @@ function page_listPollsUser() {
 }
 
 function page_showPoll() {
+	global $_user;
 	$poll_id = isset($_GET['poll'])?$_GET['poll']:0;
 	if(is_numeric($poll_id)) {
 
 		require_once MODELS_PATH.'/poll.php';
 		$poll = new mPoll();
-		$polls = $poll->getPoll(array($poll_id));
+		$polls = $poll->getPoll(array('poll'=>$poll_id, 'user'=>$_user->id()));
 		if(empty($polls))
 			listPolls();
 		$variables = array(

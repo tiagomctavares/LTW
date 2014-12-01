@@ -359,6 +359,39 @@ function managePoll() {
 	return $return;
 }
 
+function answerPoll() {
+	global $_user;
+	$errors = array();
+	if(!$_user->isLogged()) {
+		$user = '';
+	} else {
+		$user = $_user->id();
+	}
+
+	$poll_id = isset($_POST['id'])?$_POST['id']:'';
+	$answer = isset($_POST['answer'])?$_POST['answer']:'';
+
+	if(!is_numeric($poll_id)) {
+		$errors[] = 'Poll not valid';
+		$return = -1;
+	}
+
+	if(!is_numeric($answer)) {
+		$errors[] = 'Answer not valid';
+		$return = -2;
+	}
+
+	if(empty($errors)) {
+		require_once MODELS_PATH.'/poll.php';
+		$poll = new mPoll();
+
+		$data = array('poll'=>$poll_id, 'answer'=>$answer, 'user'=>$user);
+		$poll->addUserAnswer($data);
+	}
+
+	GO('?page=showPoll&poll='.$poll_id);
+	return $return;
+}
 
 # Auxiliary Functions
 function validStrLen($str, $size) {
