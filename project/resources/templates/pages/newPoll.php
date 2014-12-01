@@ -44,22 +44,22 @@
 				<div class="example-row">
 					<div class="example example-one">
 						<label for="answers" class="col-lg-2"> Answers </label>
-						<ul> 
+						<ul class="list-unstyled"> 
 							<li>
-								<input type="text" class="form-control" id="answers" placeholder="Answers" name="answers" required>
+								<input type="text" number="1" class="form-control" id="answers" placeholder="Answer 1" name="answer1" required>
 							</li>
 							<li>
-								<input type="text" class="form-control" id="answers" placeholder="Answers" name="answers" required>
+								<input type="text" number="2" class="form-control" id="answers" placeholder="Answer 2" name="answer2" required>
 							</li>
 						</ul>
-						<div class="text-right">
-							<button class="btn_add">
-								Add
-							</button>
-							<button class="btn_remove">
-								Remove
-							</button>
-						</div>
+
+						<br>
+						<button type="button" class="btn_add">
+							Add
+						</button>
+						<button type="button" class="btn_remove">
+							Remove
+						</button>
 					</div>
 				</div>
 				<br>
