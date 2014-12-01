@@ -68,3 +68,5 @@ $("#ex-six-button").on("click", function() {
     .find(".details")
     .slideToggle();
 });
+
+
