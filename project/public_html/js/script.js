@@ -23,6 +23,32 @@ $(document).ready(function($){
 });
 
 // add answer functions
-g = r.handle = function(b) {
-  return typeof n !== U && n.event.triggered !== b.type ? n.event.dispatch.apply(a, arguments) : void 0
-}
+$(".btn_add").on("click", function() {
+  var insertPoint = $(this).parent().find("li:nth-child(0)");
+  
+  $("<li />", {
+    'text': "New Item",
+    'class': "new-item"
+  }).insertAfter(insertPoint);
+});
+
+$("#ex-four-button, #example-four-close").on("click", function() {
+  $("#example-four-slider-wrap").toggleClass("open");
+});
+
+$("#ex-five-button").on("click", function() {
+  $(this)
+    .toggleClass("open")
+    .find(".details")
+    .slideToggle();
+});
+
+$("#ex-six-button").on("click", function() {
+  
+  $("#example-six-list").toggleClass("open");
+  
+  $(this)
+    .toggleClass("open")
+    .find(".details")
+    .slideToggle();
+});

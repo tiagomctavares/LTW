@@ -41,18 +41,18 @@
 				</div>
 
 				<!-- ANSWERS -->
-				<div class="effeckt-list-wrap">
-					<label for="answers" class="col-lg-2"> Possible Answers </label>
-					<div class="col-lg-10">
-						<ul class="effeckt-list active" data-effeckt-type="pop-in"> 
+				<div class="example-row">
+					<div class="example example-one">
+						<label for="answers" class="col-lg-2"> Answers </label>
+						<ul> 
 							<li>
 								<input type="text" class="form-control" id="answers" placeholder="Answers" name="answers" required>
 							</li>
 						</ul>
-						<button class="add">
+						<button class="btn_add">
 							Add
 						</button>
-						<button class="remove" style="display: none;">
+						<button class="btn_remove">
 							Remove
 						</button>
 					</div>
@@ -61,7 +61,7 @@
 				<!--SUBMIT BUTTON-->
 				<div class="form-group">
 				    <div class="col-lg-12 text-right">
-						<button type="submit" class="btn btn-info">Create</button>
+						<button type="submit" class="btn btn-info btn_create">Create</button>
 				    </div>
 				</div>
 			</form>
