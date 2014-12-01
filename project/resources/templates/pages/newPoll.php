@@ -43,7 +43,7 @@
 				<!-- ANSWERS -->
 				<div class="effeckt-list-wrap">
 					<label for="answers" class="col-lg-2"> Possible Answers </label>
-						<div class="col-lg-10">
+					<div class="col-lg-10">
 						<ul class="effeckt-list active" data-effeckt-type="pop-in"> 
 							<li>
 								<input type="text" class="form-control" id="answers" placeholder="Answers" name="answers" required>
