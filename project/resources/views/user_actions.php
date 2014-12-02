@@ -221,7 +221,7 @@ function newPoll() {
 	if($return < 1)
 		GO('?page=newPoll');
 	else
-		GO('?page=viewAllPolls');
+		GO('?page=managePolls');
 
 	return $return;
 }
@@ -354,6 +354,41 @@ function answerPoll() {
 	}
 
 	GO('?page=showPoll&poll='.$poll_id);
+	return $return;
+}
+
+function deletePoll() {
+	global $_user, $_alert;
+
+	$errors = array();
+	if(!$_user->isLogged()) {
+		$_alert->error('Please login to manage your polls');
+		GO('?page=login');
+	} else {
+		$user = $_user->id();
+	}
+
+	$poll_id = isset($_GET['poll_id'])?$_GET['id']:'';
+
+	if(!is_numeric($poll_id)) {
+		$_alert->error('Poll not valid');
+		$return = -1;
+	}
+
+	if(empty($_alert->getError())) {
+		require_once MODELS_PATH.'/poll.php';
+		$poll = new mPoll();
+
+		$data = array('poll'=>$poll_id, 'user'=>$user);
+		$result = $poll->deletePoll($data);
+		if($result == 0) {
+			$_alert->error('This poll does not belong to you');
+		} else {
+			$_alert->success('Your poll was deleted with success');
+		}
+	}
+
+	GO('?page=managePolls');
 	return $return;
 }
 
