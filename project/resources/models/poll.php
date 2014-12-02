@@ -48,7 +48,7 @@ class mPoll implements iPoll {
 		$data[] = new myPDOparam($params['question'], PDO::PARAM_STR);
 		$data[] = new myPDOparam($params['image'], PDO::PARAM_STR);
 		$data[] = new myPDOparam($params['isPublic'], PDO::PARAM_INT);
-		$result = $pdo->query('INSERT INTO poll (id_user, title, question, image, isPublic) VALUES(?, ?, ?, ?, ?);', $data);
+		$result = $pdo->query('INSERT INTO poll (id_user, title, question, image, isPublic, isClosed) VALUES(?, ?, ?, ?, ?, 1);', $data);
 
 		// Select last insert id
 		$poll_id = $pdo->last_insert_id();
@@ -80,6 +80,27 @@ class mPoll implements iPoll {
 		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
 
 		$result = $pdo->query('DELETE FROM poll WHERE id=? AND id_user=?;', $data);
+
+		return $result;
+	}
+
+	/* Checks if answer with sent poll identifier exists
+	*  
+	* @param (array) with
+	* (int) poll identifier
+	* (str) user identifier
+	* @ return (boolean)
+	*/
+	function closePoll($params) {
+		$data = array();
+		$pdo = new myPDO();
+
+		$this->removePollAnswers($params);
+		
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+
+		$result = $pdo->query('UPDATE poll SET isClosed=1 WHERE id=? AND id_user=?;', $data);
 
 		return $result;
 	}
@@ -170,6 +191,7 @@ class mPoll implements iPoll {
 		$remove = array_diff($answers_id, $new_answers_id);
 		foreach($remove as $remove_id) {
 			$this->removePollAnswer(array($remove_id));
+			######## ALSO REMOVE HERE THE USER ANSWERS
 		}
 
 		return 1;
@@ -208,7 +230,8 @@ class mPoll implements iPoll {
 	function getPoll($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
-		$result = $pdo->query('SELECT * FROM poll WHERE id = ? AND isPublic=1;', $data);
+		//$result = $pdo->query('SELECT * FROM poll WHERE id = ? AND isPublic=1;', $data);
+		$result = $pdo->query('SELECT * FROM poll WHERE id = ?;', $data);
 		$result = $result[0];
 		if(!empty($result)) {
 			$result->answers = $this->getPollAnswers($params);

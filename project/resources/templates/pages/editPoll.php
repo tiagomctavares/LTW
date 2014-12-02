@@ -26,8 +26,8 @@
 					<label for="visability" class="col-lg-2">Visability</label>
 					<div class=" col-lg-4">
 						<select class="form-control" id="visability" name="isPublic">
-						  <option value="1" selected>Public <i class="glyphicon glyphicon-eye-open" title="public"> </i></option>
-						  <option value="0">Private <i class="glyphicon glyphicon-eye-close" title="private"> </i></option>
+						  <option value="1" <?=$polls->isPublic?'selected':'' ?>>Public <i class="glyphicon glyphicon-eye-open" title="public"> </i></option>
+						  <option value="0" <?=!$polls->isPublic?'selected':'' ?>>Private <i class="glyphicon glyphicon-eye-close" title="private"> </i></option>
 						</select>
 					</div>
 				</div>
@@ -74,4 +74,5 @@
 			</form>
 		</div>
 	</div>
+	<?php var_dump($polls) ?>
 </div>

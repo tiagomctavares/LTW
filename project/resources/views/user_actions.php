@@ -226,7 +226,7 @@ function newPoll() {
 	return $return;
 }
 
-function managePoll() {
+function editPoll() {
 	global $_user, $_alert;
 
 	if(!$_user->isLogged()) {
@@ -385,6 +385,41 @@ function deletePoll() {
 			$_alert->error('This poll does not belong to you');
 		} else {
 			$_alert->success('Your poll was deleted with success');
+		}
+	}
+
+	GO('?page=managePolls');
+	return $return;
+}
+
+function closePoll() {
+	global $_user, $_alert;
+
+	$errors = array();
+	if(!$_user->isLogged()) {
+		$_alert->error('Please login to manage your polls');
+		GO('?page=login');
+	} else {
+		$user = $_user->id();
+	}
+
+	$poll_id = isset($_GET['poll'])?$_GET['poll']:'';
+
+	if(!is_numeric($poll_id)) {
+		$_alert->error('Poll not valid');
+		$return = -1;
+	}
+
+	if(empty($_alert->getError())) {
+		require_once MODELS_PATH.'/poll.php';
+		$poll = new mPoll();
+
+		$data = array('poll'=>$poll_id, 'user'=>$user);
+		$result = $poll->closePoll($data);
+		if($result == 0) {
+			$_alert->error('This poll does not belong to you');
+		} else {
+			$_alert->success('Your poll is now closed with success');
 		}
 	}
 

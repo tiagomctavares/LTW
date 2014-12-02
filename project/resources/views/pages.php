@@ -131,8 +131,10 @@ function page_editPoll() {
 		$poll = new mPoll();
 		$polls = $poll->getPoll(array('poll'=>$poll_id, 'user'=>$_user->id()));
 
-		if(empty($polls))
-			listPolls();
+		if(empty($polls)) {
+			$_alert->error('You don\'t have permissions to edit this poll');
+			GO('?page=managePolls');
+		}
 
 		$variables['polls'] = $polls;
 
