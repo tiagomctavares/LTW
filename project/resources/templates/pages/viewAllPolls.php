@@ -64,7 +64,7 @@
 
 
 <!-- DELETE MODAL -->
-<div class="modal fade" id="deleteModal" role="dialog">
+<div class="modal fade" id="deleteModal" role="dialog" method="get">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
@@ -75,7 +75,7 @@
 
           <div class="form-group row">
               <div class="col-lg-12 text-right">
-                  <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" role="button" class="btn btn-default">Yes</button>
+                  <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" role="button" class="btn btn-default">Yes</button>
                   <a href="#" role="button" class="btn btn-default" data-dismiss="modal">No</button>
               </div>
           </div>
