@@ -20,19 +20,24 @@ __The minimum expected requirements are the following:__
 - [X] Code should be organized and and consistent.
 - [X] The web site should be as secure as possible.
 
-__Some suggested extra requirements:___
+
+__Some suggested extra requirements:__
 
 - [X] Poll owners should be able to decide if the poll is public or private.
 - [X] Private polls should not appear in listings or searches. Only the poll URL should needed to access it.
 - [ ] Polls with more than one question.
 - [ ] Poll results with graphs or charts.
 - [ ] Possibility to share a poll using email or a social network.
+
+
 __And whatever you come up with…__
 - [X] Responsive Design
 - [X] Modal
 - [X] Timeline
 - [ ] Unit Testing
 - [ ] Clean URLS
+
+
 __Libraries__
 - [X] MyPDO
 - [X] Render
