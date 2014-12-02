@@ -31,6 +31,9 @@
         case 'action_answerPoll':
             answerPoll();
             break;
+        case 'deletePoll':
+            deletePoll();
+            break;
 
         ## PAGES
     	case 'home':

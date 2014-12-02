@@ -140,7 +140,6 @@ class databaseVersion {
 		$pdo->query("INSERT INTO poll_answer VALUES (4, 3, 'A1')");
 		$pdo->query("INSERT INTO poll_answer VALUES (5, 3, 'A2')");
 		$pdo->query("INSERT INTO poll_answer VALUES (6, 3, 'A3')");
-		
 	}
 }
 ?>

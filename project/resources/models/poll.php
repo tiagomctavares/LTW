@@ -9,6 +9,7 @@ interface iPoll {
 	function updatePoll($params);
 	function getPoll($params);
 	function userAnswerPoll($params);
+	function deletePoll($params);
 
 	#POLLS
 	function getPolls($params);
@@ -60,6 +61,27 @@ class mPoll implements iPoll {
 		//$result = array($poll_id=>$answer_id);
 
 		return $poll_id;
+	}
+
+	/* Checks if answer with sent poll identifier exists
+	*  
+	* @param (array) with
+	* (int) poll identifier
+	* (str) user identifier
+	* @ return (boolean)
+	*/
+	function deletePoll($params) {
+		$data = array();
+		$pdo = new myPDO();
+
+		$this->removePollAnswers($params);
+		
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+
+		$result = $pdo->query('DELETE FROM poll WHERE id=? AND id_user=?;', $data);
+
+		return $result;
 	}
 
 	/* Checks if answer with sent poll identifier exists
@@ -314,6 +336,43 @@ class mPoll implements iPoll {
 		# Answer ID
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
 		$result = $pdo->query('DELETE FROM poll_answer WHERE id=?;', $data);
+		return $result==1;
+	}
+
+	/* Delete poll answers
+	*  
+	* @param (array) with
+	* (int) poll identifier
+	* @ return (boolean) 
+	*/
+	private function removePollAnswers($params) {
+		$pdo = new myPDO();
+
+		$answers = $this->getPollAnswers($params);
+		foreach($answers as $answer) {
+			$this->removeUserAnswer(array('answer'=>$answer->id, 'user'=>$params['user']));
+		}
+		# Answer ID
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
+		$result = $pdo->query('DELETE FROM poll_answer WHERE id_poll=?;', $data);
+
+		return $result==1;
+	}
+
+	/* Delete user answer
+	*  
+	* @param (array) with
+	* (int) poll identifier
+	* (int) answer identifier
+	* @ return (boolean) 
+	*/
+	private function removeUserAnswer($params) {
+		$pdo = new myPDO();
+		$data = array();
+		# Answer ID
+		$data[] = new myPDOparam($params['answer'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+		$result = $pdo->query('DELETE FROM user_answer WHERE id_answer=? AND id_user=?;', $data);
 		return $result==1;
 	}
 
