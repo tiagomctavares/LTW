@@ -1,10 +1,10 @@
-<div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12 logRegForm" id="newPoll">
+<div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12 logRegForm" id="editPoll">
 	<div class="panel panel-default col-lg-12">
-		<h2 class="pull-left col-lg-12">Creating a new poll...</h2>
+		<h2 class="pull-left col-lg-12">Editing a poll...</h2>
 		<div class="line"></div>
 
 		<div class="col-lg-6 col-sm-8 col-xs-12">
-			<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=action_newPoll" method="POST" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=action_editPoll" method="POST" enctype="multipart/form-data">
 				<!--TITLE-->	
 				<div class="form-group has-feedback">
 				    <label for="title" class="col-lg-2">Title</label>
@@ -45,7 +45,8 @@
 				<div class="example-row">
 					<div class="example example-one">
 						<label for="answers" class="col-lg-2"> Answers </label>
-						<ul class="list-unstyled"> 
+						<h2> Modifies a Answer will reset all answer and reset all the votes</h2>
+						<ul>
 							<li>
 								<input type="text" number="1" class="form-control" id="answers" placeholder="Answer 1" name="answer1" required>
 							</li>
@@ -53,7 +54,7 @@
 								<input type="text" number="2" class="form-control" id="answers" placeholder="Answer 2" name="answer2" required>
 							</li>
 						</ul>
-
+						
 						<br>
 						<button type="button" class="btn_add">
 							Add

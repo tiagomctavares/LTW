@@ -56,8 +56,12 @@
             page_showPoll();
             break;
         case 'editPoll':
-            editPoll();
+            page_editPoll();
             break;
+        case 'resultsPoll':
+            page_resultsPoll();
+        case 'closePoll':
+            page_closePoll();
         default:
             home(); 
     		break;
