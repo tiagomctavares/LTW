@@ -56,7 +56,7 @@
             page_showPoll();
             break;
         case 'editPoll':
-            
+            editPoll();
             break;
         default:
             home(); 
