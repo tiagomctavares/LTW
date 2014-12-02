@@ -32,12 +32,14 @@
 
       <div class="col-lg-3 col-sm-6 col-xs-12 pull-left">
         <div class="thumbnail">
+          <?php if($poll->image !== ''): ?>
           <img class="img-responsive pollImage" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
+          <?php endif ?>
 
           <div class="caption">
             <h3 class="pollTitle"><?=$poll->title ?></h3>
             <p class="pollQuestion"><?=$poll->question ?></p>
-            <p class="text-right">
+            <p class="text-center">
               <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
                 Vote
               </a>
@@ -47,17 +49,18 @@
                 Edit
               </a>
 
-              <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
-                Delete
+              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                Close
               </a>
 
               <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
                 Results
               </a>
 
-              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
-                Close
+              <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                Delete
               </a>
+              
               <?php endif; ?>
             </p>
           </div>

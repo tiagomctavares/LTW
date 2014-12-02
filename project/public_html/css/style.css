@@ -382,6 +382,8 @@ body{
 	background-color: #d1c5b7;
 	border: 0.2em solid #063e53;
 	color: #063e53;
+	margin-top: 3px;
+	margin-bottom: 2px;
 }
 
 .thumbnailBtn:hover{
