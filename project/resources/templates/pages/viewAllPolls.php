@@ -65,21 +65,21 @@
 
 <!-- DELETE MODAL -->
 <div class="modal fade" id="deleteModal" role="dialog" method="get">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="form-group row">
-              <i class="glyphicon glyphicon-warning-sign col-lg-2"></i>
-              <p class="warningInfo col-lg-10">Are you sure you want to delete this poll?</p>
-          </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-group row">
+            <i class="glyphicon glyphicon-warning-sign col-lg-2"></i>
+            <p class="warningInfo col-lg-10">Are you sure you want to delete this poll?</p>
+        </div>
 
-          <div class="form-group row">
-              <div class="col-lg-12 text-right">
-                  <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" role="button" class="btn btn-default">Yes</button>
-                  <a href="#" role="button" class="btn btn-default" data-dismiss="modal">No</button>
-              </div>
-          </div>
+        <div class="form-group row">
+            <div class="col-lg-12 text-right">
+                <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" role="button" class="btn btn-default">Yes</a>
+                <a href="#" role="button" class="btn btn-default" data-dismiss="modal">No</a>
+            </div>
         </div>
       </div>
     </div>
   </div>
+</div>
