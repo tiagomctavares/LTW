@@ -39,7 +39,7 @@
             <p class="pollQuestion"><?=$poll->question ?></p>
             <p class="text-right">
               <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
-                Details
+                Vote
               </a>
               
               <?php if ($user_action == "user"): ?>
@@ -47,8 +47,16 @@
                 Edit
               </a>
 
-              <a href="#" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+              <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
                 Delete
+              </a>
+
+              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                Results
+              </a>
+
+              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                Close
               </a>
               <?php endif; ?>
             </p>
@@ -65,21 +73,21 @@
 
 <!-- DELETE MODAL -->
 <div class="modal fade" id="deleteModal" role="dialog" method="get">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="form-group row">
-              <i class="glyphicon glyphicon-warning-sign col-lg-2"></i>
-              <p class="warningInfo col-lg-10">Are you sure you want to delete this poll?</p>
-          </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-group row">
+            <i class="glyphicon glyphicon-warning-sign col-lg-2"></i>
+            <p class="warningInfo col-lg-10">Are you sure you want to delete this poll?</p>
+        </div>
 
-          <div class="form-group row">
-              <div class="col-lg-12 text-right">
-                  <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" role="button" class="btn btn-default">Yes</button>
-                  <a href="#" role="button" class="btn btn-default" data-dismiss="modal">No</button>
-              </div>
-          </div>
+        <div class="form-group row">
+            <div class="col-lg-12 text-right">
+                <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" role="button" class="btn btn-default">Yes</a>
+                <a href="#" role="button" class="btn btn-default" data-dismiss="modal">No</a>
+            </div>
         </div>
       </div>
     </div>
   </div>
+</div>
