@@ -161,7 +161,7 @@ class mPoll implements iPoll {
 	function getPolls($params = array(0=>'')) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam("%$params[0]%", PDO::PARAM_STR);
-		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1;', $data);
+		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1 ORDER BY id DESC;', $data);
 		return $result;
 	}
 

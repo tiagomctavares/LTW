@@ -1,4 +1,3 @@
-
 <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12 logRegForm" role="form">
 	<div class="panel panel-default col-lg-12">
 		<h2 class="pull-left col-lg-12">Sign in to your account</h2>
