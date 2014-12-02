@@ -28,6 +28,9 @@
         case 'action_newPoll':
             newPoll();
             break;
+        case 'action_answerPoll':
+            answerPoll();
+            break;
 
         ## PAGES
     	case 'home':

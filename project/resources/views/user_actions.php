@@ -11,55 +11,44 @@ require_once(LIB_PATH.'/renderTemplate.php');
 * 1:  Success
 */
 function registerUser() {
+	global $_alert;
 	$username = isset($_POST['username'])?$_POST['username']:'';
 	$password = isset($_POST['password'])?$_POST['password']:'';
 
 	$errors = array();
 
 	if(!validStrLen($username, 50)) {
-		$errors[] = 'Username not valid';
+		$_alert->error('Username not valid');
 		$return = -1;
 	}
 
 	if(!validStrLen($password, 20)) {
-		$errors[] = 'Password not valid';
+		$_alert->error('Password not valid');
 		$return = -2;
 	}
 
 	# No errors
-	if(empty($errors)) {
+	if(empty($_alert->getError())) {
 		require_once(MODELS_PATH.'/user.php');
 		$user = new mUser();
 		# Check if user is duplicate
 		if(!$user->existUsername($username)) {
 			if(!$user->insertEntry(array($username, $password))) {
-				$errors[] = 'Error while registering user';
+				$_alert->error('Error while registering user');
 			} else {
-				$variables = array(
-					'success'=>'Register completed with success. You may now Login',
-					'username'=>$username
-				);
+				$_alert->success('Register completed with success. You may now Login');
 				$return = 1;
 			}
 		} else {
-			$errors[] = 'This username already exists in the database';
+			$_alert->error('This username already exists in the database');
 			$return = -10;
 		}
 	}
-
-	# No success
-	if(!isset($variables)) {
-		$variables = array(
-			'errors'=>$errors,
-			'username'=>$username
-		);
-	}
-
-	$template = new myTemplate();
 	if($return == 1)
-		$template->render("home.php", $variables);
+		GO('?page=login');
 	else
-		$template->render("register.php", $variables);
+		GO('?page=register');
+
 	return $return; // Used for unit Testing
 }
 
@@ -71,24 +60,22 @@ function registerUser() {
 * 1:  Success
 */
 function loginUser() {
-	global $_user;
+	global $_user, $_alert;
 	$username = isset($_POST['username'])?$_POST['username']:'';
 	$password = isset($_POST['password'])?$_POST['password']:'';
-	
-	$errors = array();
 
 	if(!validStrLen($username, 50)) {
-		$errors[] = 'Username not valid';
+		$_alert->error('Username not valid');
 		$return = -1;
 	}
 
 	if(!validStrLen($password, 20)) {
-		$errors[] = 'Password not valid';
+		$_alert->error('Password not valid');
 		$return = -2;
 	}
 
 	# No errors
-	if(empty($errors)) {
+	if(empty($_alert->getError())) {
 		require_once(MODELS_PATH.'/user.php');
 		$user = new mUser();
 		$result = $user->correctCredentials(array($username, $password));
@@ -99,27 +86,20 @@ function loginUser() {
 			);
 			
 			$_user->saveInfoLogin($data);
-			$variables = array(
-				'success'=>'Login with success',
-			);
+			$_alert->success('Login with success');
+
 			$return = 1;
 		} else {
-			$errors[] = 'Wrong Credentials';
+			$_alert->error('Wrong Credentials');
 			$return = -10;
 		}
 	}
-	# No success
-	if(!isset($variables))
-		$variables = array(
-			'errors'=>$errors,
-			'username'=>$username
-		);
 
-	$template = new myTemplate();
 	if($return == 1)
-		$template->render("home.php", $variables);
+		GO();
 	else
-		$template->render("login.php", $variables);
+		GO("?page=login");
+
 	return $return;
 }
 
@@ -129,35 +109,30 @@ function loginUser() {
 * 1:  Success
 */
 function logoutUser() {
-	global $_user;
+	global $_user, $_alert;
 	$return = -1;
-	$variables = array();
 	
 	if($_user->isLogged()) {
+		
 		$_user->logout();
+		$_alert->success('We will be waiting for you soon');
 
-		$variables = array(
-			'success'=>'We will be waiting for you soon'
-		);
 		$return = 1;
 	}
 	
-	$template = new myTemplate();
-	$template->render("home.php", $variables);
+	GO();
 	return $return;
 }
 
 function newPoll() {
-	global $_user;
-	$errors = array();
+	global $_user, $_alert;
 
 	if(!$_user->isLogged()) {
-		$errors[] = 'Please login to perform this operation';
+		$_alert->error('Please login to perform this operation');
 		$return = -10;
 	}
 		
 	$user = $_user->id();
-
 
 	$title = isset($_POST['title'])?$_POST['title']:'';
 	$question = isset($_POST['question'])?$_POST['question']:'';
@@ -165,23 +140,23 @@ function newPoll() {
 	$image = isset($_FILES['image'])?$_FILES['image']:'';
 
 	if(!validStrLen($title, 50)) {
-		$errors[] = 'Title not valid';
+		$_alert->error('Title not valid');
 		$return = -1;
 	}
 
 	if(!validStrLen($question, 500)) {
-		$errors[] = 'Password not valid';
+		$_alert->error('Password not valid');
 		$return = -2;
 	}
 
 	if($public != 1 && $public != 0) {
-		$errors[] = 'Visibility not valid';
+		$_alert->error('Visibility not valid');
 		$return = -4;
 	}
 	
 	$server_filename = '';
 	if($image == '') {
-		$errors[] = 'Image not valid';
+		$_alert->error('Image not valid');
 		$return = -3;
 	} else {
     	$filename = explode('.', $image['name']);
@@ -196,7 +171,7 @@ function newPoll() {
 	}
 
 	if(!validStrLen($server_filename, 255)) {
-		$errors[] = 'Image name not valid';
+		$_alert->error('Image name not valid');
 		$return = -3;
 	}
 
@@ -215,7 +190,7 @@ function newPoll() {
 	}while($answer != '');
 
 	# No errors
-	if(empty($errors)) {
+	if(empty($_alert->getError())) {
 		require_once(MODELS_PATH.'/poll.php');
 		$poll = new mPoll();
 		$data = array(
@@ -231,35 +206,29 @@ function newPoll() {
 		if($result > 0) {
 			// Upload Image
    			if (move_uploaded_file($image['tmp_name'], $move_to)) {
-				$variables = array(
-					'success'=>'Poll added with success'
-				);
+				$_alert->success('Poll added with success');
    			} else {
-				$variables = array(
-					'success'=>'Poll added with success',
-					'errors'=>array('Error while uploading image')
-				);
+   				$_alert->success('Poll added with success');
+   				$_alert->error('Error while uploading image');
    			}
 			$return = $result;
 		} else {
-			$errors[] = 'Poll Error';
+			$_alert->error('Poll Error');
 			$return = -99;
 		}
 	}
-	# No success
-	if(!isset($variables))
-		$variables = array(
-			'errors'=>$errors
-		);
 
-	$template = new myTemplate();
-	$template->render("newPoll.php", $variables);
+	if($return < 1)
+		GO('?page=newPoll');
+	else
+		GO('?page=viewAllPolls');
+
 	return $return;
 }
 
 function managePoll() {
-	global $_user;
-	$errors = array();
+	global $_user, $_alert;
+
 	if(!$_user->isLogged()) {
 		$errors[] = 'Please login to perform this operation';
 		$return = -10;
@@ -275,27 +244,27 @@ function managePoll() {
 	
 
 	if(!is_numeric($poll_id)) {
-		$errors[] = 'Poll not valid';
+		$_alert->error('Poll not valid');
 		$return = -1;
 	}
 
 	if(!validStrLen($title, 50)) {
-		$errors[] = 'Title not valid';
+		$_alert->error('Title not valid');
 		$return = -2;
 	}
 
 	if(!validStrLen($question, 500)) {
-		$errors[] = 'Password not valid';
+		$_alert->error('Password not valid');
 		$return = -3;
 	}
 
 	if(!validStrLen($image, 255)) {
-		$errors[] = 'Password not valid';
+		$_alert->error('Password not valid');
 		$return = -4;
 	}
 
 	if($public != 1 && $public !=0) {
-		$errors[] = 'Password not valid';
+		$_alert->error('Password not valid');
 		$return = -4;
 	}
 
@@ -315,14 +284,14 @@ function managePoll() {
 	}while($answer != '');
 
 	# No errors
-	if(empty($errors)) {
+	if(empty($_alert->getError())) {
 		require_once MODELS_PATH.'/poll.php';
 		$poll = new mPoll();
 		# Check if the entry already exists
 		if($poll->existPoll(array($poll_id))) {
 			if($poll->userOwnsPoll(array($user, $poll_id))) {
 				# All ok update entry
-				$params = array(
+				$data = array(
 					'poll_id'=>$poll_id, 
 					'title'=>$title, 
 					'question'=>$question, 
@@ -330,35 +299,63 @@ function managePoll() {
 					'answers'=>$answers,
 					'isPublic'=>$public
 				);
-				if(!$poll->updatePoll($params)) {
-					$errors[] = 'Error while updating poll';
+				if(!$poll->updatePoll($data)) {
+					$_alert->error('Error while updating poll');
 					$return = -102;
 				}else {
-					$variables = array(
-						'success'=>'Poll updated with success'
-					);
-					$return = 1; # Sucess
+					$_alert->success('Poll updated with success');
+					$return = 1; # Success
 				}
 			} else {
-				$errors[] = 'This poll does not belong to the user';
+				$_alert->error('This poll does not belong to the user');
 				$return = -101;
 			}
 		} else {
-			$errors[] = 'This poll does not exist';
+			$_alert->error('This poll does not exist');
 			$return = -100;
 		}
 	}
-	# No success
-	if(!isset($variables))
-		$variables = array(
-			'errors'=>$errors
-		);
 
-	$template = new myTemplate();
-	$template->render("test_output.php", $variables);
+	GO();
+
 	return $return;
 }
 
+function answerPoll() {
+	global $_user, $_alert;
+
+	$errors = array();
+	if(!$_user->isLogged()) {
+		$user = '';
+	} else {
+		$user = $_user->id();
+	}
+
+	$poll_id = isset($_POST['id'])?$_POST['id']:'';
+	$answer = isset($_POST['answer'])?$_POST['answer']:'';
+
+	if(!is_numeric($poll_id)) {
+		$_alert->error('Poll not valid');
+		$return = -1;
+	}
+
+	if(!is_numeric($answer)) {
+		$_alert->error('Answer not valid');
+		$return = -2;
+	}
+
+	if(empty($_alert->getError())) {
+		require_once MODELS_PATH.'/poll.php';
+		$poll = new mPoll();
+
+		$data = array('poll'=>$poll_id, 'answer'=>$answer, 'user'=>$user);
+		$poll->addUserAnswer($data);
+		$_alert->success('Your answer was recorded');
+	}
+
+	GO('?page=showPoll&poll='.$poll_id);
+	return $return;
+}
 
 # Auxiliary Functions
 function validStrLen($str, $size) {

@@ -8,6 +8,7 @@ interface iPoll {
 	function userOwnsPoll($params);
 	function updatePoll($params);
 	function getPoll($params);
+	function userAnswerPoll($params);
 
 	#POLLS
 	function getPolls($params);
@@ -15,6 +16,7 @@ interface iPoll {
 
 	# ANSWER
 	function existPollAnswer($params);
+	function addUserAnswer($params);
 }
 
 # Model Poll
@@ -159,7 +161,7 @@ class mPoll implements iPoll {
 	function getPolls($params = array(0=>'')) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam("%$params[0]%", PDO::PARAM_STR);
-		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1;', $data);
+		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1 ORDER BY id DESC;', $data);
 		return $result;
 	}
 
@@ -178,15 +180,96 @@ class mPoll implements iPoll {
 	/*
 	* @param (array) with
 	* (int) poll identifier
+	* (int) user identifier
 	* @return (object) poll
 	*/
 	function getPoll($params) {
 		$pdo = new myPDO();
-		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
 		$result = $pdo->query('SELECT * FROM poll WHERE id = ? AND isPublic=1;', $data);
 		$result = $result[0];
-		if(!empty($result))
+		if(!empty($result)) {
 			$result->answers = $this->getPollAnswers($params);
+			$result->userAnswer = $this->userAnswerPoll($params);
+		}
+		return $result;
+	}
+
+	/** GETS THE user_answer id for update
+	* @param (array) with
+	* (int) poll identifier
+	* (int) user identifier
+	* @return (object) answer_id
+	*/
+	function userAnswerPoll($params) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+		$result = $pdo->query('SELECT user_answer.id_answer as result FROM user_answer, poll_answer WHERE id_poll = ? AND user_answer.id_user= ? AND poll_answer.id=user_answer.id_answer;', $data);
+		
+		if(isset($result[0]->result))
+			$result = $result[0]->result;
+		else
+			$result = 0;
+
+		return $result;
+	}
+
+	/** INSERT ANSWER IN THE POLL
+	*  
+	* @param (array) with
+	* (int) poll - poll identifier
+	* (int) answer - answer_id
+	* (int) user - user id
+	* @ return (int) answer_id
+	*/
+	function addUserAnswer($params) {
+		
+		if($this->answerInPoll($params)) {
+
+			$pdo = new myPDO();
+			
+			$poll = $this->userAnsweredPoll($params);
+			if($poll == 0) {
+
+				if($params['user'] == '')
+					$data[] = new myPDOparam($params['user'], PDO::PARAM_NULL);
+				else
+					$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+
+				$data[] = new myPDOparam($params['answer'], PDO::PARAM_INT);
+
+				$result = $pdo->query('INSERT INTO user_answer(id_user, id_answer) VALUES(?, ?)', $data);
+			}
+			else {
+				$data[] = new myPDOparam($params['answer'], PDO::PARAM_INT);
+				$data[] = new myPDOparam($poll, PDO::PARAM_INT);
+
+				$result = $pdo->query('UPDATE user_answer SET id_answer=? WHERE id=?', $data);
+			}
+
+			return $result;
+		} else {
+			return -1;
+		}
+	}
+
+	/** GETS THE user_answer id for update
+	* @param (array) with
+	* (int) poll identifier
+	* (int) user identifier
+	* @return (object) answer_id
+	*/
+	private function userAnsweredPoll($params) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+		$result = $pdo->query('SELECT user_answer.id as result FROM user_answer, poll_answer WHERE id_poll = ? AND user_answer.id_user= ? AND poll_answer.id=user_answer.id_answer;', $data);
+		
+		if(isset($result[0]->result))
+			$result = $result[0]->result;
+		else
+			$result = 0;
 
 		return $result;
 	}
@@ -241,9 +324,25 @@ class mPoll implements iPoll {
 	*/
 	private function getPollAnswers($params) {
 		$pdo = new myPDO();
-		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
 		$result = $pdo->query('SELECT id, answer FROM poll_answer WHERE id_poll=?;', $data);
 		return $result;
 	}
+
+	/*
+	* @param (array) with
+	* (int) poll_identifier
+	* (int) answer_identifier
+	* @return array(objects) objects are answers
+	*/
+	private function answerInPoll($params) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['answer'], PDO::PARAM_INT);
+		$result = $pdo->query('SELECT COUNT(*) as number_answer FROM poll_answer WHERE id_poll=? AND id=?;', $data);
+		
+		return ($result[0]->number_answer)>0;
+	}
+
 }
 ?>

@@ -48,8 +48,23 @@ error_reporting(E_ALL|E_STRICT);
 require_once('LIB'.'/userInfo.php');
 $_user = new UserInfo();
 
+// Session to manage errors
+require_once('LIB'.'/pageAlerts.php');
+$_alert = new pageAlerts();
+
 ## LIB to manage databaseVersion
 require_once('LIB'.'/databaseVersion.php');
 new databaseVersion($config['db']['db1']);
 
+function GO($str = '') {
+    session_write_close();
+    header('Location: '. HOME_URL.'/'.$str);
+    exit;
+}
+
+function GO_ABS($str = '') {
+    session_write_close();
+    header('Location: '.$str);
+    exit;
+}
 ?>

@@ -6,7 +6,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 2;
+		$this->dbVersion = 3;
 		$this->dummy_data = true;
 
 		$this->path = $path;
@@ -44,6 +44,7 @@ class databaseVersion {
 		$this->tableUser();
 		$this->tablePoll();
 		$this->tablePollAnswer();
+		$this->tableUserAnswer();
 
 		if($this->dummy_data)
 			$this->dummyData();
@@ -107,12 +108,25 @@ class databaseVersion {
 		$pdo->query($sql);
 	}
 
+	private function tableUserAnswer() {
+		$pdo = new myPDO();
+
+		$sql ='
+		CREATE TABLE user_answer (
+			id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+			id_user  INTEGER,
+			id_answer  INTEGER NOT NULL
+		);';
+
+		$pdo->query($sql);
+	}
+
 	private function dummyData() {
 		$pdo = new myPDO();
 
 		#USERS
-		$pdo->query("INSERT INTO user VALUES (1, 'a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', '2014-11-27 04:12:02', null);");
-		$pdo->query("INSERT INTO user VALUES (2, 'aa', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', '2014-11-27 04:12:02', null);");
+		$pdo->query("INSERT INTO user VALUES (1, 'a', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '2014-11-27 04:12:02', null);");
+		$pdo->query("INSERT INTO user VALUES (2, 'aa', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '2014-11-27 04:12:02', null);");
 
 		#POLL
 		$pdo->query("INSERT INTO poll VALUES (1, 1, 'MyTi', 'asdads', '5478b2ab7362c_test.jpg', 1);");
