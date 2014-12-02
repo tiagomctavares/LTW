@@ -39,7 +39,7 @@
             <p class="pollQuestion"><?=$poll->question ?></p>
             <p class="text-right">
               <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
-                Details
+                Vote
               </a>
               
               <?php if ($user_action == "user"): ?>
@@ -47,8 +47,16 @@
                 Edit
               </a>
 
-              <a href="#" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+              <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
                 Delete
+              </a>
+
+              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                Results
+              </a>
+
+              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                Close
               </a>
               <?php endif; ?>
             </p>
