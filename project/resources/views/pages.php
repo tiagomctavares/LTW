@@ -117,4 +117,33 @@ function page_newPoll() {
 	$template = new myTemplate();
 	$template->render('newPoll.php', $variables);
 }
+
+function page_editPoll() {
+	global $_user, $_alert;
+	$poll_id = isset($_GET['poll'])?$_GET['poll']:0;
+	$variables = array();
+
+	if(is_numeric($poll_id)) {
+		$_alert->getArray($variables);
+		$_alert->reset();
+
+		require_once MODELS_PATH.'/poll.php';
+		$poll = new mPoll();
+		$polls = $poll->getPoll(array('poll'=>$poll_id, 'user'=>$_user->id()));
+
+		if(empty($polls))
+			listPolls();
+
+		$variables['polls'] = $polls;
+
+		$template = new myTemplate();
+		$template->render('editPoll.php', $variables);
+	} else {
+
+		listPolls();
+
+	}
+
+}
+
 ?>
