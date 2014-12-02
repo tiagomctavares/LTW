@@ -15,18 +15,33 @@ __The minimum expected requirements are the following:__
 - [X] Users should be able to list, search and answer to polls.
 - [X] One user should not be able to answer twice to the same poll.
 - [ ] Poll owners and users that already answered a poll, should be able to see the poll results.
+- [ ] __Users with no login should be able to vote on polls__
 - [X] The following technologies should all be used: HTML, CSS, PHP, Javascript (by means of jQuery), Ajax/JSON, PDO/SQL (using sqlite).
 - [X] Code should be organized and and consistent.
 - [X] The web site should be as secure as possible.
 
-__Some suggested extra requirements:___
+
+__Some suggested extra requirements:__
 
 - [X] Poll owners should be able to decide if the poll is public or private.
 - [X] Private polls should not appear in listings or searches. Only the poll URL should needed to access it.
 - [ ] Polls with more than one question.
 - [ ] Poll results with graphs or charts.
 - [ ] Possibility to share a poll using email or a social network.
-- [ ] And whatever you come up with…
+
+
+__And whatever you come up with…__
+- [X] Responsive Design
+- [X] Modal
+- [X] Timeline
+- [ ] Unit Testing
+- [ ] Clean URLS
+
+
+__Libraries__
+- [X] MyPDO
+- [X] Render
+- [X] Session Controllers
 
 ---
 
