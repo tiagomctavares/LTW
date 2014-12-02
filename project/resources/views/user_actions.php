@@ -368,7 +368,7 @@ function deletePoll() {
 		$user = $_user->id();
 	}
 
-	$poll_id = isset($_GET['poll_id'])?$_GET['id']:'';
+	$poll_id = isset($_GET['poll'])?$_GET['poll']:'';
 
 	if(!is_numeric($poll_id)) {
 		$_alert->error('Poll not valid');
