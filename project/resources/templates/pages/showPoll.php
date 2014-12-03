@@ -1,24 +1,34 @@
-<div class="container">
-	<form method="POST" action="<?=HOME_URL ?>/?page=action_answerPoll" >
-		<input type="hidden" name="id" value= "<?=$polls->id ?>" >
-	  	<h1><?=$polls->title ?></h1>
-	    <h4><?=$polls->question ?></h4>
+<div class="col-lg-2 col-md-2 col-sm-2 transpDiv"></div>
 
-		<?php foreach ($polls->answers as $answer): ?>
+<div class="container thumbnail col-lg-8 col-md-8 col-sm-8" id="votePollCont">	
+	<form method="POST" class="col-lg-12" action="<?=HOME_URL ?>/?page=action_answerPoll" >
+		<div class="col-lg-6 col-sm-6 col-xs-12">
+			<input type="hidden" name="id" value= "<?=$polls->id ?>" >
+		  	<h1><?=$polls->title ?></h1>
+		    <h4><?=$polls->question ?></h4>
+
+			<?php foreach ($polls->answers as $answer): ?>
 	    		<div class="row">
-				  <div class="col-lg-6">
+				  <div class="col-lg-12 ">
 				    <div class="input-group">
 				      <span class="input-group-addon">
 				        <input type="radio" name="answer" value="<?=$answer->id ?>" <?=$answer->id == $polls->userAnswer?"checked='checked'":'' ?>>
 				      </span>
 				      <p> <?= $answer->answer ?> </p>
-				    </div><!-- /input-group -->
-				  </div><!-- /.col-lg-6 -->
-				</div><!-- /.row -->
-	    <?php endforeach; ?>
+				    </div>
+				  </div>
+				</div>
+		    <?php endforeach; ?>
 
-	    <button>
-	    	Vote
-	    </button>
+		    <button>
+		    	Vote
+		    </button>
+	    </div>
+
+		<?php if($polls->image != ''): ?>
+		  <img class="img-responsive pollImage col-lg-6 col-sm-6 col-xs-12" src="<?=UPLOAD_URL ?>/<?=$polls->image ?>" alt="...">
+		<?php endif ?>
     </form>
 </div>
+
+<div class="col-lg-2 col-md-2 col-sm-2 transpDiv"></div>

@@ -356,6 +356,15 @@ body{
 }
 
 /* MANAGE POLLS PAGE */
+.viewPollsHeader{
+  background-color: #ffffff;
+  color: #063E53;
+  text-align: center;
+  margin: 20px 15px;
+  border: 0.2em solid rgba(6, 62, 83, 0.75);
+  border-radius: 5px;
+}
+
 .thumbnail{
 	border: 0.2em solid rgba(6, 62, 83, 0.75);
 	border-radius: 5px;
@@ -398,6 +407,60 @@ body{
 	color: #ffffff;
 }
 
+/* delete confirmation */
+#deleteModal{
+  background-color: rgba(115, 93, 65, 0.8);
+  color: #063e53;
+}
+
+#deleteModal .modal-body{
+  background-color: #d1c5b7;
+  border-radius: 5px;
+}
+
+#deleteModal .modal-body p, #deleteModal .modal-body i{
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.deleteBTN{
+  background-color: #d1c5b7;
+  border: 0.2em solid #063e53;
+  color: #063e53;
+  margin-top: 3px;
+  margin-bottom: 2px;
+}
+
+.deleteBTN:hover{
+  background-color: #063e53;
+  border: 0.2em solid #063e53;
+  color: #ffffff;
+}
+
+.deleteBTN:focus{
+  background-color: #063e53;
+  border: 0.2em solid #063e53;
+  color: #ffffff;
+}
+
+/* SHOW POLL */
+#votePollCont{
+  margin-top: 120px;
+}
+
+#votePollCont img{
+  padding: 10px; 
+}
+
+#votePollCont form{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.transpDiv{
+  background-color: transparent;
+  border: none;
+}
 
 /* TIMELINE */
 
