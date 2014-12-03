@@ -6,7 +6,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 5;
+		$this->dbVersion = 6;
 		$this->dummy_data = true;
 
 		$this->path = $path;
@@ -38,7 +38,10 @@ class databaseVersion {
 				echo 'Database in use please close it';
 				exit;
 			}
+		}else {
+			touch($this->path);
 		}
+
 		// CREATE TABLES
 		$this->tableVersion();
 		$this->tableUser();

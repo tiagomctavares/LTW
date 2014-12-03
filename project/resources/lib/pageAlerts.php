@@ -9,7 +9,17 @@ class pageAlerts {
 		if(isset($_SESSION['alert']['success'][0]))
 			$param['success'] = $_SESSION['alert']['success'][0];
 		
-		$param['errors'] =$_SESSION['alert']['danger'];
+		if(isset($_SESSION['alert']['danger'])) {
+			$param['errors'] =$_SESSION['alert']['danger'];
+		} else {
+			$param['errors'] = array();
+		}
+
+		if(isset($_SESSION['alert']['warning'])) {
+			$param['errors'] =$_SESSION['alert']['warning'];
+		} else {
+			$param['errors'] = array();
+		}
 	}
 
 	function get() {
@@ -22,6 +32,10 @@ class pageAlerts {
 
 	function getError() {
 		return $_SESSION['alert']['danger'];
+	}
+
+	function getWarning() {
+		return $_SESSION['alert']['warning'];
 	}
 
 	/*
@@ -40,6 +54,10 @@ class pageAlerts {
 
 	function success($value='') {
 		$_SESSION['alert']['success'][] = $value;
+	}
+
+	function warning($value='') {
+		$_SESSION['alert']['warning'][] = $value;
 	}
 
 	function reset() {
