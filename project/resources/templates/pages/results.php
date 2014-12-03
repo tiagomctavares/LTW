@@ -4,10 +4,16 @@
 	  	<h1><?=$polls->title ?></h1>
 	    <h4><?=$polls->question ?></h4>
 
+	    <?php $sum = 0; ?>
+	    <?php foreach ($polls->answers as $answers): ?>
+	    	$sum += $answers->votes;
+	    <?php endforeach; ?>
+
 		<?php foreach ($polls->answers as $answers): ?>
 			<div class="progress">
-				<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-					<span class="sr-only">40% Complete (success)</span>
+				<?php $perc = answers->votes/$sum * 100 ?>
+				<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<?=$perc ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$perc ?>%">
+					<span class="sr-only"> <?=$perc ?>% Complete (success)</span>
 				</div>
 			</div>
 	    <?php endforeach; ?>
