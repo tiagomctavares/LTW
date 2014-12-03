@@ -18,8 +18,8 @@ class UserInfo {
 		$_SESSION['valid_login'] = true;
 
 		## COOKIES
-		##		identity - user_id
-		##		identifier - HASH
+		##	identity - user_id
+		##	identifier - HASH
 
 		/*global $config;
 		$path = $config['urls']['baseDir'];

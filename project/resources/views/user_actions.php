@@ -28,7 +28,8 @@ function registerUser() {
 	}
 
 	# No errors
-	if(empty($_alert->getError())) {
+	$errors = $_alert->getError();
+	if(empty($errors)) {
 		require_once(MODELS_PATH.'/user.php');
 		$user = new mUser();
 		# Check if user is duplicate
@@ -75,7 +76,8 @@ function loginUser() {
 	}
 
 	# No errors
-	if(empty($_alert->getError())) {
+	$errors = $_alert->getError();
+	if(empty($errors)) {
 		require_once(MODELS_PATH.'/user.php');
 		$user = new mUser();
 		$result = $user->correctCredentials(array($username, $password));
@@ -155,8 +157,9 @@ function newPoll() {
 	}
 	
 	$server_filename = '';
-	if($image == '') {
-		$_alert->error('Image not valid');
+	if($image['name'] == '') {
+		$_alert->warning('Image not valid');
+
 		$return = -3;
 	} else {
     	$filename = explode('.', $image['name']);
@@ -171,8 +174,10 @@ function newPoll() {
 	}
 
 	if(!validStrLen($server_filename, 255)) {
-		$_alert->error('Image name not valid');
-		$return = -3;
+		if($server_filename != '') {
+			$_alert->error('Image name not valid');
+			$return = -3;
+		}
 	}
 
 
@@ -190,7 +195,9 @@ function newPoll() {
 	}while($answer != '');
 
 	# No errors
-	if(empty($_alert->getError())) {
+	$errors = $_alert->getError();
+	var_dump($errors);
+	if(empty($errors)) {
 		require_once(MODELS_PATH.'/poll.php');
 		$poll = new mPoll();
 		$data = array(
@@ -205,11 +212,12 @@ function newPoll() {
 		$result = $poll->insertPoll($data);
 		if($result > 0) {
 			// Upload Image
-   			if (move_uploaded_file($image['tmp_name'], $move_to)) {
+   			if ($server_filename != '' && move_uploaded_file($image['tmp_name'], $move_to)) {
 				$_alert->success('Poll added with success');
    			} else {
    				$_alert->success('Poll added with success');
-   				$_alert->error('Error while uploading image');
+   				if($server_filename != '')
+   					$_alert->error('Error while uploading image');
    			}
 			$return = $result;
 		} else {
@@ -222,7 +230,7 @@ function newPoll() {
 		GO('?page=newPoll');
 	else
 		GO('?page=managePolls');
-
+	
 	return $return;
 }
 
@@ -284,7 +292,8 @@ function editPoll() {
 	}while($answer != '');
 
 	# No errors
-	if(empty($_alert->getError())) {
+	$errors = $_alert->getError();
+	if(empty($errors)) {
 		require_once MODELS_PATH.'/poll.php';
 		$poll = new mPoll();
 		# Check if the entry already exists
@@ -344,7 +353,8 @@ function answerPoll() {
 		$return = -2;
 	}
 
-	if(empty($_alert->getError())) {
+	$errors = $_alert->getError();
+	if(empty($errors)) {
 		require_once MODELS_PATH.'/poll.php';
 		$poll = new mPoll();
 
@@ -375,7 +385,9 @@ function deletePoll() {
 		$return = -1;
 	}
 
-	if(empty($_alert->getError())) {
+	
+	$errors = $_alert->getError();
+	if(empty($errors)) {
 		require_once MODELS_PATH.'/poll.php';
 		$poll = new mPoll();
 
@@ -410,7 +422,9 @@ function closePoll() {
 		$return = -1;
 	}
 
-	if(empty($_alert->getError())) {
+	
+	$errors = $_alert->getError();
+	if(empty($errors)) {
 		require_once MODELS_PATH.'/poll.php';
 		$poll = new mPoll();
 

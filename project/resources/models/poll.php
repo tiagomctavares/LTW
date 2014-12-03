@@ -408,6 +408,10 @@ class mPoll implements iPoll {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
 		$result = $pdo->query('SELECT id, answer FROM poll_answer WHERE id_poll=?;', $data);
+		foreach($result as &$res) {
+			## VOTES!
+			$res->votes = $this->numberVotesAnswer($res->id);
+		}
 		return $result;
 	}
 
@@ -426,5 +430,12 @@ class mPoll implements iPoll {
 		return ($result[0]->number_answer)>0;
 	}
 
+	private function numberVotesAnswer($id_answer) {
+		$pdo = new myPDO();
+		$data[] = new myPDOparam($id_answer, PDO::PARAM_INT);
+		$result = $pdo->query('SELECT COUNT(*) as number_answer FROM user_answer WHERE id_answer=?;', $data);
+		
+		return $result[0]->number_answer;
+	}
 }
 ?>

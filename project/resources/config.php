@@ -7,7 +7,7 @@ require_once('developer_config.php');
 $config = array(
     # Database
     "db" => array(
-        "db1" => realpath(dirname(__FILE__) . "/..").'\db.sqlite3',
+        "db1" => realpath(dirname(__FILE__)).'\db.sqlite3',
     )
 );
 
@@ -45,15 +45,15 @@ error_reporting(E_ALL|E_STRICT);
 
 # Load Global LIBS and vars
 ## LIB to manage User Information in session
-require_once('LIB'.'/userInfo.php');
+require_once(LIB_PATH.'/userInfo.php');
 $_user = new UserInfo();
 
 // Session to manage errors
-require_once('LIB'.'/pageAlerts.php');
+require_once(LIB_PATH.'/pageAlerts.php');
 $_alert = new pageAlerts();
 
 ## LIB to manage databaseVersion
-require_once('LIB'.'/databaseVersion.php');
+require_once(LIB_PATH.'/databaseVersion.php');
 new databaseVersion($config['db']['db1']);
 
 function GO($str = '') {
