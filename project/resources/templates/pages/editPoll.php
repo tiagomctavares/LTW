@@ -9,7 +9,7 @@
 				<div class="form-group has-feedback">
 				    <label for="title" class="col-lg-2">Title</label>
 				    <div class="col-lg-10">
-				   		<input type="text" class="form-control" id="title" placeholder="<?=$polls->title ?>" name="title" required>
+				   		<input type="text" class="form-control" id="title" placeholder="<?=$polls->title ?>" value="<?=$polls->title ?>" name="title" required>
 					</div>
 				</div>
 				
@@ -17,7 +17,7 @@
 				<div class="form-group has-feedback">
 				    <label for="question" class="col-lg-2">Question</label>
 				    <div class="col-lg-10">
-				   		<input type="text" class="form-control" id="question" placeholder="<?=$polls->question ?>" name="question" required>
+				   		<input type="text" class="form-control" id="question" placeholder="<?=$polls->question ?>" value="<?=$polls->question ?>" name="question" required>
 					</div>
 				</div>
 				
@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<label for="visability" class="col-lg-2">Visability</label>
 					<div class=" col-lg-4">
-						<select class="form-control" id="visability" name="isPublic">
+						<select class="form-control" id="visability" value="<?=$polls->visability ?>" placeholder="<?=$polls->visability ?>" name="isPublic">
 						  <option value="1" selected>Public <i class="glyphicon glyphicon-eye-open" title="public"> </i></option>
 						  <option value="0">Private <i class="glyphicon glyphicon-eye-close" title="private"> </i></option>
 						</select>
@@ -47,12 +47,19 @@
 						<label for="answers" class="col-lg-2"> Answers </label>
 						<h2> Modifies a Answer will reset all answer and reset all the votes</h2>
 						<ul>
-							<li>
-								<input type="text" number="1" class="form-control" id="answers" placeholder="Answer 1" name="answer1" required>
-							</li>
-							<li>
-								<input type="text" number="2" class="form-control" id="answers" placeholder="Answer 2" name="answer2" required>
-							</li>
+							<?php for($i=0; $i < 2; $i++): 
+								$answer = $polls->answers[$i]; ?>
+								<li>
+									<input type="text" number="$i+1" class="form-control" id="answers" value="<?=$answer->answer ?>" placeholder="<?=$answer->answer ?>" name="answer<?=$i+1 ?>" required>
+								</li>
+							<?php endfor; ?>
+
+							<?php for($i=2; $i < count($polls->answers); $i++): 
+								$answer = $polls->answers[$i]; ?>
+								<li>
+									<input type="text" number="$i+1" class="form-control" id="answers" value="<?=$answer->answer ?>" placeholder="<?=$answer->answer ?>" name="answer<?=$i+1 ?>">
+								</li>
+							<?php endfor; ?>
 						</ul>
 						
 						<br>
@@ -68,7 +75,7 @@
 				<!--SUBMIT BUTTON-->
 				<div class="form-group">
 				    <div class="col-lg-12 text-right">
-						<button type="submit" class="btn btn-info btn_create">Create</button>
+						<button type="edit" class="btn btn-info btn_edit">Edit</button>
 				    </div>
 				</div>
 			</form>
