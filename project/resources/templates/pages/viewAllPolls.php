@@ -32,7 +32,6 @@
 
       <div class="col-lg-3 col-sm-6 col-xs-12 pull-left">
         <div class="thumbnail">
-          <?= var_dump($poll->image); ?>
           <?php if($poll->image != ''): ?>
           <img class="img-responsive pollImage" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
           <?php endif ?>
