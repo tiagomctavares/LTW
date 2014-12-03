@@ -57,7 +57,7 @@
                 Results
               </a>
 
-              <a href="<?=HOME_URL ?>/?page=deletePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+              <a href="#" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
                 Delete
               </a>
               
