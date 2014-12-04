@@ -37,6 +37,8 @@
         case 'deletePoll':
             deletePoll();
             break;
+        case 'closePoll':
+            closePoll();
 
         ## PAGES
     	case 'home':
@@ -66,8 +68,6 @@
             break;
         case 'resultsPoll':
             page_resultsPoll();
-        case 'closePoll':
-            page_closePoll();
         default:
             home(); 
     		break;

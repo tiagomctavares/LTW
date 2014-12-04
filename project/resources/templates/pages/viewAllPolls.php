@@ -11,51 +11,108 @@
         <h4>You have not created any poll yet!</h4>
       </div>
     <?php endif; ?>
-			<div class="clearfix"></div>
-      <div id="masonry_container">
-  		<?php foreach($polls as $poll): ?>
-        <div class="col-lg-3 col-sm-6 col-xs-12 masonry_item">
-          <div class="thumbnail">
-            <?php if($poll->image != ''): ?>
-            <img class="img-responsive pollImage" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
+    <!-- BADGES FOR FILTER -->
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-lg-4">
+      <h4><i class="glyphicon glyphicon-lock"></i> Status</h4>
+        <ul class="list-group">
+          <li class="list-group-item active">
+            <span class="badge">14</span>
+            Open
+          </li>
+          <li class="list-group-item">
+            <span class="badge">14</span>
+            Closed
+          </li>
+          <li class="list-group-item">
+            <span class="badge">14</span>
+            All
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+      <h4><i class="glyphicon glyphicon-eye-open"></i> Visibility</h4>
+        <ul class="list-group">
+          <li class="list-group-item active">
+            <span class="badge">14</span>
+            Public
+          </li>
+          <li class="list-group-item">
+            <span class="badge">14</span>
+            Private
+          </li>
+          <li class="list-group-item">
+            <span class="badge">14</span>
+            Public/Private
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+      <h4><i class="glyphicon glyphicon-stats"></i> Vote</h4>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">14</span>
+            All
+          </li>
+          <li class="list-group-item active">
+            <span class="badge">14</span>
+            Voted
+          </li>
+          <li class="list-group-item">
+            <span class="badge">14</span>
+            Not Voted
+          </li>
+        </ul>
+      </div>
+    </div>
+
+		<div class="clearfix"></div>
+    <div id="masonry_container">
+		<?php foreach($polls as $poll): ?>
+      <div class="col-lg-3 col-sm-6 col-xs-12 masonry_item">
+        <div class="thumbnail">
+          <?php if($poll->image != ''): ?>
+          <img class="img-responsive pollImage" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
+          <?php endif ?>
+
+          <div class="caption">
+            <h3 class="pollTitle"><?=$poll->title ?></h3>
+            <p class="pollQuestion"><?=$poll->question ?></p>
+            <?php if($poll->isPublic == 1): ?>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-eye-open"></i> Public</small></p>
+            <?php else: ?>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-eye-close"></i> Private</small></p>
             <?php endif ?>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?=$poll->createDate ?></small></p>
+            <p class="text-center">
+              <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
+                Vote
+              </a>
+              
+              <?php if ($user_action == "user"): ?>
+              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-default thumbnailBtn" role="button">
+                Edit
+              </a>
 
-            <div class="caption">
-              <h3 class="pollTitle"><?=$poll->title ?></h3>
-              <p class="pollQuestion"><?=$poll->question ?></p>
-              <?php if($poll->isPublic == 1): ?>
-                <p><small class="text-muted"><i class="glyphicon glyphicon-eye-open"></i> Public</small></p>
-              <?php else: ?>
-                <p><small class="text-muted"><i class="glyphicon glyphicon-eye-close"></i> Private</small></p>
-              <?php endif ?>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?=$poll->createDate ?></small></p>
-              <p class="text-center">
-                <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
-                  Vote
-                </a>
-                
-                <?php if ($user_action == "user"): ?>
-                <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-default thumbnailBtn" role="button">
-                  Edit
-                </a>
+              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button">
+                Close
+              </a>
 
-                <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
-                  Close
-                </a>
+              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button">
+                Results
+              </a>
 
-                <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button">
-                  Results
-                </a>
-
-                <a href="#" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
-                  Delete
-                </a>
-                
-                <?php endif; ?>
-              </p>
-            </div>
+              <a href="#" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                Delete
+              </a>
+              
+              <?php endif; ?>
+            </p>
           </div>
         </div>
+      </div>
   		<?php endforeach; ?>
       </div>
     </div>
