@@ -85,6 +85,8 @@ function page_showPoll() {
 	$poll_id = isset($_GET['poll'])?$_GET['poll']:0;
 	$variables = array();
 
+	$_user->setAnswerCookie();
+
 	if(is_numeric($poll_id)) {
 		$_alert->getArray($variables);
 		$_alert->reset();

@@ -38,6 +38,10 @@ defined("UPLOAD_PATH")
 defined("HOME_URL")
     or define("HOME_URL", $user_url);
 
+// Define this in developer_config.php mine is: /ltw/project/project/public_html
+defined("COOKIE_PATH")
+    or define("COOKIE_PATH", $cookie_path);
+
 defined("UPLOAD_URL")
     or define("UPLOAD_URL", $user_url.'/img/upload/');
 

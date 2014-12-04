@@ -273,8 +273,10 @@ class mPoll implements iPoll {
 		
 		if(isset($result[0]->result))
 			$result = $result[0]->result;
-		else
-			$result = 0;
+		else {
+			global $_user;
+			$result = $_user->getAnswerCookie($params);
+		}
 
 		return $result;
 	}
@@ -296,14 +298,44 @@ class mPoll implements iPoll {
 			$poll = $this->userAnsweredPoll($params);
 			if($poll == 0) {
 
-				if($params['user'] == '')
-					$data[] = new myPDOparam($params['user'], PDO::PARAM_NULL);
-				else
-					$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+				## CHECK FOR COOKIE
+				global $_user;
+				$result = $_user->getAnswerCookie($params);
 
-				$data[] = new myPDOparam($params['answer'], PDO::PARAM_INT);
+				## GET FIRST ANSWER
+				$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
+				$data[] = new myPDOparam('', PDO::PARAM_NULL);
+				$data[] = new myPDOparam($result, PDO::PARAM_INT);
+				//echo myPDOparam::debug_args($data);
+				$result = $pdo->query('SELECT user_answer.id as result FROM user_answer, poll_answer WHERE id_poll = ? AND poll_answer.id=user_answer.id_answer AND id_user is ? AND id_answer=? LIMIT 1;', $data);
+				if(isset($result[0]->result)) {
+					$result = $result[0]->result;
+					$_SESSION['setcookie'] = array('poll'=>$params['poll'], 'answer'=>$params['answer']);
+				} else {
+					$result = 0;
+				}
 
-				$result = $pdo->query('INSERT INTO user_answer(id_user, id_answer) VALUES(?, ?)', $data);
+				//var_dump($result);
+
+				//exit();
+
+				if($result == 0) {
+					$data = array();
+					if($params['user'] == '')
+						$data[] = new myPDOparam($params['user'], PDO::PARAM_NULL);
+					else
+						$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+
+					$data[] = new myPDOparam($params['answer'], PDO::PARAM_INT);
+
+					$result = $pdo->query('INSERT INTO user_answer(id_user, id_answer) VALUES(?, ?)', $data);
+				} else {
+					$data = array();
+					$data[] = new myPDOparam($params['answer'], PDO::PARAM_INT);
+					$data[] = new myPDOparam($result, PDO::PARAM_INT);
+
+					$result = $pdo->query('UPDATE user_answer SET id_answer=? WHERE id=?', $data);
+				}
 			}
 			else {
 				$data[] = new myPDOparam($params['answer'], PDO::PARAM_INT);
@@ -332,8 +364,9 @@ class mPoll implements iPoll {
 		
 		if(isset($result[0]->result))
 			$result = $result[0]->result;
-		else
+		else {
 			$result = 0;
+		}
 
 		return $result;
 	}
