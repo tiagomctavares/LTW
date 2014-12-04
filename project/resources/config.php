@@ -28,6 +28,9 @@ defined("VIEWS_PATH")
 defined("TESTS_PATH")
     or define("TESTS_PATH", realpath(dirname(__FILE__) . '/tests'));
 
+defined("IMAGE_PATH")
+    or define("IMAGE_PATH", realpath(dirname('index.php'). "/img"));
+
 defined("UPLOAD_PATH")
     or define("UPLOAD_PATH", realpath(dirname('index.php'). "/img/upload"));
 

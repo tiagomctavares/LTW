@@ -10,6 +10,7 @@ interface iPoll {
 	function getPoll($params);
 	function userAnswerPoll($params);
 	function deletePoll($params);
+	function deletePollImage($poll_id);
 
 	#POLLS
 	function getPolls($params);
@@ -79,10 +80,27 @@ class mPoll implements iPoll {
 		
 		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
 		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
-
+		$image = $pdo->query('SELECT image FROM poll WHERE id=? AND id_user=?;', $data);
 		$result = $pdo->query('DELETE FROM poll WHERE id=? AND id_user=?;', $data);
+		
+		if($result == 1) {
+			$this->deletePollImage($image[0]->image);
+		}
 
 		return $result;
+	}
+
+	/* Checks if answer with sent poll identifier exists
+	*  
+	* @param (array) with
+	* (int) image_name
+	* @ return (boolean)
+	*/
+	function deletePollImage($image_name) {
+		if($image_name != '' && file_exists(UPLOAD_PATH.'/'.$image_name))
+			unlink(UPLOAD_PATH.'/'.$image_name);
+		
+		return 1;
 	}
 
 	/* Checks if answer with sent poll identifier exists
