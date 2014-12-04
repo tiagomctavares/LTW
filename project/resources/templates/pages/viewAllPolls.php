@@ -11,47 +11,49 @@
         <h4>You have not created any poll yet!</h4>
       </div>
     <?php endif; ?>
-			
-		<?php foreach($polls as $poll): ?>
+			<div class="clearfix"></div>
+      <div id="masonry_container">
+  		<?php foreach($polls as $poll): ?>
 
-      <div class="col-lg-3 col-sm-6 col-xs-12 pull-left">
-        <div class="thumbnail">
-          <?php if($poll->image != ''): ?>
-          <img class="img-responsive pollImage" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
-          <?php endif ?>
+        <div class="col-lg-3 col-sm-6 col-xs-12 masonry_item">
+          <div class="thumbnail">
+            <?php if($poll->image != ''): ?>
+            <img class="img-responsive pollImage" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
+            <?php endif ?>
 
-          <div class="caption">
-            <h3 class="pollTitle"><?=$poll->title ?></h3>
-            <p class="pollQuestion"><?=$poll->question ?></p>
-            <p class="text-center">
-              <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
-                Vote
-              </a>
-              
-              <?php if ($user_action == "user"): ?>
-              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-default thumbnailBtn" role="button">
-                Edit
-              </a>
+            <div class="caption">
+              <h3 class="pollTitle"><?=$poll->title ?></h3>
+              <p class="pollQuestion"><?=$poll->question ?></p>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i><?=$poll->createDate ?></small></p>
+              <p class="text-center">
+                <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
+                  Vote
+                </a>
+                
+                <?php if ($user_action == "user"): ?>
+                <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-default thumbnailBtn" role="button">
+                  Edit
+                </a>
 
-              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
-                Close
-              </a>
+                <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                  Close
+                </a>
 
-              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button">
-                Results
-              </a>
+                <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button">
+                  Results
+                </a>
 
-              <a href="#" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
-                Delete
-              </a>
-              
-              <?php endif; ?>
-            </p>
+                <a href="#" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+                  Delete
+                </a>
+                
+                <?php endif; ?>
+              </p>
+            </div>
           </div>
         </div>
+  		<?php endforeach; ?>
       </div>
-
-		<?php endforeach; ?>
     </div>
 	</div>
 </div>

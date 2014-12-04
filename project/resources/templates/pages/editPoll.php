@@ -87,7 +87,6 @@
 		</div>
 		<div class="col-lg-2 col-sm-1 transpDiv"></div>
 	</div>
-	<?php var_dump($polls) ?>
 </div>
 
 <div class="col-lg-3 col-md-2 col-sm-1 transpDiv"></div>

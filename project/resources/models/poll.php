@@ -221,10 +221,21 @@ class mPoll implements iPoll {
 	* (text) filter for title - '' for all
 	* @return array(objects) objects are polls
 	*/
-	function getPolls($params = array(0=>'')) {
+	function getPolls($params = array('search'=>'')) {
+		global $_user;
+		$user = $_user->id();
+
 		$pdo = new myPDO();
-		$data[] = new myPDOparam("%$params[0]%", PDO::PARAM_STR);
-		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1 ORDER BY id DESC;', $data);
+		$search = $params['search'];
+
+		$data[] = new myPDOparam("%$search%", PDO::PARAM_STR);
+		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1 ORDER BY createDate DESC;', $data);
+
+		foreach ($result as &$poll) {
+			$my = $this->userAnswerPoll(array('poll'=>$poll->id, 'user'=>$user));
+			$poll->hasVoted = $my;
+		}
+
 		return $result;
 	}
 

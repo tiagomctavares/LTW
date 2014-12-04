@@ -30,6 +30,7 @@ class UserInfo {
 			$path = ($path=='')?'/':$path;
 			$set = setcookie ('poll'.$params['poll'], true, time()+604800, $path);
 			$set = setcookie ('answer'.$params['poll'], $params['answer'], time()+604800, $path);
+			$_COOKIE['poll'.$params['poll']] = true;
 			$_COOKIE['answer'.$params['poll']] = $params['answer'];
 		}
 	}

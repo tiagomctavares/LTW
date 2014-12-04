@@ -7,8 +7,8 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 9;
-		$this->dummy_data = true;
+		$this->dbVersion = 1;
+		$this->dummy_data = false;
 
 		$this->path = $path;
 		$this->checkDBVersion();
@@ -36,10 +36,12 @@ class databaseVersion {
 		try {
 			# delete all images from upload
 			require_once(MODELS_PATH.'/poll.php');
+			global $_user;
 			$poll = new mPoll();
 			$polls = $poll->getPolls();
 			foreach ($polls as $poll_) {
 				$poll->deletePollImage($poll_->image);
+				$_user->destroyAnswerCookie(array('poll'=>$poll->id));
 			}
 		} catch(Exception $e) {
 
@@ -52,7 +54,7 @@ class databaseVersion {
 				exit;
 			}
 		}else {
-			touch($this->path);
+			@touch($this->path);
 		}
 
 		// CREATE TABLES
@@ -178,6 +180,13 @@ class databaseVersion {
 		$pdo->query("INSERT INTO user VALUES (6, 'paulo', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '2014-12-02 22:12:02', null);");
 
 		#POLL
+		copy(IMG_PATH.'/OS.gif', UPLOAD_PATH.'/OS.gif');
+		copy(IMG_PATH.'/colors.jpg', UPLOAD_PATH.'/colors.jpg');
+		copy(IMG_PATH.'/fedVSdjo.jpg', UPLOAD_PATH.'/fedVSdjo.jpg');
+		copy(IMG_PATH.'/laptop.jpg', UPLOAD_PATH.'/laptop.jpg');
+		copy(IMG_PATH.'/social.jpg', UPLOAD_PATH.'/social.jpg');
+		copy(IMG_PATH.'/hobbit.png', UPLOAD_PATH.'/hobbit.png');
+		copy(IMG_PATH.'/food.jpg', UPLOAD_PATH.'/food.jpg');
 		$pdo->query("INSERT INTO poll VALUES (1, 1, 'Operating Systems (OS)', 'What is your favorite OS?', 'OS.gif', 1, 0, '2014-12-01 15:30:30')");
 		$pdo->query("INSERT INTO poll VALUES (2, 1, 'Colors', 'What is your favorite color?', 'colors.jpg', 1, 0, '2014-12-01 17:30:30')");
 		$pdo->query("INSERT INTO poll VALUES (3, 1, 'US Open', 'Who do will be the winner of US Open?', 'fedVSdjo.jpg', 1, 0, '2014-11-23 17:30:30')");

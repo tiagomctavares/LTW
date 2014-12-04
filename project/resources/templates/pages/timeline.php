@@ -18,7 +18,9 @@
       <?php else: ?>
       <li>
       <?php endif ?>
-        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+        <div style="<?=$poll->hasVoted?'background-color:green;':''?>" class="timeline-badge">
+          <i style="<?=!$poll->hasVoted?'color:#735d41;':''?>" class="glyphicon glyphicon-<?=$poll->hasVoted?'check':'unchecked' ?>"></i>
+        </div>
         
         <div class="timeline-panel">
           <?php if($poll->image != ''): ?>
@@ -30,7 +32,7 @@
           <div class="timeline-heading col-lg-6 col-sm-6 col-xs-12">
             <h3 class="timeline-title"><?=$poll->title ?></h3>
             <p class="timeline-question"><?=$poll->question ?></p>
-            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i><?=$poll->createData ?></small></p>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i><?=$poll->createDate ?></small></p>
           </div>
           <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn  col-lg-3 col-sm-4 col-xs-6 pull-right" role="button">
             Vote

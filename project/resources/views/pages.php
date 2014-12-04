@@ -51,7 +51,7 @@ function page_listPolls() {
 
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();
-	$polls = $poll->getPolls(array($search));
+	$polls = $poll->getPolls(array('search'=>$search));
 
 	$variables['polls'] = $polls; ## Polls
 	$variables['user_action'] = ($search=='')?'all':'search'; ## True or false
