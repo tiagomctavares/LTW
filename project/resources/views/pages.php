@@ -17,6 +17,16 @@ function home() {
 	$_alert->getArray($variables);
 	$_alert->reset();
 
+	$search = isset($_POST['searchPoll'])?$_POST['searchPoll']:'';
+
+	require_once MODELS_PATH.'/poll.php';
+	$poll = new mPoll();
+	$polls = $poll->getPolls(array('search'=>$search));
+
+	$variables['polls'] = $polls; ## Polls
+	$variables['user_action'] = ($search=='')?'all':'search'; ## True or false
+	$variables['search_value'] = $search; ## Search Value
+
 	$template = new myTemplate();
 	$template->render('home.php', $variables);
 }

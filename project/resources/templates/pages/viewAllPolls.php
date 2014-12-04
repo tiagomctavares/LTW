@@ -14,7 +14,6 @@
 			<div class="clearfix"></div>
       <div id="masonry_container">
   		<?php foreach($polls as $poll): ?>
-
         <div class="col-lg-3 col-sm-6 col-xs-12 masonry_item">
           <div class="thumbnail">
             <?php if($poll->image != ''): ?>
@@ -24,7 +23,12 @@
             <div class="caption">
               <h3 class="pollTitle"><?=$poll->title ?></h3>
               <p class="pollQuestion"><?=$poll->question ?></p>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i><?=$poll->createDate ?></small></p>
+              <?php if($poll->isPublic == 1): ?>
+                <p><small class="text-muted"><i class="glyphicon glyphicon-eye-open"></i> Public</small></p>
+              <?php else: ?>
+                <p><small class="text-muted"><i class="glyphicon glyphicon-eye-close"></i> Private</small></p>
+              <?php endif ?>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?=$poll->createDate ?></small></p>
               <p class="text-center">
                 <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
                   Vote
