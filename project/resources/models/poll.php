@@ -179,7 +179,6 @@ class mPoll implements iPoll {
 	* (int) user identifier
 	* (int) poll identifier
 	* (str) title
-	* (str) question
 	* (str) image_server_name
 	* (array) answers
 	*		(str) answer n
@@ -189,31 +188,22 @@ class mPoll implements iPoll {
 		$data = array();
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params['title'], PDO::PARAM_STR);
-		$data[] = new myPDOparam($params['question'], PDO::PARAM_STR);
-		$data[] = new myPDOparam($params['image'], PDO::PARAM_STR);
-		$data[] = new myPDOparam($params['poll_id'], PDO::PARAM_INT);
-		$result = $pdo->query('UPDATE poll SET title=?, question=?, image=? WHERE id=?;', $data);
+		if($params['image'] != '')
+			$data[] = new myPDOparam($params['image'], PDO::PARAM_STR);
+		$data[] = new myPDOparam($params['isPublic'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
 
-
-		$answers_id = $this->getPollAnswers(array($params['poll_id']));
-		# GET ARRAY OF ID'S
-		foreach($answers_id as &$elem)
-			$elem = $elem->id;
-
-		$new_answers_id = array();
-
-		foreach($params['answers'] as $answer)
-			$new_answers_id[] = $this->insertPollAnswer(array($params['poll_id'], $answer));
-
-
-		# REMOVE ANSWERS THAT ARE NOT IN NEW ARRAY
-		$remove = array_diff($answers_id, $new_answers_id);
-		foreach($remove as $remove_id) {
-			$this->removePollAnswer(array($remove_id));
-			######## ALSO REMOVE HERE THE USER ANSWERS
+		if($params['image']!='') {
+			$mypoll = $this->getPoll($params);
+			$this->deletePollImage($mypoll->image);
+			$result = $pdo->query('UPDATE poll SET title=?, image=?, isPublic=? WHERE id=? AND id_user=?;', $data);
+		}
+		else {
+			$result = $pdo->query('UPDATE poll SET title=?, isPublic=? WHERE id=? AND id_user=?;', $data);
 		}
 
-		return 1;
+		return $result;
 	}
 
 	/*
@@ -317,7 +307,7 @@ class mPoll implements iPoll {
 				$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
 				$data[] = new myPDOparam('', PDO::PARAM_NULL);
 				$data[] = new myPDOparam($result, PDO::PARAM_INT);
-				//echo myPDOparam::debug_args($data);
+				
 				$result = $pdo->query('SELECT user_answer.id as result FROM user_answer, poll_answer WHERE id_poll = ? AND poll_answer.id=user_answer.id_answer AND id_user is ? AND id_answer=? LIMIT 1;', $data);
 				if(isset($result[0]->result)) {
 					$result = $result[0]->result;
@@ -325,10 +315,6 @@ class mPoll implements iPoll {
 				} else {
 					$result = 0;
 				}
-
-				//var_dump($result);
-
-				//exit();
 
 				if($result == 0) {
 					$data = array();
