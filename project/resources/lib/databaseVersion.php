@@ -6,7 +6,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 6;
+		$this->dbVersion = 7;
 		$this->dummy_data = true;
 
 		$this->path = $path;
@@ -93,7 +93,8 @@ class databaseVersion {
 			question  TEXT(500) NOT NULL,
 			image  TEXT(255) NOT NULL,
 			isPublic INT NOT NULL,
-			isClosed INT DEFAULT 0
+			isClosed INT DEFAULT 0,
+			createDate  TEXT(19)
 		);';
 
 		$pdo->query($sql);

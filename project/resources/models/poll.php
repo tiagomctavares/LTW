@@ -48,7 +48,8 @@ class mPoll implements iPoll {
 		$data[] = new myPDOparam($params['question'], PDO::PARAM_STR);
 		$data[] = new myPDOparam($params['image'], PDO::PARAM_STR);
 		$data[] = new myPDOparam($params['isPublic'], PDO::PARAM_INT);
-		$result = $pdo->query('INSERT INTO poll (id_user, title, question, image, isPublic, isClosed) VALUES(?, ?, ?, ?, ?, 1);', $data);
+		$data[] = new myPDOparam(@date('Y-m-d H:i:s'), PDO::PARAM_STR);
+		$result = $pdo->query('INSERT INTO poll (id_user, title, question, image, isPublic, isClosed, createDate) VALUES(?, ?, ?, ?, ?, 0, ?);', $data);
 
 		// Select last insert id
 		$poll_id = $pdo->last_insert_id();
