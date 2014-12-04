@@ -269,6 +269,11 @@ body{
   }
 }
 
+.carousel-control.left, .carousel-control.right {
+  background-image: none;
+  color: #063e53;
+}
+
 .siteMap{
   margin-top: 25px;
   margin-bottom: 20px;
@@ -292,7 +297,6 @@ body{
   border-radius: 3px;
   padding-right: 0;
   padding-left: 0;
-  margin-left: -35px;
 }
 
 .signUpMsg{

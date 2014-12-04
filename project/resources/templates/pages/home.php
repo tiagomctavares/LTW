@@ -30,24 +30,24 @@
   </div><!-- /.carousel-inner -->
   <!--  Next and Previous controls below
         href values must reference the id for this carousel -->
-    <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+    <a class="carousel-control left" href="#this-carousel-id" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    <a class="carousel-control right" href="#this-carousel-id" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
 </div><!-- /.carousel -->
 
 <div class="line col-lg-12 col-sm-12 col-xs-12"></div>
 <div class="container siteMap col-lg-12">
-  <div class="siteMapInf col-lg-6">
+  <div class="siteMapInf col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <h3 class="siteMapTitle col-lg-12">Create your own polls.</h3>
     <p class="siteMapDescription col-lg-12">You can create as many polls
     you want. You can even make them public or private.</p>
   </div>
-  <img src="<?=HOME_URL ?>/img/createPoll.png" alt="..." class="siteMapImg  col-lg-6">
+  <img src="<?=HOME_URL ?>/img/createPoll.png" alt="..." class="img-responsive siteMapImg col-lg-6 col-md-6 col-sm-12 col-xs-12">
 </div>
 
 <div class="line col-lg-12 col-sm-12 col-xs-12"></div>
 <div class="container siteMap col-lg-12">
-  <img src="<?=HOME_URL ?>/img/managePolls.png" alt="..." class="siteMapImg  col-lg-6">
-  <div class="siteMapInf col-lg-6">
+  <img src="<?=HOME_URL ?>/img/managePolls.png" alt="..." class="img-responsive siteMapImg col-lg-6 col-md-6 col-sm-12 col-xs-12">
+  <div class="siteMapInf col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <h3 class="siteMapTitle col-lg-12">Manage your polls.</h3>
     <p class="siteMapDescription col-lg-12">You can edit, close,
     delete and see the actual results of your poll.</p>
@@ -57,12 +57,12 @@
 
 <div class="line col-lg-12 col-sm-12 col-xs-12"></div>
 <div class="container siteMap col-lg-12">
-  <div class="siteMapInf col-lg-6">
+  <div class="siteMapInf col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <h3 class="siteMapTitle col-lg-12">Vote in polls. </h3>
     <p class="siteMapDescription col-lg-12">You can give your opinion. In your own polls
     in private pools that you were invited and public polls.</p>
   </div>
-  <img src="<?=HOME_URL ?>/img/votePolls.png" alt="..." class="siteMapImg  col-lg-6">
+  <img src="<?=HOME_URL ?>/img/votePolls.png" alt="..." class="img-responsive siteMapImg  col-lg-6 col-md-6 col-sm-12 col-xs-12">
 </div>
 
 <div class="line col-lg-12 col-sm-12 col-xs-12"></div>
