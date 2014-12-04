@@ -3,6 +3,7 @@
 session_start();
 # Config file for each user developing
 require_once('developer_config.php');
+date_default_timezone_set('Europe/Lisbon');
 
 $config = array(
     # Database

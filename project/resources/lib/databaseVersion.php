@@ -134,9 +134,9 @@ class databaseVersion {
 		$pdo->query("INSERT INTO user VALUES (2, 'aa', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '2014-11-27 04:12:02', null);");
 
 		#POLL
-		$pdo->query("INSERT INTO poll VALUES (1, 1, 'MyTi', 'asdads', '5478b2ab7362c_test.jpg', 1, 0);");
-		$pdo->query("INSERT INTO poll VALUES (2, 1, '%My%', 'aeeee', '5478b2ab7362c_test.jpg', 1, 0);");
-		$pdo->query("INSERT INTO poll VALUES (3, 2, 'BLA', 'asdjand', '5478b2ab7362c_test.jpg', 1, 0);");
+		$pdo->query("INSERT INTO poll VALUES (1, 1, 'MyTi', 'asdads', '5478b2ab7362c_test.jpg', 1, 0, '2014-12-01 15:30:30');");
+		$pdo->query("INSERT INTO poll VALUES (2, 1, '%My%', 'aeeee', '5478b2ab7362c_test.jpg', 1, 0, '2014-12-01 17:30:30');");
+		$pdo->query("INSERT INTO poll VALUES (3, 2, 'BLA', 'asdjand', '5478b2ab7362c_test.jpg', 1, 0, '2014-12-01 18:30:30');");
 
 		#ANSWERS
 		$pdo->query("INSERT INTO poll_answer VALUES (1, 1, 'A1')");
