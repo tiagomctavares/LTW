@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<br>
-				<!--SUBMIT BUTTON-->
+				<!--EDIT BUTTON-->
 				<div class="form-group">
 				    <div class="col-lg-12 text-right">
 						<button type="edit" class="btn btn-info btn_edit">Edit</button>
