@@ -70,3 +70,11 @@ $("#ex-six-button").on("click", function() {
 });
 
 
+//VOTE RADIO BUTTONS
+$('input[type="radio"]').change(function() {
+    if (this.checked) {
+        $(this).addClass('radioButtonSelected');
+    } else {
+        $(this).removeClass('radioButtonSelected');
+    }
+});

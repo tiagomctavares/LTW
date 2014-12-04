@@ -1,9 +1,12 @@
+<div class="col-lg-3 col-md-2 col-sm-1 transpDiv"></div>
+
 <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12 logRegForm" id="newPoll">
 	<div class="panel panel-default col-lg-12">
-		<h2 class="pull-left col-lg-12">Creating a new poll...</h2>
-		<div class="line"></div>
-
-		<div class="newPollPanelBody col-lg-6 col-sm-8 col-xs-12">
+		<h2 class="pull-left col-lg-12 col-sm-12 col-xs-12">Creating a new poll...</h2>
+		<div class="line col-lg-12 col-sm-12 col-xs-12"></div>
+		
+		<div class="col-lg-2 col-sm-1 transpDiv"></div>
+		<div class="newPollPanelBody col-lg-8 col-sm-10 col-xs-12">
 			<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=action_newPoll" method="POST" enctype="multipart/form-data">
 				<!--TITLE-->	
 				<div class="form-group has-feedback">
@@ -72,5 +75,8 @@
 				</div>
 			</form>
 		</div>
+		<div class="col-lg-2 col-sm-1 transpDiv"></div>
 	</div>
 </div>
+
+<div class="col-lg-3 col-md-2 col-sm-1 transpDiv"></div>

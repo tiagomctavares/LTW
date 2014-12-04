@@ -11,8 +11,8 @@
 	    		<div class="row">
 				  <div class="col-lg-12 ">
 				    <div class="input-group">
-				      <span class="input-group-addon">
-				        <input type="radio" name="answer" value="<?=$answer->id ?>" <?=$answer->id == $polls->userAnswer?"checked='checked'":'' ?>>
+				      <span class="input-group-addon" id="voteCheckbox">
+				        <input class="voteRadioBtn" type="radio" name="answer" value="<?=$answer->id ?>" <?=$answer->id == $polls->userAnswer?"checked='checked'":'' ?>>
 				      </span>
 				      <p> <?= $answer->answer ?> </p>
 				    </div>

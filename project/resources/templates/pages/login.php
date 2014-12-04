@@ -1,9 +1,12 @@
+<div class="col-lg-3 col-md-2 col-sm-1 transpDiv"></div>
+
 <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12 logRegForm" role="form">
 	<div class="panel panel-default col-lg-12">
-		<h2 class="pull-left col-lg-12">Sign in to your account</h2>
-		<div class="line"></div>
-
-		<div class="panel-body col-lg-4 col-sm-8 col-xs-12">
+		<h2 class="pull-left col-lg-12 col-sm-12 col-xs-12">Sign in to your account</h2>
+		<div class="line col-lg-12 col-sm-12 col-xs-12"></div>
+		
+		<div class="col-lg-3 col-sm-2 transpDiv"></div>
+		<div class="panel-body col-lg-6 col-sm-8 col-xs-12">
 			<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=userLogin" method="POST">
 				<div class="form-group has-feedback">
 				    <div class="inner-addon left-addon col-lg-12">
@@ -39,7 +42,10 @@
 				</div>
 			</form>
 		</div>
+		<div class="col-lg-3 col-sm-2 transpDiv"></div>
 	</div>
 </div>
+
+<div class="col-lg-3 col-md-2 col-sm-1 transpDiv"></div>
 
 
