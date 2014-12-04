@@ -86,3 +86,8 @@ $('input[type="radio"]').change(function() {
         $(this).removeClass('radioButtonSelected');
     }
 });
+
+//CARROUSSEL HOMEPAGE
+$(document).ready(function(){
+    $('.carousel').carousel();
+});
