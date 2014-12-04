@@ -7,7 +7,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 1;
+		$this->dbVersion = 2;
 		$this->dummy_data = false;
 
 		$this->path = $path;

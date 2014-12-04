@@ -19,7 +19,10 @@
 	    <?php endforeach; ?>
 
 	    <button>
-	    	Vote
+	    	<a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" role="button">
+            	Results
+        	</a>
 	    </button>
+	    
     </form>
 </div>

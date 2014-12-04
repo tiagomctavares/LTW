@@ -39,7 +39,7 @@
             Vote
           </a>
         <?php else: ?>
-          <a href="<?=HOME_URL ?>/?page=results&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn  col-lg-3 col-sm-4 col-xs-6 pull-right" role="button">
+          <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn  col-lg-3 col-sm-4 col-xs-6 pull-right" role="button">
             Results
           </a>
         <?php endif ?>
