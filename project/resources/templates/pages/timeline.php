@@ -34,9 +34,15 @@
             <p class="timeline-question"><?=$poll->question ?></p>
             <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?=$poll->createDate ?></small></p>
           </div>
+          <?php if($poll->isClosed == 0 ): ?>
           <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn  col-lg-3 col-sm-4 col-xs-6 pull-right" role="button">
             Vote
           </a>
+        <?php else: ?>
+          <a href="<?=HOME_URL ?>/?page=results&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn  col-lg-3 col-sm-4 col-xs-6 pull-right" role="button">
+            Results
+          </a>
+        <?php endif ?>
         </div>
       </li>
       <?php $index++; endforeach; ?>
