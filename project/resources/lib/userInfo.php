@@ -16,17 +16,39 @@ class UserInfo {
 		$_SESSION['user']['username'] = $result['username'];
 
 		$_SESSION['valid_login'] = true;
+	}
 
-		## COOKIES
-		##	identity - user_id
-		##	identifier - HASH
+	function setAnswerCookie() {
+		if(isset($_SESSION['setcookie'])) {
+			$params = $_SESSION['setcookie'];
+			unset($_SESSION['setcookie']);
+			if($this->getAnswerCookie($params) > 0) {
+				$this->destroyAnswerCookie($params);
+			}
 
-		/*global $config;
-		$path = $config['urls']['baseDir'];
-		$path = ($path=='')?'/':'/'.$path;
+			$path = HOME_URL;
+			$path = ($path=='')?'/':$path;
+			$set = setcookie ('poll'.$params['poll'], true, time()+604800, $path);
+			$set = setcookie ('answer'.$params['poll'], $params['answer'], time()+604800, $path);
+			$_COOKIE['answer'.$params['poll']] = $params['answer'];
+		}
+	}
 
-		$set = setcookie ('identity', $result->username, time()+28800, $path);
-		$set = setcookie ('identifier', $result->cookie, time()+28800, $path);*/
+	function getAnswerCookie($params) {
+		# isset cookie
+		if(isset($_COOKIE['poll'.$params['poll']])) {
+			return $_COOKIE['answer'.$params['poll']];
+		} else
+			return 0;
+	}
+
+	function destroyAnswerCookie($params) {
+		$path = HOME_URL;
+		$path = ($path=='')?'/':$path;
+
+		$set = setcookie ('poll'.$params['poll'], '', -3600, $path);
+		echo $set;
+		$set = setcookie ('answer'.$params['poll'], '', -3600, $path);
 	}
 
 	function __toString() {

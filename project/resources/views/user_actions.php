@@ -360,6 +360,9 @@ function answerPoll() {
 
 		$data = array('poll'=>$poll_id, 'answer'=>$answer, 'user'=>$user);
 		$poll->addUserAnswer($data);
+		
+		$_SESSION['setcookie'] = array('poll'=>$poll_id, 'answer'=>$answer);
+
 		$_alert->success('Your answer was recorded');
 	}
 

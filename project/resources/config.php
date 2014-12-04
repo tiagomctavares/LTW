@@ -28,12 +28,19 @@ defined("VIEWS_PATH")
 defined("TESTS_PATH")
     or define("TESTS_PATH", realpath(dirname(__FILE__) . '/tests'));
 
+defined("IMG_PATH")
+    or define("IMG_PATH", realpath(dirname('index.php'). "/img"));
+
 defined("UPLOAD_PATH")
     or define("UPLOAD_PATH", realpath(dirname('index.php'). "/img/upload"));
 
 # USEFULL URLS
 defined("HOME_URL")
     or define("HOME_URL", $user_url);
+
+// Define this in developer_config.php mine is: /ltw/project/project/public_html
+defined("COOKIE_PATH")
+    or define("COOKIE_PATH", $cookie_path);
 
 defined("UPLOAD_URL")
     or define("UPLOAD_URL", $user_url.'/img/upload/');
