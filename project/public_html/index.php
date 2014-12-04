@@ -31,6 +31,9 @@
         case 'action_answerPoll':
             answerPoll();
             break;
+        case 'action_editPoll':
+            editPoll();
+            break;
         case 'deletePoll':
             deletePoll();
             break;

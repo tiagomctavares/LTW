@@ -151,7 +151,7 @@ function newPoll() {
 		$return = -2;
 	}
 
-	if($public != 1 && $public != 0) {
+	if($public != '1' && $public != '0') {
 		$_alert->error('Visibility not valid');
 		$return = -4;
 	}
@@ -180,7 +180,6 @@ function newPoll() {
 		}
 	}
 
-
 	$answers = array();
 	$i = 1;
 	do {
@@ -196,7 +195,6 @@ function newPoll() {
 
 	# No errors
 	$errors = $_alert->getError();
-	var_dump($errors);
 	if(empty($errors)) {
 		require_once(MODELS_PATH.'/poll.php');
 		$poll = new mPoll();
@@ -243,14 +241,11 @@ function editPoll() {
 	} else {
 		$user = $_user->id();
 	}
-
-	$poll_id = isset($_POST['poll'])?$_POST['poll']:'';
+	$poll_id = isset($_POST['poll_id'])?$_POST['poll_id']:'';
 	$title = isset($_POST['title'])?$_POST['title']:'';
-	$question = isset($_POST['question'])?$_POST['question']:'';
-	$image = isset($_POST['image'])?$_POST['image']:'';
 	$public = isset($_POST['isPublic'])?$_POST['isPublic']:'';
+	$image = isset($_FILES['image'])?$_FILES['image']:'';
 	
-
 	if(!is_numeric($poll_id)) {
 		$_alert->error('Poll not valid');
 		$return = -1;
@@ -261,36 +256,30 @@ function editPoll() {
 		$return = -2;
 	}
 
-	if(!validStrLen($question, 500)) {
-		$_alert->error('Password not valid');
-		$return = -3;
-	}
-
-	if(!validStrLen($image, 255)) {
-		$_alert->error('Password not valid');
+	if($public != '1' && $public != '0') {
+		$_alert->error('Visibility not valid');
 		$return = -4;
 	}
 
-	if($public != 1 && $public !=0) {
-		$_alert->error('Password not valid');
-		$return = -4;
+	$server_filename = '';
+	if($image['name'] != '') {
+    	$filename = explode('.', $image['name']);
+    	// Check for extension
+    	// $filename[1] == 'auth'
+    	// build unique name for image server_name
+    	$pre = uniqid().'_';
+    	$server_filename = $filename[0];
+    	$server_filename = $pre.$image['name'];
+
+    	$move_to = UPLOAD_PATH.'/'.$server_filename;
 	}
 
-	$answers = array();
-	$i = 1;
-	//print_r($_POST['answer'.$i]);
-	//exit;
-	do {
-		$answer = isset($_POST['answer'.$i])?$_POST['answer'.$i]:'';
-		//echo $_POST['answer'.$i];
-		if($answer != '') {
-			if(validStrLen($answer, 100)) {
-				$answers[] = $answer;
-			}
-			$i++;
+	if(!validStrLen($server_filename, 255)) {
+		if($server_filename != '') {
+			$_alert->error('Image name not valid');
+			$return = -3;
 		}
-	}while($answer != '');
-
+	}
 	# No errors
 	$errors = $_alert->getError();
 	if(empty($errors)) {
@@ -301,17 +290,20 @@ function editPoll() {
 			if($poll->userOwnsPoll(array($user, $poll_id))) {
 				# All ok update entry
 				$data = array(
-					'poll_id'=>$poll_id, 
+					'user'=>$_user->id(),
+					'poll'=>$poll_id, 
 					'title'=>$title, 
-					'question'=>$question, 
-					'image'=>$image, 
-					'answers'=>$answers,
+					'image'=>$server_filename,
 					'isPublic'=>$public
 				);
+
 				if(!$poll->updatePoll($data)) {
 					$_alert->error('Error while updating poll');
 					$return = -102;
 				}else {
+					if ($server_filename!='')
+						move_uploaded_file($image['tmp_name'], $move_to);
+
 					$_alert->success('Poll updated with success');
 					$return = 1; # Success
 				}
@@ -325,7 +317,7 @@ function editPoll() {
 		}
 	}
 
-	GO();
+	GO('?page=managePolls');
 
 	return $return;
 }
