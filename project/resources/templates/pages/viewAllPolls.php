@@ -1,24 +1,8 @@
 <div class="container">
 	<div class="media">
     <div class="row">
-
-    <?php if($user_action == "all" & sizeof($polls)!=0): ?>
-      <div class="container viewPollsHeader col-lg-12">
-        <h4>You are now seeing all polls</h4>
-      </div>
-    <?php elseif($user_action == "all" & sizeof($polls)==0): ?>
-      <div class="container viewPollsHeader col-lg-12">
-        <h4>There isn't any polls!</h4>
-      </div>  
-    <?php elseif($user_action == "search" & sizeof($polls)!=0): ?>
-      <div class="container viewPollsHeader col-lg-12">
-        <h4>You are now seeing polls according to "<?= $search_value?>"</h4>
-      </div>
-    <?php elseif($user_action == "search" & sizeof($polls)==0): ?>
-      <div class="container viewPollsHeader col-lg-12">
-        <h4>No results for "<?= $search_value?>"!</h4>
-      </div>
-    <?php elseif ($user_action == "user" & sizeof($polls)!=0): ?>
+    
+    <?php if ($user_action == "user" & sizeof($polls)!=0): ?>
       <div class="container viewPollsHeader col-lg-12">
         <h4>You are now seeing your polls</h4>
       </div>

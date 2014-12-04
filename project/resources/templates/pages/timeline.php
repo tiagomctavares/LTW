@@ -1,22 +1,42 @@
-<section id="cd-timeline" class="cd-container">
-	<?php foreach($polls as $poll): ?>
-	<div class="cd-timeline-block">
-		<div class="cd-timeline-img cd-picture">
-			<img src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="Picture">
-		</div> 
+<div class="container">
+    <div class="page-header">
+      <?php if($user_action == "all" & sizeof($polls)!=0): ?>
+        <h2 id="timeline">You are now seeing all polls</h2>
+      <?php elseif($user_action == "all" & sizeof($polls)==0): ?>
+        <h2 id="timeline">There isn't any polls!</h2>
+      <?php elseif($user_action == "search" & sizeof($polls)!=0): ?>
+        <h2 id="timeline">Results for "<?= $search_value?>"</h2>
+      <?php elseif($user_action == "search" & sizeof($polls)==0): ?>
+        <h2 id="timeline">No results for "<?= $search_value?>"!</h2>
+      <?php endif; ?>
+    </div>
 
-		<div class="cd-timeline-content">
-			<div class="col-lg-4" style="background-img: ">
-				<img class="img-responsive" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="Picture">
-			</div>
-			<div class="col-lg-8">
-				<h2><?=$poll->title ?></h2>
-				<p><?=$poll->question ?></p>
-				<a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary cd-read-more" role="button">
-					Details
-				</a>
-			</div>
-		</div>
-	</div>
-	<?php endforeach; ?>
-</section>
+    <ul class="timeline">
+      <?php $index=0; foreach($polls as $poll): ?>
+      <?php if($index & 1): ?>
+       <li class="timeline-inverted">
+      <?php else: ?>
+      <li>
+      <?php endif ?>
+        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+        
+        <div class="timeline-panel">
+          <?php if($poll->image != ''): ?>
+          <div class="col-lg-6 col-sm-6 col-xs-12 timeline-image">
+            <img class="img-responsive" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="Picture">
+          </div>
+          <?php endif ?>
+          
+          <div class="timeline-heading col-lg-6 col-sm-6 col-xs-12">
+            <h3 class="timeline-title"><?=$poll->title ?></h3>
+            <p class="timeline-question"><?=$poll->question ?></p>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i></small></p>
+          </div>
+          <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn  col-lg-3 col-sm-4 col-xs-6 pull-right" role="button">
+            Vote
+          </a>
+        </div>
+      </li>
+      <?php $index++; endforeach; ?>
+    </ul>
+</div>
