@@ -200,6 +200,7 @@ body{
 .logRegForm .panel-default{
   border: 0;
   min-height: 360px;
+  overflow: hidden;
 }
 
 /* put glyphicons left of input field */
@@ -358,6 +359,49 @@ body{
 #newPoll .panel-default{
   min-height: 360px;
   overflow: hidden;
+}
+
+/* EDIT POLL */
+#editPoll .pollImage{
+  padding: 8px 15px;
+}
+
+#editPoll select{
+  background-color: #d1c5b7;
+  color: #063e53;
+  border: 0.1em solid #735d41;
+  border-radius: 10px;
+}
+
+#editPoll #visability{
+  box-shadow: none;
+}
+
+#editPoll #answersGroup div{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#editPoll #answersGroup ul{
+  padding-left: 0;
+  list-style-type: none;
+}
+
+#editPoll #answersGroup ul li{
+  padding-top: 3px;
+  padding-bottom: 6px;
+}
+
+#editPoll #answersLabel{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#editPoll #answersGroup input{
+  background-color: #d1c5b7;
+  color: #063e53;
+  border: 0.1em solid #735d41;
+  border-radius: 10px;
 }
 
 /* MANAGE POLLS PAGE */
@@ -617,7 +661,7 @@ body{
             top: 16px;
             left: 50%;
             margin-left: -25px;
-            background-color: #999999;
+            background-color: #0193b7;
             z-index: 100;
             border-top-right-radius: 50%;
             border-top-left-radius: 50%;

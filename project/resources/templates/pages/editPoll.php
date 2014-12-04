@@ -1,9 +1,12 @@
+<div class="col-lg-3 col-md-2 col-sm-1 transpDiv"></div>
+
 <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-12 logRegForm" id="editPoll">
 	<div class="panel panel-default col-lg-12">
-		<h2 class="pull-left col-lg-12">Editing a poll...</h2>
-		<div class="line"></div>
-
-		<div class="col-lg-6 col-sm-8 col-xs-12">
+		<h2 class="pull-left col-lg-12 col-sm-12 col-xs-12">Editing a poll...</h2>
+		<div class="line col-lg-12 col-sm-12 col-xs-12"></div>
+		
+		<div class="col-lg-2 col-sm-1 transpDiv"></div>
+		<div class="col-lg-8 col-sm-10 col-xs-12">
 			<form class="form-horizontal" role="form" action="<?=HOME_URL ?>/?page=action_editPoll" method="POST" enctype="multipart/form-data">
 				<!--TITLE-->	
 				<div class="form-group has-feedback">
@@ -44,26 +47,27 @@
 
 				<!-- ANSWERS -->
 				<div class="example-row">
-					<div class="example example-one">
-						<label for="answers" class="col-lg-2"> Answers </label>
-						<h2> Modifies a Answer will reset all answer and reset all the votes</h2>
-						<ul>
-							<?php for($i=0; $i < 2; $i++): 
-								$answer = $polls->answers[$i]; ?>
-								<li>
-									<input type="text" number="$i+1" class="form-control" id="answers" value="<?=$answer->answer ?>" placeholder="<?=$answer->answer ?>" name="answer<?=$i+1 ?>" required>
-								</li>
-							<?php endfor; ?>
+					<div class="example example-one" id="answersGroup">
+						<h4> Modifies a Answer will reset all answers and votes</h4>
+						<label id="answersLabel" for="answers" class="col-lg-2"> Answers </label>
+						<div class="col-lg-10">
+							<ul class="list-unstyled">
+								<?php for($i=0; $i < 2; $i++): 
+									$answer = $polls->answers[$i]; ?>
+									<li>
+										<input type="text" number="$i+1" class="form-control" id="answers" value="<?=$answer->answer ?>" placeholder="<?=$answer->answer ?>" name="answer<?=$i+1 ?>" required>
+									</li>
+								<?php endfor; ?>
 
-							<?php for($i=2; $i < count($polls->answers); $i++): 
-								$answer = $polls->answers[$i]; ?>
-								<li>
-									<input type="text" number="$i+1" class="form-control" id="answers" value="<?=$answer->answer ?>" placeholder="<?=$answer->answer ?>" name="answer<?=$i+1 ?>">
-								</li>
-							<?php endfor; ?>
-						</ul>
+								<?php for($i=2; $i < count($polls->answers); $i++): 
+									$answer = $polls->answers[$i]; ?>
+									<li>
+										<input type="text" number="$i+1" class="form-control" id="answers" value="<?=$answer->answer ?>" placeholder="<?=$answer->answer ?>" name="answer<?=$i+1 ?>">
+									</li>
+								<?php endfor; ?>
+							</ul>
+						</div>
 						
-						<br>
 						<button type="button" class="btn_add">
 							Add
 						</button>
@@ -81,6 +85,9 @@
 				</div>
 			</form>
 		</div>
+		<div class="col-lg-2 col-sm-1 transpDiv"></div>
 	</div>
 	<?php var_dump($polls) ?>
 </div>
+
+<div class="col-lg-3 col-md-2 col-sm-1 transpDiv"></div>

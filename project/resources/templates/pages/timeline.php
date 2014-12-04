@@ -30,7 +30,7 @@
           <div class="timeline-heading col-lg-6 col-sm-6 col-xs-12">
             <h3 class="timeline-title"><?=$poll->title ?></h3>
             <p class="timeline-question"><?=$poll->question ?></p>
-            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i></small></p>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i><?=$poll->createData ?></small></p>
           </div>
           <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn  col-lg-3 col-sm-4 col-xs-6 pull-right" role="button">
             Vote
