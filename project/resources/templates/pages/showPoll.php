@@ -24,10 +24,37 @@
 		    	Vote
 		    </button>
 	    </div>
-
-		<?php if($polls->image != ''): ?>
-		  <img class="img-responsive pollImage col-lg-6 col-sm-6 col-xs-12" src="<?=UPLOAD_URL ?>/<?=$polls->image ?>" alt="...">
-		<?php endif ?>
+		
+		<div class="col-lg-6 col-sm-6 col-xs-12" id="imageCont">
+			<?php if($polls->image != ''): ?>
+			  <img class="img-responsive pollImage col-lg-12 col-sm-12 col-xs-12" src="<?=UPLOAD_URL ?>/<?=$polls->image ?>" alt="...">
+			<?php endif ?>
+			<ul id="share-buttons" class="col-lg-12 col-sm-12 col-xs-12">
+				<li><!-- Facebook -->
+					<a href="http://www.facebook.com/sharer.php?u=<?=HOME_URL ?>" target="_blank" id="share-button-facebook">
+						<img src="http://www.simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+					</a>
+				</li>
+				 
+				<li><!-- Twitter -->
+					<a href="http://twitter.com/share?url=<?=HOME_URL ?>&text=Pool&hashtags=polls" target="_blank">
+						<img src="http://www.simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+					</a>
+				</li>
+				 
+				<li><!-- Google+ -->
+					<a href="https://plus.google.com/share?url=<?=HOME_URL ?>" target="_blank">
+						<img src="http://www.simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+					</a>
+				</li>
+				 
+				<li><!-- LinkedIn -->
+					<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?=HOME_URL ?>" target="_blank">
+						<img src="http://www.simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
+					</a>
+			 	</li>
+			</ul>
+		</div>
     </form>
 </div>
 

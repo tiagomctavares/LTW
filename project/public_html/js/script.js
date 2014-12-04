@@ -91,3 +91,8 @@ $('input[type="radio"]').change(function() {
 $(document).ready(function(){
     $('.carousel').carousel();
 });
+
+//SHARE BUTTONS
+$(function () {
+  $('[data-toggle="popover"]').popover({html:true});
+})

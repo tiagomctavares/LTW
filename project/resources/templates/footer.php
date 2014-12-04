@@ -1,9 +1,9 @@
 
 
 	<footer class="footer navbar-fixed-bottom branco">
-    	<div class="container">
-        	<p class="navbar-text pull-left"> Built by Tiago Tavares, Pedro Faria and Mário Macedo</p>
-			<a href="#" class="pull-right" id="qrcode" data-toggle="modal" data-target="#students">
+    	<div class="container col-lg-12">
+        	<p class="navbar-text pull-left col-lg-10 col-sm-10 col-xs-12"> Built by Tiago Tavares, Pedro Faria and Mário Macedo</p>
+			<a href="#" class="pull-right col-lg-2 col-sm-2 col-xs-12" id="qrcode" data-toggle="modal" data-target="#students">
 				<i class="glyphicon glyphicon-qrcode navbar-text"></i>
 			</a>
     	</div>

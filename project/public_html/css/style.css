@@ -10,71 +10,75 @@ body{
 }
 
 .myNavbar{
-	background-color: #735d41;
-	border-color: #735d41;
+	background-color: #063e53;
+	border-color: #063e53;
 }
 
 .dropdown-menu>li>a, .navbar-inverse .navbar-nav>li>a, 
 .navbar-inverse .navbar-brand, .navbar .navbar-form input,
 .navbar-inverse .btn .glyphicon-search{
-	color: #063e53;
+	color: #fff;
+}
+
+.navbar-inverse button:hover, .navbar-inverse .glyphicon-search:hover{
+  color: #063e53;
+  background-color: #fff;
 }
 
 .navbar-form input:focus{
 	box-shadow: none;
-	background-color: #d1c5b7;
-	border: 1px solid #063e53;
+	background-color: #063e53;
+	border: 1px solid #fff;
 }
 
 .navbar .navbar-toggle{
-  background-color: #735d41;
-  border: 0.2em solid #063e53;
+  background-color: #063e53;
+  border: 0.2em solid #fff;
 }
 
 .navbar .navbar-toggle:hover{
-  background-color: #d1c5b7;
-  border: 0.2em solid #063e53;
+  background-color: #063e53;
+  border: 0.2em solid #fff;
 }
 
 .navbar .navbar-toggle:focus{
-  background-color: #735d41;
-  border: 0.2em solid #063e53;
+  background-color: #063e53;
+  border: 0.2em solid #fff;
 }
 
 .navbar-inverse .navbar-toggle .icon-bar{
-  background-color: #063e53;
+  background-color: #fff;
 }
 
 .dropdown-menu{
-	color: #063e53;
-	background-color: #735d41;
+	color: #fff;
+	background-color: #063e53;
 }
 
 .navbar-form input, .navbar-form button{
-	background-color: #d1c5b7;
-	border: 1px solid #063e53;
+	background-color: #063e53;
+	border: 1px solid #fff;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover{
-	color: #735d41 !important;
-	background-color: #063e53 !important;
-	font-size: 1.2em;
+	color: #063e53 !important;
+	background-color: #fff !important;
 }
 
 .dropdown-menu>li>a:hover{
-	color: #735d41 !important;
-	background-color: #063e53 !important;
+	color: #063e53 !important;
+	background-color: #fff !important;
 }
 
 .navbar-inverse .navbar-nav>.open>a{
-	color: #063e53 !important;
-	background-color: #735d41 !important;
+	color: #fff !important;
+	background-color: #063e53 !important;
 }
 
 .navbar .navbar-form button:hover{
 	/*color: #735d41 !important;
 	background-color: #063e53 !important;*/
-	border: 0.1em solid #063e53;
+	border: 0.1em solid #fff;
 }
 
 .navbar-inverse .navbar-brand:hover{
@@ -82,25 +86,26 @@ body{
 }
 
 .navbar-form input::-webkit-input-placeholder {
-   color: #063e53;
+   color: #fff;
 }
 
 .navbar-form input:-moz-placeholder {
-   color: #063e53;
+   color: #fff;
 }
 
 .navbar-form input::-moz-placeholder {
-   color: #063e53;
+   color: #fff;
 }
 
 .navbar-form input:-ms-input-placeholder {
-   color: #063e53;
+   color: #fff;
 }
 
 
 /* FOOTER */
 
 .footer .container{
+  position: absolute;
 	height: 30px !important;
 }
 
@@ -110,6 +115,10 @@ body{
 
 .footer, .footer .container a{
 	height: 30px;
+}
+
+.footer .container a{
+  margin-top: -40px;
 }
 
 .branco, .branco .glyphicon-qrcode{
@@ -829,4 +838,23 @@ body{
             left: -14px;
             right: auto;
         }
+}
+
+
+/* SHARE BUTTONS */
+#votePollCont #imageCont #share-buttons img {
+  width: 35px;
+  padding: 5px;
+  border: 0;
+  box-shadow: 0;
+  display: inline;
+}
+
+#votePollCont #imageCont #share-buttons{
+  list-style-type: none;
+  text-align: center;
+}
+
+#votePollCont #imageCont #share-buttons li{
+  display: inline;
 }
