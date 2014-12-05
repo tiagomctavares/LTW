@@ -19,6 +19,10 @@
 				  </div>
 				</div>
 		    <?php endforeach; ?>
+			
+			<a type="button" class="thumbnailBtn backBtn" href="<?=HOME_URL ?>/page=<?=$previous_page?>">
+		    	<button type="button">Back</button>
+		    </a>
 
 		    <button>
 		    	Vote

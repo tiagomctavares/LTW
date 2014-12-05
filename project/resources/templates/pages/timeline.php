@@ -53,7 +53,7 @@
     <?php else: ?>
     <li>
     <?php endif ?>
-      <div style="<?=$poll->hasVoted?'background-color:green;':''?>" class="timeline-badge">
+      <div style="<?=$poll->hasVoted?'background-color:green;':''?>" class="timeline-badge"  data-toggle="tooltip" data-placement="top" title="<?=$poll->hasVoted?'You voted this poll':"You didn't voted this poll"?>">
         <i style="<?=!$poll->hasVoted?'color:#fff;':''?>" class="glyphicon glyphicon-<?=$poll->hasVoted?'check':'unchecked' ?>"></i>
       </div>
       

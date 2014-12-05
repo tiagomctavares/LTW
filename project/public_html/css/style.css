@@ -534,6 +534,7 @@ body{
 
 #managePolls .pollQuestion{
   padding-left: 0;
+  color: #0193b7;
 }
 
 /* delete confirmation */
@@ -873,21 +874,46 @@ body{
 }
 
 
-/*    */
-
-
-/* circular chart */
-@import url(//fonts.googleapis.com/css?family=Oswald:400);
-
-.chart {
-  position: absolute;
-  width: 460px;
-  height: 460px;
-  top: 50%;
-  left: 50%;
-  margin: -225px 0 0 -225px;
-  padding-top: 100px;
+/*  RESULTS PAGE  */
+#pollResults{
+  margin-top: 60px;
+  padding: 0 0;
+  margin-bottom: 50px;
 }
+
+#pollResults h1{
+  color: #063e53;
+  padding: 0 0;
+}
+
+#pollResults h2, #pollResults h4{
+  color: #0193b7;
+  padding: 0 0;
+}
+
+#pollResults #progressBarsDiv{
+  margin-top: 4em;
+  margin-bottom: 6em;
+  padding: 0 0;
+}
+
+.backBtn{
+  text-decoration: none;
+  padding: 2px 10px;
+  border-radius: 5px;
+  font-size: 1em;
+  margin: 0 0;
+  margin-right: 6px;
+}
+
+/* CIRCULAR CHART */
+.chart {
+  width: 400px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .pieTip {
   position: absolute;
   float: left;
@@ -911,6 +937,7 @@ body{
           transform: all .3s;
   pointer-events: none;
 }
+
 .pieTip:after {
       position: absolute;
       left: 50%;
@@ -923,4 +950,5 @@ body{
       border-top: 6px solid rgba(255,255,255,.95);
       line-height: 0;
 }
+
 .chart path { cursor: pointer; }
