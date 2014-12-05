@@ -2,7 +2,7 @@
 	<div class="media">
     <div class="row">
     
-    <?php if ($user_action == "user" & sizeof($polls)!=0): ?>
+    <!--<?php if ($user_action == "user" & sizeof($polls)!=0): ?>
       <div class="container viewPollsHeader col-lg-12">
         <h4>You are now seeing your polls</h4>
       </div>
@@ -10,64 +10,58 @@
       <div class="container viewPollsHeader col-lg-12">
         <h4>You have not created any poll yet!</h4>
       </div>
-    <?php endif; ?>
+    <?php endif; ?>-->
     <!-- BADGES FOR FILTER -->
     <div class="clearfix"></div>
 
-    <div class="row">
+    <div class="row filters">
       <div class="col-lg-4">
       <h4><i class="glyphicon glyphicon-lock"></i> Status</h4>
         <ul class="list-group">
-          <li class="list-group-item active">
-            <span class="badge">14</span>
-            Open
+          <li class="list-group-item btn active">
+            <a href="#" class="filtersText">Open<span class="badge pull-right">14</span></a>
           </li>
-          <li class="list-group-item">
-            <span class="badge">14</span>
-            Closed
+          <li class="list-group-item btn">
+            <a href="#" class="filtersText">Closed<span class="badge pull-right">14</span></a>
           </li>
-          <li class="list-group-item">
-            <span class="badge">14</span>
-            All
+          <li class="list-group-item btn">
+            <a href="#" class="filtersText">All<span class="badge pull-right">14</span></a>
           </li>
         </ul>
       </div>
+
       <div class="col-lg-4">
       <h4><i class="glyphicon glyphicon-eye-open"></i> Visibility</h4>
         <ul class="list-group">
-          <li class="list-group-item active">
-            <span class="badge">14</span>
-            Public
+          <li class="list-group-item btn active">
+            <a href="#" class="filtersText">Public<span class="badge pull-right">14</span></a>
           </li>
-          <li class="list-group-item">
-            <span class="badge">14</span>
-            Private
+          <li class="list-group-item btn">
+            <a href="#" class="filtersText">Private<span class="badge pull-right">14</span></a>
           </li>
-          <li class="list-group-item">
-            <span class="badge">14</span>
-            Public/Private
+          <li class="list-group-item btn">
+            <a href="#" class="filtersText">Public/Private<span class="badge pull-right">14</span></a>
           </li>
         </ul>
       </div>
+
       <div class="col-lg-4">
       <h4><i class="glyphicon glyphicon-stats"></i> Vote</h4>
         <ul class="list-group">
-          <li class="list-group-item">
-            <span class="badge">14</span>
-            All
+          <li class="list-group-item btn">
+            <a href="#" class="filtersText">All<span class="badge pull-right">14</span></a>
           </li>
-          <li class="list-group-item active">
-            <span class="badge">14</span>
-            Voted
+          <li class="list-group-item btn active">
+            <a href="#" class="filtersText">Voted<span class="badge pull-right">14</span></a>
           </li>
-          <li class="list-group-item">
-            <span class="badge">14</span>
-            Not Voted
+          <li class="list-group-item btn">
+            <a href="#" class="filtersText">Not Voted<span class="badge pull-right">14</span></a>
           </li>
         </ul>
       </div>
     </div>
-
+    
+    <!-- SHOW POLLS -->
 		<div class="clearfix"></div>
     <div id="masonry_container">
 		<?php foreach($polls as $poll): ?>

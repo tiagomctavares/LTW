@@ -19,7 +19,7 @@
       <li>
       <?php endif ?>
         <div style="<?=$poll->hasVoted?'background-color:green;':''?>" class="timeline-badge">
-          <i style="<?=!$poll->hasVoted?'color:#735d41;':''?>" class="glyphicon glyphicon-<?=$poll->hasVoted?'check':'unchecked' ?>"></i>
+          <i style="<?=!$poll->hasVoted?'color:#fff;':''?>" class="glyphicon glyphicon-<?=$poll->hasVoted?'check':'unchecked' ?>"></i>
         </div>
         
         <div class="timeline-panel">
