@@ -37,36 +37,11 @@
 						<input type="file" id="image" name="image" class="form-control">
 					</div>
 				</div>
-				
-				<!--QUESTION-->  	
-				<div class="form-group has-feedback">
-				    <label for="question" class="col-lg-2">Question</label>
-				    <div class="col-lg-10">
-				   		<input type="text" disabled class="form-control" id="question" value="<?=$polls->question ?>">
-					</div>
-				</div>
-
-				<!-- ANSWERS -->
-				<div class="example-row">
-					<div class="example example-one" id="answersGroup">
-						<h4> Modifies a Answer will reset all answers and votes</h4>
-						<label id="answersLabel" for="answers" class="col-lg-2"> Answers </label>
-						<div class="col-lg-10">
-							<ul class="list-unstyled">
-								<?php foreach ($polls->answers as $answer): ?>
-								<li>
-									<input type="text" disabled class="form-control" id="answers" value="<?=$answer->answer ?>">
-								</li>
-								<?php endforeach; ?>
-							</ul>
-						</div>
-					</div>
-				</div>
 				<br>
 				<!--EDIT BUTTON-->
 				<div class="form-group">
 				    <div class="col-lg-12 text-right">
-						<button type="edit" class="btn btn-success btn_edit">Edit</button>
+						<button type="edit" class="btn btn-lg btn-success btn_edit">Edit</button>
 				    </div>
 				</div>
 			</form>

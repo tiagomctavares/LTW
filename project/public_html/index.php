@@ -11,6 +11,7 @@
     require_once realpath(dirname(__FILE__) . "/../resources/config.php");
     require_once VIEWS_PATH.'/pages.php';
     require_once VIEWS_PATH.'/user_actions.php';
+    require_once VIEWS_PATH.'/ajax_requests.php';
 
     $page = isset($_GET['page'])?$_GET['page']:'';
     
@@ -39,6 +40,10 @@
             break;
         case 'closePoll':
             closePoll();
+            break;
+        case 'ajax_viewFilter':
+            ajax_getUserPolls();
+            break;
 
 
         ## PAGES

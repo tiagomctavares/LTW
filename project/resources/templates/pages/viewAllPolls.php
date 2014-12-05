@@ -17,52 +17,52 @@
     <div class="row">
       <div class="col-lg-4">
       <h4><i class="glyphicon glyphicon-lock"></i> Status</h4>
-        <ul class="list-group">
-          <li class="list-group-item active">
+        <ul class="list-group filter_options">
+          <li id="open_closed" class="list-group-item active">
+            <span class="badge">14</span>
+            Open & Closed
+          </li>
+          <li id="open" class="list-group-item">
             <span class="badge">14</span>
             Open
           </li>
-          <li class="list-group-item">
+          <li id="closed" class="list-group-item">
             <span class="badge">14</span>
             Closed
-          </li>
-          <li class="list-group-item">
-            <span class="badge">14</span>
-            All
           </li>
         </ul>
       </div>
       <div class="col-lg-4">
       <h4><i class="glyphicon glyphicon-eye-open"></i> Visibility</h4>
-        <ul class="list-group">
-          <li class="list-group-item active">
+        <ul class="list-group filter_options">
+          <li id="public_private" class="list-group-item active">
+            <span class="badge">14</span>
+            Public & Private
+          </li>
+          <li id="public" class="list-group-item">
             <span class="badge">14</span>
             Public
           </li>
-          <li class="list-group-item">
+          <li id="private" class="list-group-item">
             <span class="badge">14</span>
             Private
-          </li>
-          <li class="list-group-item">
-            <span class="badge">14</span>
-            Public/Private
           </li>
         </ul>
       </div>
       <div class="col-lg-4">
       <h4><i class="glyphicon glyphicon-stats"></i> Vote</h4>
-        <ul class="list-group">
-          <li class="list-group-item">
+        <ul class="list-group filter_options">
+          <li id="voted_unvoted" class="list-group-item active">
             <span class="badge">14</span>
-            All
+            Voted & Not voted
           </li>
-          <li class="list-group-item active">
+          <li id="voted" class="list-group-item">
             <span class="badge">14</span>
             Voted
           </li>
-          <li class="list-group-item">
+          <li id="unvoted" class="list-group-item">
             <span class="badge">14</span>
-            Not Voted
+            Not voted
           </li>
         </ul>
       </div>
@@ -161,3 +161,4 @@
     </div>
   </div>
 </div>
+
