@@ -499,6 +499,7 @@ body{
 #managePolls .panel-heading{
   background-color: #063e53;
   color: #fff;
+  margin-bottom: 6px;
 }
 
 #managePolls .panel-heading.collapse{
