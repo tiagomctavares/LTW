@@ -30,7 +30,6 @@
 
 	    <a type="button" class="thumbnailBtn backBtn pull-left" href="<?=HOME_URL ?>/<?=$previous_page?>">
 	    	<button type="button">Back</button>
-	    </a>
-		<!--<?php var_dump($polls); ?>-->	    
+	    </a>  
     </div>
 </div>

@@ -93,11 +93,14 @@ $(function () {
 //circular chart
 $(function(){
   $("#pieChart").drawPieChart([
-    { title: "Cash",              value : 40,  color: "#2C3E50" },
-    { title: "Fixed Interest",    value:  8,   color: "#fe4400" },
-    { title: "Property",          value:  24,   color: "#018ab6" },
-    { title: "Australian shares", value : 16,   color: "#fff100" },
-    { title: "Intl. shares",      value : 12,   color: "#D7DADB" }
+    <?php foreach($polls->answers as $row): ?>
+    <?php if($row->id % 2 == 0): ?>
+    { title: "<?= $row->answer ?>", value : <?= $row->votes ?>,  color: "#2C3E50" },
+    <?php else: ?>
+    { title: "<?= $row->answer ?>", value : <?= $row->votes ?>,  color: "#fe4400" },
+    <?php endif; ?>
+    <?php endforeach; ?>
+    { title: "", value : 0, color: "#ffffff"}
   ]);
 });
 
