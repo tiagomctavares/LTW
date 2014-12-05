@@ -52,6 +52,19 @@ class UserInfo {
 		$set = setcookie ('answer'.$params['poll'], '', -3600, $path);
 	}
 
+	function managePreviousPage() {
+		if($_SERVER['HTTP_REFERER'] != $_SESSION['ppage'])
+			$_SESSION['ppage'] = $_SERVER['HTTP_REFERER'];
+	}
+
+	function getPreviousPage() {
+		if(isset($_SESSION['ppage'])) {
+			return $_SESSION['ppage'];
+		} else {
+			$_SERVER['HTTP_REFERER']
+		}
+	}
+
 	function __toString() {
 		return $this->username();
 	}

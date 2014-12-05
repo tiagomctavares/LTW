@@ -13,7 +13,7 @@ function ajax_getUserPolls() {
 		echo json_encode(array());
 		exit;
 	}
-
+	
 	$options = array();
 	$isPublic = $isClosed = $voted = 2;
 

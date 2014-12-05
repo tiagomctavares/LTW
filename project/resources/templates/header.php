@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="<?=HOME_URL ?>/img/favicon.ico" >
     <link rel="stylesheet" type="text/css" href="<?=HOME_URL ?>/css/animate.css">
     <link rel="stylesheet" type="text/css" href="<?=HOME_URL ?>/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?=HOME_URL ?>/css/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="<?=HOME_URL ?>/css/style.css">
 	<title>LTW Project</title>
 </head>

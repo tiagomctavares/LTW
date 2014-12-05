@@ -58,6 +58,7 @@
             break;    
         case 'newPoll':
             page_newPoll();
+            $_user->managePreviousPage();
             break;
         case 'viewAllPolls':
         case 'search':
@@ -68,12 +69,15 @@
             break;
         case 'showPoll':
             page_showPoll();
+            $_user->managePreviousPage();
             break;
         case 'editPoll':
             page_editPoll();
+            $_user->managePreviousPage();
             break;
         case 'resultsPoll':
             page_resultsPoll();
+            $_user->managePreviousPage();
             break;
         default:
             home(); 

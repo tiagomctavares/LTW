@@ -50,7 +50,35 @@
 	<script src="<?=HOME_URL ?>/js/bootstrap.js"></script>
 	<script src="<?=HOME_URL ?>/js/imagesloaded.min.js"></script>
 	<script src="<?=HOME_URL ?>/js/masonry.min.js"></script>
+	<script src="<?=HOME_URL ?>/js/toastr.min.js"></script>
 	<script src="<?=HOME_URL ?>/js/poll_filter.js"></script>
 	<script src="<?=HOME_URL ?>/js/script.js"></script>
+	<script>
+		toastr.options = {
+		  "closeButton": false,
+		  "debug": false,
+		  "progressBar": false,
+		  "positionClass": "toast-top-right",
+		  "onclick": null,
+		  "showDuration": "300",
+		  "hideDuration": "1000",
+		  "timeOut": "5000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		};
+
+		<?php if(isset($success)): ?>
+		toastr.success('<?=$success ?>');
+		<?php endif; ?>
+		<?php foreach($errors as $error): ?>
+		toastr.error('<?=$error ?>');
+		<?php endforeach; ?>
+		<?php foreach($warnings as $warning): ?>
+		toastr.error('<?=$warning ?>');
+		<?php endforeach; ?>
+	</script>
 </body>
 </html>
