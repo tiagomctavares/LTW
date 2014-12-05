@@ -59,6 +59,7 @@
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$key ?>" aria-expanded="false" aria-controls="collapse<?=$key ?>">
                   <?=$poll->title ?>   
                   <small class="text-muted pull-right">
+                    <i class="glyphicon glyphicon-<?=$poll->isClosed?'lock':''?>"></i>
                     <i class="glyphicon glyphicon-<?=$poll->isPublic?'eye-open':'eye-close'?>"></i>
                     <i class="glyphicon glyphicon-time"></i> 
                     <?=$poll->createDate ?>
