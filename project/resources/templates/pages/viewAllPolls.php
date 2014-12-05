@@ -73,10 +73,10 @@
                 <?php endif ?>
                 
                 <div class="container <?=$poll->image != ''?'col-lg-6 col-md-6 col-sm-6 col-xs-12':'col-lg-12'?>">
-                  <h4 class="pollQuestion"><?=$poll->question ?></h4>
-
+                  <h4 class="pollQuestion col-lg-12"><?=$poll->question ?></h4>
+                  
                   <?php if($poll->isClosed != 0): ?>
-                    <p>This poll is closed!</p>
+                    <p class="text-danger"><i class="glyphicon glyphicon-lock"></i> This poll is closed!</p>
                     
                     <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn pull-right" role="button">
                       Results
@@ -101,7 +101,7 @@
                     <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn pull-right" role="button">
                       Results
                     </a>
-                  <?php endif ?>              
+                  <?php endif ?>   
                 </div>
               </div>
             </div>
