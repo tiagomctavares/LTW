@@ -81,24 +81,44 @@
             <?php endif ?>
             <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?=$poll->createDate ?></small></p>
             <p class="text-center">
-              <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn btn-primary thumbnailBtn" role="button">
+            <?php if($poll->isClosed != 0): ?>
+              <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button" disabled>
                 Vote
               </a>
+            <?php else: ?>
+              <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button">
+                Vote
+              </a>
+            <?php endif ?>
               
               <?php if ($user_action == "user"): ?>
-              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn btn-default thumbnailBtn" role="button">
+              <?php if($poll->isClosed != 0): ?>
+              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button" disabled>
                 Edit
               </a>
 
-              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button">
+              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button" disabled>
                 Close
               </a>
 
-              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn btn-danger thumbnailBtn" role="button">
+              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button">
                 Results
               </a>
+              <?php else: ?>
+              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button">
+                Edit
+              </a>
 
-              <a href="#" class="btn btn-danger thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
+              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button">
+                Close
+              </a>
+
+              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button" disabled>
+                Results
+              </a>
+              <?php endif ?>
+
+              <a href="#" class="btn thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
                 Delete
               </a>
               

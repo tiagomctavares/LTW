@@ -40,6 +40,7 @@
         case 'closePoll':
             closePoll();
 
+
         ## PAGES
     	case 'home':
             home();
@@ -68,6 +69,7 @@
             break;
         case 'resultsPoll':
             page_resultsPoll();
+            break;
         default:
             home(); 
     		break;

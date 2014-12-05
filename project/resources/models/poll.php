@@ -237,7 +237,7 @@ class mPoll implements iPoll {
 	function getPollsUser($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		$result = $pdo->query('SELECT * FROM poll WHERE id_user=?;', $data);
+		$result = $pdo->query('SELECT * FROM poll WHERE id_user=? ORDER BY createDate DESC;', $data);
 		return $result;
 	}
 
