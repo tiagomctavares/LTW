@@ -70,14 +70,14 @@
 		  "hideMethod": "fadeOut"
 		};
 
+		<?php foreach($warnings as $warning): ?>
+		toastr.warning('<?=$warning ?>');
+		<?php endforeach; ?>
 		<?php if(isset($success)): ?>
 		toastr.success('<?=$success ?>');
 		<?php endif; ?>
 		<?php foreach($errors as $error): ?>
 		toastr.error('<?=$error ?>');
-		<?php endforeach; ?>
-		<?php foreach($warnings as $warning): ?>
-		toastr.error('<?=$warning ?>');
 		<?php endforeach; ?>
 	</script>
 </body>

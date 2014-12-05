@@ -1,3 +1,5 @@
+
+// View all pools assync request
 $(function () {
 	var path = document.location.host + document.location.pathname;
 	var myApp;

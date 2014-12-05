@@ -157,11 +157,7 @@ function newPoll() {
 	}
 	
 	$server_filename = '';
-	if($image['name'] == '') {
-		$_alert->warning('Image not valid');
-
-		$return = -3;
-	} else {
+	if($image['name'] != '') {
     	$filename = explode('.', $image['name']);
     	// Check for extension
     	// $filename[1] == 'auth'
@@ -175,7 +171,7 @@ function newPoll() {
 
 	if(!validStrLen($server_filename, 255)) {
 		if($server_filename != '') {
-			$_alert->error('Image name not valid');
+			$_alert->error('Image name too long!');
 			$return = -3;
 		}
 	}
@@ -214,7 +210,7 @@ function newPoll() {
 				$_alert->success('Poll added with success');
    			} else {
    				$_alert->success('Poll added with success');
-   				if($server_filename != '')
+   				if($server_filename == '')
    					$_alert->warning('The poll was created without an image. Edit your poll to add one!');
    			}
 			$return = $result;
