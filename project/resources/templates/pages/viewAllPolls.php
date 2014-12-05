@@ -26,7 +26,7 @@
             <li id="public" class="list-group-item btn">
               <a href="#" class="filtersText">Public<span class="badge pull-right"><?=$counters['publicPolls'] ?></span></a>
             </li>
-            <li id="closed" class="list-group-item btn">
+            <li id="private" class="list-group-item btn">
               <a href="#" class="filtersText">Private<span class="badge pull-right"><?=$counters['privatePolls'] ?></span></a>
             </li>
           </ul>
