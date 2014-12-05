@@ -600,7 +600,7 @@ body{
 #votePollCont h1{
   color: #063e53;
   text-align: left;
-  border: 0.08em solid rgba(6, 62, 83, 0.75);
+  /*border: 0.08em solid rgba(6, 62, 83, 0.75);*/
   border-radius: 5px;
   padding-top: 4px;
   padding-bottom: 4px;
