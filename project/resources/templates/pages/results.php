@@ -18,10 +18,10 @@
 			</div>
 	    <?php endforeach; ?>
 
+		<div id="pieChart" class="chart"></div>
+
 	    <button>
-	    	<a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" role="button">
-            	Results
-        	</a>
+	    	Back
 	    </button>
 	    
     </form>
