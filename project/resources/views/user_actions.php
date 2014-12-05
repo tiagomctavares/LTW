@@ -98,7 +98,7 @@ function loginUser() {
 	}
 
 	if($return == 1)
-		GO();
+		GO("?page=timeline.php");
 	else
 		GO("?page=login");
 

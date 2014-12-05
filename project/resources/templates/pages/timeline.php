@@ -17,13 +17,13 @@
       <h4><i class="glyphicon glyphicon-lock"></i> Status</h4>
         <ul class="list-group filter_options">
           <li id="open_closed" class="list-group-item btn active">
-            <a href="#" class="filtersText">Open & Closed<span class="badge pull-right">14</span></a>
+            <a href="#" class="filtersText">Open & Closed<span class="badge pull-right"><?=$counters['numberPolls'] ?></span></a>
           </li>
           <li id="open" class="list-group-item btn">
-            <a href="#" class="filtersText">Open<span class="badge pull-right">14</span></a>
+            <a href="#" class="filtersText">Open<span class="badge pull-right"><?=$counters['openPolls'] ?></span></a>
           </li>
           <li id="closed" class="list-group-item btn">
-            <a href="#" class="filtersText">Closed<span class="badge pull-right">14</span></a>
+            <a href="#" class="filtersText">Closed<span class="badge pull-right"><?=$counters['closedPolls'] ?></span></a>
           </li>
         </ul>
       </div>
@@ -32,13 +32,13 @@
       <h4><i class="glyphicon glyphicon-stats"></i> Vote</h4>
         <ul class="list-group filter_options">
           <li id="voted_unvoted" class="list-group-item btn active">
-            <a href="#" class="filtersText">All<span class="badge pull-right">14</span></a>
+            <a href="#" class="filtersText">All<span class="badge pull-right"><?=$counters['numberPolls'] ?></span></a>
           </li>
           <li id="voted" class="list-group-item btn">
-            <a href="#" class="filtersText">Voted<span class="badge pull-right">14</span></a>
+            <a href="#" class="filtersText">Voted<span class="badge pull-right"><?=$counters['votedPolls'] ?></span></a>
           </li>
           <li id="unvoted" class="list-group-item btn">
-            <a href="#" class="filtersText">Not Voted<span class="badge pull-right">14</span></a>
+            <a href="#" class="filtersText">Not Voted<span class="badge pull-right"><?=$counters['unvotedPolls'] ?></span></a>
           </li>
         </ul>
       </div>

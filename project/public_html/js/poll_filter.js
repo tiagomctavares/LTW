@@ -26,8 +26,7 @@ $(function () {
 		$(this).addClass('active');
 
 		var values = getSendData();
-
-		console.log(values);
+		
 		$.ajax({
 			url: "?page=ajax_viewFilter",
 			type: "POST",

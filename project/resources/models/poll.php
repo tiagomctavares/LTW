@@ -15,6 +15,8 @@ interface iPoll {
 	#POLLS
 	function getPolls($params);
 	function getPollsUser($params);
+	function getUserPollCounters($params);
+	function getPollCounters($params);
 
 	# ANSWER
 	function existPollAnswer($params);
@@ -113,8 +115,6 @@ class mPoll implements iPoll {
 	function closePoll($params) {
 		$data = array();
 		$pdo = new myPDO();
-
-		$this->removePollAnswers($params);
 		
 		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
 		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
@@ -223,7 +223,7 @@ class mPoll implements iPoll {
 
 		foreach ($result as &$poll) {
 			$my = $this->userAnsweredPoll(array('poll'=>$poll->id, 'user'=>$user));
-			$poll->hasVoted = $my;
+			$poll->hasVoted = $my > 0?1:0;
 		}
 
 		return $result;
@@ -237,8 +237,8 @@ class mPoll implements iPoll {
 	function getPollsUser($params) {
 		$pdo = new myPDO();
 		$query = "SELECT * FROM poll WHERE id_user=?";
-		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
 
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
 		if(isset($params['isPublic'])) {
 			$query .= ' AND isPublic=?';
 			$data[] = new myPDOparam($params['isPublic'], PDO::PARAM_INT);
@@ -270,6 +270,59 @@ class mPoll implements iPoll {
 
 		$result = array_values($result);
 		return $result;
+	}
+
+	/*
+	* @param (array) with
+	* (int) user identifier
+	* @return (array) counters
+	*/
+	function getUserPollCounters($params) {
+		$pdo = new myPDO();
+
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+		$result = $pdo->query('SELECT COUNT(*) as polls FROM poll WHERE id_user = ?;', $data);
+		$return['numberPolls'] = $result[0]->polls;
+
+		$result = $pdo->query('SELECT COUNT(*) as closed FROM poll WHERE id_user = ? AND isClosed=1;', $data);
+		$return['closedPolls'] = $result[0]->closed;
+		$return['openPolls'] = $return['numberPolls']-$return['closedPolls'];
+
+		$result = $pdo->query('SELECT COUNT(*) as public FROM poll WHERE id_user = ? AND isPublic=1;', $data);
+		$return['publicPolls'] = $result[0]->public;
+		$return['privatePolls'] = $return['numberPolls']-$return['publicPolls'];
+
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+		$result = $pdo->query('select COUNT(*) as voted from poll, poll_answer, user_answer where poll.id_user=? AND poll_answer.id_poll=poll.id AND user_answer.id_answer=poll_answer.id AND user_answer.id_user=?', $data);
+		$return['votedPolls'] = $result[0]->voted;
+		$return['unvotedPolls'] = $return['numberPolls']-$return['votedPolls'];
+
+		return $return;
+	}
+
+	/*
+	* @param (array) with
+	* @return (array) counters
+	*/
+	function getPollCounters($params) {
+		$pdo = new myPDO();
+
+		$result = $pdo->query('SELECT COUNT(*) as polls FROM poll WHERE isPublic = 1;');
+		$return['numberPolls'] = $result[0]->polls;
+
+		$result = $pdo->query('SELECT COUNT(*) as closed FROM poll WHERE isPublic = 1 AND isClosed=1;');
+		$return['closedPolls'] = $result[0]->closed;
+		$return['openPolls'] = $return['numberPolls']-$return['closedPolls'];
+
+		$result = $pdo->query('SELECT id FROM poll WHERE isPublic = 1;');
+		$return['votedPolls'] = 0;
+		foreach ($result as $poll) {
+			if($this->userAnsweredPoll(array('user'=>$params['user'], 'poll'=>$poll->id)))
+				$return['votedPolls']++;
+		}
+		$return['unvotedPolls'] = $return['numberPolls']-$return['votedPolls'];
+
+		return $return;
 	}
 
 	/*
@@ -307,7 +360,10 @@ class mPoll implements iPoll {
 			$result = $result[0]->result;
 		else {
 			global $_user;
-			$result = $_user->getAnswerCookie($params);
+			if(!$_user->isLogged())
+				$result = $_user->getAnswerCookie($params);
+			else
+				$result = 0;
 		}
 
 		return $result;

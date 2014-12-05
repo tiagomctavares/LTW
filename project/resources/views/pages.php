@@ -52,7 +52,7 @@ function page_login() {
 }
 
 function page_listPolls() {
-	global $_alert;
+	global $_alert, $_user;
 	$variables = array();
 	$_alert->getArray($variables);
 	$_alert->reset();
@@ -62,8 +62,10 @@ function page_listPolls() {
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();
 	$polls = $poll->getPolls(array('search'=>$search));
+	$counters = $poll->getPollCounters(array('user'=>$_user->id()));
 
 	$variables['polls'] = $polls; ## Polls
+	$variables['counters'] = $counters; ## Polls
 	$variables['user_action'] = ($search=='')?'all':'search'; ## True or false
 	$variables['search_value'] = $search; ## Search Value
 
@@ -78,12 +80,15 @@ function page_listPollsUser() {
 	$_alert->reset();
 
 	$user_id = $_user->id();
+	$data = array('user'=>$user_id);
 
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();
-	$polls = $poll->getPollsUser(array('user'=>$user_id));
+	$polls = $poll->getPollsUser($data);
+	$counters = $poll->getUserPollCounters($data);
 
 	$variables['polls'] = $polls;
+	$variables['counters'] = $counters;
 	$variables['user_action'] = 'user';
 
 	$template = new myTemplate();
@@ -108,6 +113,7 @@ function page_showPoll() {
 		if(empty($polls))
 			listPolls();
 
+		$variables['previous_page'] = $_user->getPreviousPage();
 		$variables['polls'] = $polls;
 
 		$template = new myTemplate();
@@ -121,10 +127,11 @@ function page_showPoll() {
 }
 
 function page_newPoll() {
-	global $_alert;
+	global $_user->$_alert;
 	$variables = array();
 	$_alert->getArray($variables);
 	$_alert->reset();
+	$variables['previous_page'] = $_user->getPreviousPage();
 
 	$template = new myTemplate();
 	$template->render('newPoll.php', $variables);
@@ -148,6 +155,7 @@ function page_editPoll() {
 			GO('?page=managePolls');
 		}
 
+		$variables['previous_page'] = $_user->getPreviousPage();
 		$variables['polls'] = $polls;
 
 		$template = new myTemplate();
@@ -177,6 +185,7 @@ function page_resultsPoll() {
 		if(empty($polls))
 			listPolls();
 
+		$variables['previous_page'] = $_user->getPreviousPage();
 		$variables['polls'] = $polls;
 
 		$template = new myTemplate();
