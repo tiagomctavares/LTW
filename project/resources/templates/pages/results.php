@@ -11,7 +11,7 @@
 
 		<?php foreach ($polls->answers as $answers): ?>
 			<div class="progress">
-				<?php $perc = answers->votes/$sum * 100 ?>
+				<?php $perc = $answers->votes/$sum * 100 ?>
 				<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<?=$perc ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$perc ?>%">
 					<span class="sr-only"> <?=$perc ?>% Complete (success)</span>
 				</div>

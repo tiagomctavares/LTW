@@ -7,7 +7,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 2;
+		$this->dbVersion = 4;
 		$this->dummy_data = false;
 
 		$this->path = $path;
@@ -247,6 +247,8 @@ class databaseVersion {
 		$pdo->query("INSERT INTO poll_answer VALUES (44, 12, 'Between 601 and 900€')");
 		$pdo->query("INSERT INTO poll_answer VALUES (45, 12, 'Between 901 and 1200€')");
 		$pdo->query("INSERT INTO poll_answer VALUES (46, 12, '>1201€')");
+
+		GO();
 	}
 }
 ?>

@@ -157,7 +157,35 @@ function page_editPoll() {
 		listPolls();
 
 	}
+}
 
+function page_resultsPoll() {
+	global $_user, $_alert;
+	$poll_id = isset($_GET['poll'])?$_GET['poll']:0;
+	$variables = array();
+
+	$_user->setAnswerCookie();
+
+	if(is_numeric($poll_id)) {
+		$_alert->getArray($variables);
+		$_alert->reset();
+
+		require_once MODELS_PATH.'/poll.php';
+		$poll = new mPoll();
+		$polls = $poll->getPoll(array('poll'=>$poll_id, 'user'=>$_user->id()));
+
+		if(empty($polls))
+			listPolls();
+
+		$variables['polls'] = $polls;
+
+		$template = new myTemplate();
+		$template->render('results.php', $variables);
+	} else {
+
+		listPolls();
+
+	}	
 }
 
 ?>
