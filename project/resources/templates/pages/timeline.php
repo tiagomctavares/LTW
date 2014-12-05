@@ -13,7 +13,7 @@
     </div>
     <!-- FILTERS -->
     <div clas="col-lg-8" style="color:#333">
-      <div class="col-lg-6">
+      <div class="col-lg-4">
       <h4><i class="glyphicon glyphicon-lock"></i> Status</h4>
         <ul class="list-group filters_timeline">
           <li id="open_closed" class="list-group-item btn active">
@@ -28,7 +28,7 @@
         </ul>
       </div>
 
-      <div class="col-lg-6">
+      <div class="col-lg-4">
       <h4><i class="glyphicon glyphicon-stats"></i> Vote</h4>
         <ul class="list-group filters_timeline">
           <li id="voted_unvoted" class="list-group-item btn active">
