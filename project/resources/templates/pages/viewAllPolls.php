@@ -49,24 +49,62 @@
       </div>
       
       <!-- SHOW POLLS -->
+      <h4 class="col-lg-8 col-sm-8 col-xs-12"><i class="glyphicon glyphicon-th-list"></i> Polls</h4>
       <div class="container col-lg-8 col-sm-8 col-xs-12">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <?php foreach($polls as $poll): ?>
+          <?php foreach($polls as $key=>$poll): ?>
           <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
+            <div class="panel-heading" role="tab" id="heading<?=$key ?>">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <?=$poll->title ?>
-
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$key ?>" aria-expanded="false" aria-controls="collapse<?=$key ?>">
+                  <?=$poll->title ?>   
+                  <small class="text-muted pull-right">
+                    <i class="glyphicon glyphicon-<?=$poll->isPublic?'eye-open':'eye-close'?>"></i>
+                    <i class="glyphicon glyphicon-time"></i> 
+                    <?=$poll->createDate ?>
+                  </small>
                 </a>
               </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div id="collapse<?=$key ?>" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="heading<?=$key ?>">
               <div class="panel-body">
+                <?php if($poll->image != ''): ?>
+                <img class="img-responsive pollImage col-lg-6 col-md-6 col-sm-6 col-xs-12" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
+                <?php endif ?>
+                
+                <div class="container <?=$poll->image != ''?'col-lg-6 col-md-6 col-sm-6 col-xs-12':'col-lg-12'?>">
+                  <h4 class="pollQuestion"><?=$poll->question ?></h4>
 
+                  <?php if($poll->isClosed != 0): ?>
+                    <p>This poll is closed!</p>
+                    
+                    <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn pull-right" role="button">
+                      Results
+                    </a>
+
+                    <a href="#" class="btn thumbnailBtn pull-right" role="button" data-toggle="modal" data-target="#deleteModal">
+                      Delete
+                    </a>
+                  <?php else: ?>
+                    <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn pull-right" role="button">
+                      Vote
+                    </a>
+
+                    <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn pull-right" role="button">
+                      Edit
+                    </a>
+
+                    <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn thumbnailBtn pull-right" role="button">
+                      Close
+                    </a>
+
+                    <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn pull-right" role="button">
+                      Results
+                    </a>
+                  <?php endif ?>              
+                </div>
               </div>
             </div>
-          </div>
           <?php endforeach; ?>
         </div>
       </div>
