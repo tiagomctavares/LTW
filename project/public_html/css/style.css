@@ -472,35 +472,43 @@ body{
 /* MANAGE POLLS PAGE */
 .filters ul li{
   text-align: left;
-  color: #063e53;
   background-color: #fff;
 }
 
+.filters ul li:hover{
+  background-color: #0193b7;
+  color: #fff;
+}
+
+.filters ul li a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.list-group-item.active{
+  background-color: #063e53;
+  color: #fff;
+  border: none;
+}
+
 .list-group-item.active:hover{
+  background-color: #0193b7;
+  color: #fff;
+}
+
+#managePolls .panel-heading{
   background-color: #063e53;
   color: #fff;
 }
 
-.thumbnail{
-	border: 0.2em solid rgba(6, 62, 83, 0.75);
-	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 0.60);
+#managePolls .panel-heading.collapse{
+  background-color: #0193b7;
+  color: #fff;
 }
 
-.thumbnail:hover{
-	background-color: rgba(255, 255, 255, 1);
-}
-
-.thumbnail .pollTitle{
-	color: #063e53;
-	text-align: center;
-	border: 0.1em solid rgba(6, 62, 83, 0.75);
-	border-radius: 5px;
-}
-
-.thumbnail .pollQuestion{
-	color: #0193b7;
-	padding: 15px 0;		
+#managePolls .panel-heading a{
+  text-decoration: none;
+  color: inherit;
 }
 
 .thumbnailBtn{
@@ -517,7 +525,7 @@ body{
 	color: #ffffff;
 }
 
-.thumbnailBtn:foecus{
+.thumbnailBtn:focus{
 	background-color: #063e53;
 	border: 0.2em solid #063e53;
 	color: #ffffff;
