@@ -68,8 +68,6 @@ $(function () {
 
 			thumb_item.find('img.pollImage').attr('src', this.image);
 			
-			$('#container').append( $boxes ).masonry( 'appended', $boxes );
-			
 			thumb.append(thumb_item);
     	});
 	}
