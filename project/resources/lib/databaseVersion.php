@@ -7,7 +7,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 1;
+		$this->dbVersion = 2;
 		$this->dummy_data = false;
 
 		$this->path = $path;
@@ -41,7 +41,7 @@ class databaseVersion {
 			$polls = $poll->getPolls();
 			foreach ($polls as $poll_) {
 				$poll->deletePollImage($poll_->image);
-				$_user->destroyAnswerCookie(array('poll'=>$poll->id));
+				$_user->destroyAnswerCookie(array('poll'=>$poll_->id));
 			}
 		} catch(Exception $e) {
 
