@@ -2,46 +2,46 @@
 	<div class="media">
     <div class="row">
       <div class="row filters col-lg-4 col-sm-4 col-xs-12">
-        <div class="col-lg-12 filter_options">
+        <div class="col-lg-12">
         <h4><i class="glyphicon glyphicon-lock"></i> Status</h4>
-          <ul class="list-group">
-            <li class="list-group-item btn active">
+          <ul class="list-group filter_options">
+            <li id="open_closed" class="list-group-item btn active">
+              <a href="#" class="filtersText">Open & Closed<span class="badge pull-right">14</span></a>
+            </li>
+            <li id="open" class="list-group-item btn">
               <a href="#" class="filtersText">Open<span class="badge pull-right">14</span></a>
             </li>
-            <li class="list-group-item btn">
+            <li id="closed" class="list-group-item btn">
               <a href="#" class="filtersText">Closed<span class="badge pull-right">14</span></a>
             </li>
-            <li class="list-group-item btn">
-              <a href="#" class="filtersText">All<span class="badge pull-right">14</span></a>
-            </li>
           </ul>
         </div>
 
-        <div class="col-lg-12 filter_options">
+        <div class="col-lg-12">
         <h4><i class="glyphicon glyphicon-eye-open"></i> Visibility</h4>
-          <ul class="list-group">
-            <li class="list-group-item btn active">
-              <a href="#" class="filtersText">Public<span class="badge pull-right">14</span></a>
-            </li>
-            <li class="list-group-item btn">
-              <a href="#" class="filtersText">Private<span class="badge pull-right">14</span></a>
-            </li>
-            <li class="list-group-item btn">
+          <ul class="list-group filter_options">
+            <li id="public_closed" class="list-group-item btn active">
               <a href="#" class="filtersText">Public/Private<span class="badge pull-right">14</span></a>
             </li>
+            <li id="public" class="list-group-item btn">
+              <a href="#" class="filtersText">Public<span class="badge pull-right">14</span></a>
+            </li>
+            <li id="closed" class="list-group-item btn">
+              <a href="#" class="filtersText">Private<span class="badge pull-right">14</span></a>
+            </li>
           </ul>
         </div>
 
-        <div class="col-lg-12 filter_options">
+        <div class="col-lg-12">
         <h4><i class="glyphicon glyphicon-stats"></i> Vote</h4>
-          <ul class="list-group">
-            <li class="list-group-item btn">
+          <ul class="list-group filter_options">
+            <li id="voted_unvoted" class="list-group-item btn active">
               <a href="#" class="filtersText">All<span class="badge pull-right">14</span></a>
             </li>
-            <li class="list-group-item btn active">
+            <li id="voted" class="list-group-item btn">
               <a href="#" class="filtersText">Voted<span class="badge pull-right">14</span></a>
             </li>
-            <li class="list-group-item btn">
+            <li id="unvoted" class="list-group-item btn">
               <a href="#" class="filtersText">Not Voted<span class="badge pull-right">14</span></a>
             </li>
           </ul>
@@ -53,7 +53,7 @@
       <div class="container col-lg-8 col-sm-8 col-xs-12">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
           <?php foreach($polls as $key=>$poll): ?>
-          <div class="panel panel-default">
+          <div class="panel panel-default" id="accordion_item">
             <div class="panel-heading" role="tab" id="heading<?=$key ?>">
               <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$key ?>" aria-expanded="false" aria-controls="collapse<?=$key ?>">
@@ -105,6 +105,7 @@
                 </div>
               </div>
             </div>
+          </div>
           <?php endforeach; ?>
         </div>
       </div>
