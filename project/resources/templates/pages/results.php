@@ -18,8 +18,11 @@
 			</div>
 	    <?php endforeach; ?>
 
+		<div id="pieChart" class="chart"></div>
+
 	    <button>
-	    	Vote
+	    	Back
 	    </button>
+	    
     </form>
 </div>
