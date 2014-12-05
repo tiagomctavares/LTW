@@ -534,6 +534,7 @@ body{
 
 #managePolls .pollQuestion{
   padding-left: 0;
+  color: #0193b7;
 }
 
 /* delete confirmation */
