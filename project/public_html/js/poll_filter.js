@@ -1,7 +1,8 @@
 
 // View all pools assync request
 $(function () {
-	var path = document.location.host + document.location.pathname;
+	var path = document.location.host + document.location.pathname + 'img/upload/';
+	var home_path = document.location.host + document.location.pathname
 	var myApp;
 
 	myApp = myApp || (function () {
@@ -58,14 +59,82 @@ $(function () {
 		var thumb_item = $('.masonry_item').last().clone();
 		var thumb = $('#masonry_container').empty();
 
-		$.each(data, function() {
+		$('#accordion').empty();
+		$.each(data, function(key, value) {
 			console.log(this);
+			var eye;
+			var locked;
+			var image;
+			var contentClass;
+			var buttons;
+			if(this.isClosed) locked = 'lock';
+			else locked = '';
+			if(this.isPublic) locked = 'eye-open';
+			else locked = 'eye-close';
 			if(this.image != '')
-				this.image = path + this.image;
+				image='<img class="img-responsive pollImage col-lg-6 col-md-6 col-sm-6 col-xs-12" src="'+path+this.image+'" alt="...">';
+			else image = '';
 
-			thumb_item.find('img.pollImage').attr('src', this.image);
-			
-			thumb.append(thumb_item);
+			if(this.image != '')
+				contentClass='col-lg-6 col-md-6 col-sm-6 col-xs-12';
+			else contentClass = 'col-lg-12';
+
+			var link = home_path+'/?page=showPoll&poll='this.id;
+			var link1 = home_path+'/?page=editPoll&poll='this.id;
+			var link2 = home_path+'/?page=resultsPoll&poll='this.id;
+			var link3 = home_path+'/?page=closePoll&poll='this.id;
+
+			if(this.isClosed) buttons = '<a href="'+link+'" class="btn thumbnailBtn pull-right" role="button">
+                        Vote
+                      </a>
+
+                      <a href="'+link1+'" class="btn thumbnailBtn pull-right" role="button">
+                        Edit
+                      </a>
+
+                      <a href="'+link3+'" class="btn thumbnailBtn pull-right" role="button">
+                        Close
+                      </a>
+
+                      <a href="'+link2+'" class="btn thumbnailBtn pull-right" role="button">
+                        Results
+                      </a>';
+			else buttons = '<p class="text-danger"><i class="glyphicon glyphicon-lock"></i> This poll is closed!</p>
+                      
+                      <a href="'+link2+'" class="btn thumbnailBtn pull-right" role="button">
+                        Results
+                      </a>
+
+                      <a href="#" class="btn thumbnailBtn pull-right" role="button" data-toggle="modal" data-target="#deleteModal">
+                        Delete
+                      </a>';
+
+			var html = '<div class="panel panel-default" id="accordion_item">
+              <div class="panel-heading" role="tab" id="heading'+key+'">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse'+key+'" aria-expanded="false" aria-controls="collapse'+key+'">'
+                    +this.title+'   
+                    <small class="text-muted pull-right">
+                      <i class="glyphicon glyphicon-'+locked+'"></i>
+                      <i class="glyphicon glyphicon-'+eye+'"></i>
+                      <i class="glyphicon glyphicon-time"></i>' 
+                      this.createDate+'
+                    </small>
+                  </a>
+                </h4>
+              </div>
+              <div id="'+key+'" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="'+key+'">
+                <div class="panel-body">
+                  '+image+'
+                  <div class="container '+contentClass+'">
+                    <h4 class="pollQuestion col-lg-12">'+this.question+'></h4>'
+                    +buttons+'
+                  </div>
+                </div>
+              </div>
+            </div>';
+
+			$('#accordion').append(html);
     	});
 	}
 });
