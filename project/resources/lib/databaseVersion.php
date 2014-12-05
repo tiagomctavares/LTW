@@ -7,7 +7,7 @@ class databaseVersion {
 	private $path;
 
 	function __construct($path) {
-		$this->dbVersion = 5;
+		$this->dbVersion = 8;
 		$this->dummy_data = false;
 
 		$this->path = $path;
@@ -180,6 +180,9 @@ class databaseVersion {
 		$pdo->query("INSERT INTO user VALUES (6, 'paulo', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '2014-12-02 22:12:02', null);");
 
 		#POLL
+		if (!file_exists($dir) && !is_dir($dir.'/')) {
+		    mkdir(UPLOAD_PATH.'/');         
+		}
 		copy(IMG_PATH.'/OS.gif', UPLOAD_PATH.'/OS.gif');
 		copy(IMG_PATH.'/colors.jpg', UPLOAD_PATH.'/colors.jpg');
 		copy(IMG_PATH.'/fedVSdjo.jpg', UPLOAD_PATH.'/fedVSdjo.jpg');
