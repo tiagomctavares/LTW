@@ -532,6 +532,10 @@ body{
 	color: #ffffff;
 }
 
+#managePolls .pollQuestion{
+  padding-left: 0;
+}
+
 /* delete confirmation */
 #deleteModal{
   background-color: rgba(115, 93, 65, 0.8);
@@ -867,6 +871,9 @@ body{
 #votePollCont #imageCont #share-buttons li{
   display: inline;
 }
+
+
+/*    */
 
 
 /* circular chart */

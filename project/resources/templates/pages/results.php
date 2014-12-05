@@ -7,9 +7,9 @@
 	    <?php $sum = 0; ?>
 	    <?php foreach ($polls->answers as $ans): ?>
 	    	<?php $sum = $sum + $ans->votes; ?>
-	    	<p><?= $sum ?></p>	
+	    	<!--<p><?= $sum ?></p>-->	
 	    <?php endforeach; ?>
-	    <br><br><p><?=$sum ?></p>
+	    <!--<br><br><p><?=$sum ?></p>-->
 		<?php foreach ($polls->answers as $row): ?>
 			<h4> <?=$row->answer ?> </h4>
 
