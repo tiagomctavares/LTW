@@ -215,7 +215,7 @@ function newPoll() {
    			} else {
    				$_alert->success('Poll added with success');
    				if($server_filename != '')
-   					$_alert->error('Error while uploading image');
+   					$_alert->warning('The poll was created without an image. Edit your poll to add one!');
    			}
 			$return = $result;
 		} else {
