@@ -127,7 +127,7 @@ function page_showPoll() {
 }
 
 function page_newPoll() {
-	global $_user->$_alert;
+	global $_user, $_alert;
 	$variables = array();
 	$_alert->getArray($variables);
 	$_alert->reset();

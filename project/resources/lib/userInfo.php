@@ -61,7 +61,7 @@ class UserInfo {
 		if(isset($_SESSION['ppage'])) {
 			return $_SESSION['ppage'];
 		} else {
-			$_SERVER['HTTP_REFERER']
+			$_SERVER['HTTP_REFERER'];
 		}
 	}
 
