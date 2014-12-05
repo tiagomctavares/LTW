@@ -54,7 +54,7 @@
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
           <?php foreach($polls as $key=>$poll): ?>
             <div class="panel panel-default" id="accordion_item">
-              <div class="panel-heading" role="tab" id="heading<?=$key ?>">
+              <div class="panel-heading col-lg-12" role="tab" id="heading<?=$key ?>">
                 <h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$key ?>" aria-expanded="false" aria-controls="collapse<?=$key ?>">
                     <?=$poll->title ?>   
