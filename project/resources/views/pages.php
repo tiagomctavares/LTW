@@ -81,7 +81,7 @@ function page_listPollsUser() {
 
 	require_once MODELS_PATH.'/poll.php';
 	$poll = new mPoll();
-	$polls = $poll->getPollsUser(array($user_id));
+	$polls = $poll->getPollsUser(array('user'=>$user_id));
 
 	$variables['polls'] = $polls;
 	$variables['user_action'] = 'user';

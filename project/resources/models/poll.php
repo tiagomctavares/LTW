@@ -8,7 +8,7 @@ interface iPoll {
 	function userOwnsPoll($params);
 	function updatePoll($params);
 	function getPoll($params);
-	function userAnswerPoll($params);
+	function userAnsweredPoll($params);
 	function deletePoll($params);
 	function deletePollImage($poll_id);
 
@@ -222,7 +222,7 @@ class mPoll implements iPoll {
 		$result = $pdo->query('SELECT * FROM poll WHERE title LIKE ? AND isPublic=1 ORDER BY createDate DESC;', $data);
 
 		foreach ($result as &$poll) {
-			$my = $this->userAnswerPoll(array('poll'=>$poll->id, 'user'=>$user));
+			$my = $this->userAnsweredPoll(array('poll'=>$poll->id, 'user'=>$user));
 			$poll->hasVoted = $my;
 		}
 
@@ -236,8 +236,39 @@ class mPoll implements iPoll {
 	*/
 	function getPollsUser($params) {
 		$pdo = new myPDO();
-		$data[] = new myPDOparam($params[0], PDO::PARAM_INT);
-		$result = $pdo->query('SELECT * FROM poll WHERE id_user=? ORDER BY createDate DESC;', $data);
+		$query = "SELECT * FROM poll WHERE id_user=?";
+		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
+
+		if(isset($params['isPublic'])) {
+			$query .= ' AND isPublic=?';
+			$data[] = new myPDOparam($params['isPublic'], PDO::PARAM_INT);
+		}
+		if(isset($params['isClosed'])) {
+			$query .= ' AND isClosed=?';
+			$data[] = new myPDOparam($params['isClosed'], PDO::PARAM_INT);
+		}
+		
+		$query .= ' ORDER BY createDate DESC;';
+		$result = $pdo->query($query, $data);
+		$keys = array();
+
+		if(isset($params['voted']) && $params['voted']!=2) {
+			if($params['voted'] == 1)
+				foreach($result as $key=>$poll)
+					if(!$this->userAnsweredPoll(array('user'=>$params['user'], 'poll'=>$poll->id)) > 0 ) {
+						$keys[]=$key;
+					}
+			else
+				foreach($result as $key=>$poll)
+					if(!$this->userAnsweredPoll(array('user'=>$params['user'], 'poll'=>$poll->id)) > 0 )
+						$keys[]=$key;
+		}
+
+		foreach ($keys as $value) {
+			unset($result[$value]);
+		}
+
+		$result = array_values($result);
 		return $result;
 	}
 
@@ -255,7 +286,7 @@ class mPoll implements iPoll {
 		$result = $result[0];
 		if(!empty($result)) {
 			$result->answers = $this->getPollAnswers($params);
-			$result->userAnswer = $this->userAnswerPoll($params);
+			$result->userAnswer = $this->userAnsweredPoll($params);
 		}
 		return $result;
 	}
@@ -266,7 +297,7 @@ class mPoll implements iPoll {
 	* (int) user identifier
 	* @return (object) answer_id
 	*/
-	function userAnswerPoll($params) {
+	function userAnsweredPoll($params) {
 		$pdo = new myPDO();
 		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
 		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
@@ -345,27 +376,6 @@ class mPoll implements iPoll {
 		} else {
 			return -1;
 		}
-	}
-
-	/** GETS THE user_answer id for update
-	* @param (array) with
-	* (int) poll identifier
-	* (int) user identifier
-	* @return (object) answer_id
-	*/
-	private function userAnsweredPoll($params) {
-		$pdo = new myPDO();
-		$data[] = new myPDOparam($params['poll'], PDO::PARAM_INT);
-		$data[] = new myPDOparam($params['user'], PDO::PARAM_INT);
-		$result = $pdo->query('SELECT user_answer.id as result FROM user_answer, poll_answer WHERE id_poll = ? AND user_answer.id_user= ? AND poll_answer.id=user_answer.id_answer;', $data);
-		
-		if(isset($result[0]->result))
-			$result = $result[0]->result;
-		else {
-			$result = 0;
-		}
-
-		return $result;
 	}
 
 	/** INSERT POLL ANSWER IF ALREADY EXISTS RETURNS THE ID
