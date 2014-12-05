@@ -1,139 +1,74 @@
-<div class="container">
+<div class="container" id="managePolls">
 	<div class="media">
     <div class="row">
-    
-    <?php if ($user_action == "user" & sizeof($polls)!=0): ?>
-      <div class="container viewPollsHeader col-lg-12">
-        <h4>You are now seeing your polls</h4>
-      </div>
-    <?php elseif ($user_action == "user" & sizeof($polls)==0): ?>
-      <div class="container viewPollsHeader col-lg-12">
-        <h4>You have not created any poll yet!</h4>
-      </div>
-    <?php endif; ?>
-    <!-- BADGES FOR FILTER -->
-    <div class="clearfix"></div>
+      <div class="row filters col-lg-4 col-sm-4 col-xs-12">
+        <div class="col-lg-12 filter_options">
+        <h4><i class="glyphicon glyphicon-lock"></i> Status</h4>
+          <ul class="list-group">
+            <li class="list-group-item btn active">
+              <a href="#" class="filtersText">Open<span class="badge pull-right">14</span></a>
+            </li>
+            <li class="list-group-item btn">
+              <a href="#" class="filtersText">Closed<span class="badge pull-right">14</span></a>
+            </li>
+            <li class="list-group-item btn">
+              <a href="#" class="filtersText">All<span class="badge pull-right">14</span></a>
+            </li>
+          </ul>
+        </div>
 
-    <div class="row">
-      <div class="col-lg-4">
-      <h4><i class="glyphicon glyphicon-lock"></i> Status</h4>
-        <ul class="list-group filter_options">
-          <li id="open_closed" class="list-group-item active">
-            <span class="badge">14</span>
-            Open & Closed
-          </li>
-          <li id="open" class="list-group-item">
-            <span class="badge">14</span>
-            Open
-          </li>
-          <li id="closed" class="list-group-item">
-            <span class="badge">14</span>
-            Closed
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-4">
-      <h4><i class="glyphicon glyphicon-eye-open"></i> Visibility</h4>
-        <ul class="list-group filter_options">
-          <li id="public_private" class="list-group-item active">
-            <span class="badge">14</span>
-            Public & Private
-          </li>
-          <li id="public" class="list-group-item">
-            <span class="badge">14</span>
-            Public
-          </li>
-          <li id="private" class="list-group-item">
-            <span class="badge">14</span>
-            Private
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-4">
-      <h4><i class="glyphicon glyphicon-stats"></i> Vote</h4>
-        <ul class="list-group filter_options">
-          <li id="voted_unvoted" class="list-group-item active">
-            <span class="badge">14</span>
-            Voted & Not voted
-          </li>
-          <li id="voted" class="list-group-item">
-            <span class="badge">14</span>
-            Voted
-          </li>
-          <li id="unvoted" class="list-group-item">
-            <span class="badge">14</span>
-            Not voted
-          </li>
-        </ul>
-      </div>
-    </div>
+        <div class="col-lg-12 filter_options">
+        <h4><i class="glyphicon glyphicon-eye-open"></i> Visibility</h4>
+          <ul class="list-group">
+            <li class="list-group-item btn active">
+              <a href="#" class="filtersText">Public<span class="badge pull-right">14</span></a>
+            </li>
+            <li class="list-group-item btn">
+              <a href="#" class="filtersText">Private<span class="badge pull-right">14</span></a>
+            </li>
+            <li class="list-group-item btn">
+              <a href="#" class="filtersText">Public/Private<span class="badge pull-right">14</span></a>
+            </li>
+          </ul>
+        </div>
 
-		<div class="clearfix"></div>
-    <div id="masonry_container">
-		<?php foreach($polls as $poll): ?>
-      <div class="col-lg-3 col-sm-6 col-xs-12 masonry_item">
-        <div class="thumbnail">
-          <?php if($poll->image != ''): ?>
-          <img class="img-responsive pollImage" src="<?=UPLOAD_URL ?>/<?=$poll->image ?>" alt="...">
-          <?php endif ?>
-
-          <div class="caption">
-            <h3 class="pollTitle"><?=$poll->title ?></h3>
-            <p class="pollQuestion"><?=$poll->question ?></p>
-            <?php if($poll->isPublic == 1): ?>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-eye-open"></i> Public</small></p>
-            <?php else: ?>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-eye-close"></i> Private</small></p>
-            <?php endif ?>
-            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?=$poll->createDate ?></small></p>
-            <p class="text-center">
-            <?php if($poll->isClosed != 0): ?>
-              <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button" disabled>
-                Vote
-              </a>
-            <?php else: ?>
-              <a href="<?=HOME_URL ?>/?page=showPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button">
-                Vote
-              </a>
-            <?php endif ?>
-              
-              <?php if ($user_action == "user"): ?>
-              <?php if($poll->isClosed != 0): ?>
-              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button" disabled>
-                Edit
-              </a>
-
-              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button" disabled>
-                Close
-              </a>
-
-              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button">
-                Results
-              </a>
-              <?php else: ?>
-              <a href="<?=HOME_URL ?>/?page=editPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button">
-                Edit
-              </a>
-
-              <a href="<?=HOME_URL ?>/?page=closePoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button">
-                Close
-              </a>
-
-              <a href="<?=HOME_URL ?>/?page=resultsPoll&poll=<?=$poll->id?>" class="btn thumbnailBtn" role="button" disabled>
-                Results
-              </a>
-              <?php endif ?>
-
-              <a href="#" class="btn thumbnailBtn" role="button" data-toggle="modal" data-target="#deleteModal">
-                Delete
-              </a>
-              
-              <?php endif; ?>
-            </p>
-          </div>
+        <div class="col-lg-12 filter_options">
+        <h4><i class="glyphicon glyphicon-stats"></i> Vote</h4>
+          <ul class="list-group">
+            <li class="list-group-item btn">
+              <a href="#" class="filtersText">All<span class="badge pull-right">14</span></a>
+            </li>
+            <li class="list-group-item btn active">
+              <a href="#" class="filtersText">Voted<span class="badge pull-right">14</span></a>
+            </li>
+            <li class="list-group-item btn">
+              <a href="#" class="filtersText">Not Voted<span class="badge pull-right">14</span></a>
+            </li>
+          </ul>
         </div>
       </div>
-  		<?php endforeach; ?>
+      
+      <!-- SHOW POLLS -->
+      <div class="container col-lg-8 col-sm-8 col-xs-12">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <?php foreach($polls as $poll): ?>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <?=$poll->title ?>
+
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+              </div>
+            </div>
+          </div>
+          <?php endforeach; ?>
+        </div>
       </div>
     </div>
 	</div>
