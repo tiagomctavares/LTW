@@ -10,12 +10,12 @@ __The minimum expected requirements are the following:__
 - [X] Users should be able to register an account.
 - [X] Users should be able to login/logout from the system.
 - [X] Registered users should be able to create a poll.
-- [ ] Registered users should be able to manage their polls.
+- [X] Registered users should be able to manage their polls.
 - [X] Polls should contain one image and several possible answers.
 - [X] Users should be able to list, search and answer to polls.
 - [X] One user should not be able to answer twice to the same poll.
-- [ ] Poll owners and users that already answered a poll, should be able to see the poll results.
-- [ ] __Users with no login should be able to vote on polls__
+- [X] Poll owners and users that already answered a poll, should be able to see the poll results after its closure.
+- [X] __Users with no login should be able to vote on polls__
 - [X] The following technologies should all be used: HTML, CSS, PHP, Javascript (by means of jQuery), Ajax/JSON, PDO/SQL (using sqlite).
 - [X] Code should be organized and and consistent.
 - [X] The web site should be as secure as possible.
@@ -27,7 +27,7 @@ __Some suggested extra requirements:__
 - [X] Private polls should not appear in listings or searches. Only the poll URL should needed to access it.
 - [ ] Polls with more than one question.
 - [ ] Poll results with graphs or charts.
-- [ ] Possibility to share a poll using email or a social network.
+- [X] Possibility to share a poll using email or a social network.
 
 
 __And whatever you come up with…__
@@ -52,6 +52,24 @@ Report bugs or new features by:
 1. Adding an issues
 
 2. Assigning it to the proper person(s)
+
+---
+
+### Project Preparation
+
+##### Step 1
+
+Copy both resources and public_html folders to server's public_html folder
+
+
+##### Step 2
+
+Change path on index.php file. Path should represent the logic path to config. 
+
+
+##### Step 3
+
+Must change developers options' urls and cookies path
 
 ---
 
@@ -133,10 +151,19 @@ pages.php | Functions for user actions (Example: Register)
 error.php | Included when there is a rooting error or bad request
 header.php | Header to be included in every page
 footer.php | Footer to be included in every page
+navbarAfterLogin.php |
+navbarBeforeLogin.php |
 
 ### Templates
 **Page** | **Description**
 -------- | -----------
+editPoll.php | 
+home.php |
+login.php |
+newPoll.php |
+showPoll.php |
+timeline.php |
+viewAllPolls.php |
 
 ### Tests
 **Model** | **Description**
@@ -146,6 +173,12 @@ testUserStart.php | Unitary Test to register and login user (incomplete)
 testPoll.php | Unitary Test to add Poll, manage it and delete it (incomplete)
 testUserEnd.php | Unitary Test to logout user and delete data of user from database (incomplete)
 
+### Views
+**Model** | **Description**
+-------- | -----------
+ajax_request.php |
+pages.php |
+user_actions.php |
 
 Notes: 
 * The file and the class must have the same name
