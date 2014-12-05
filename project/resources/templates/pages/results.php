@@ -28,7 +28,7 @@
 	    	<div id="pieChart" class="chart"></div>
 	    </div>
 
-	    <a type="button" class="thumbnailBtn backBtn pull-left" href="<?=HOME_URL ?>/page=<?=$previous_page?>">
+	    <a type="button" class="thumbnailBtn backBtn pull-left" href="<?=HOME_URL ?>/<?=$previous_page?>">
 	    	<button type="button">Back</button>
 	    </a>
 		<!--<?php var_dump($polls); ?>-->	    

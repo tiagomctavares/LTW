@@ -53,10 +53,13 @@ class UserInfo {
 	}
 
 	function managePreviousPage() {
-		if(!isset($_SESSION['ppage']))
-			$_SESSION['ppage'] = $_SERVER['HTTP_REFERER'];
-		elseif($_SERVER['HTTP_REFERER'] != $_SESSION['ppage'])
-			$_SESSION['ppage'] = $_SERVER['HTTP_REFERER'];
+		$var = explode('?', $_SERVER['HTTP_REFERER']);
+		$var = '?'.$var[count($var)-1];
+		if(!isset($_SESSION['ppage'])) {
+			$_SESSION['ppage'] = $var;
+		}
+		elseif($var != $_SESSION['ppage'])
+			$_SESSION['ppage'] = $var;
 	}
 
 	function getPreviousPage() {
