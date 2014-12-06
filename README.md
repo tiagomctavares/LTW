@@ -199,3 +199,4 @@ viewAllPolls.php | Used to manage user Polls
 1. Mário Ferreira - ei12105@fe.up.pt
 2. Pedro Faria - ei12097@fe.up.pt
 3. Tiago Tavares - ei10140@fe.up.pt
+=======
