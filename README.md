@@ -2,6 +2,8 @@
 
 ### [Project Guide](http://paginas.fe.up.pt/~arestivo/doku/doku.php/classes:years:2014:ltw:project)
 
+### [Working Project] (http://gnomo.fe.up.pt/~ei10140/ltw-project/)
+
 ---
 ### Requirements
 
@@ -34,14 +36,18 @@ __And whatever you come up with…__
 - [X] Responsive Design
 - [X] Modal
 - [X] Timeline
-- [ ] Unit Testing
-- [ ] Clean URLS
-
+- [X] SlideShow
+- [X] PHP Classes and Interfaces
+- [X] Automated database update (changing the version of DB in one file)
+- [X] Non registered user can submit vote on polls 
+- [X] AJAX Filters for your own polls
+- [X] It's possible to close Polls (Results can only be seen after poll is closed except for the creator)
 
 __Libraries__
 - [X] MyPDO
 - [X] Render
 - [X] Session Controllers
+- [X] Database Version
 
 ---
 
@@ -55,23 +61,47 @@ Report bugs or new features by:
 
 ---
 
-### Project Preparation
+### Project Preparation/Installation
 
 ##### Step 1
 
-Copy both resources and public_html folders to server's public_html folder
+Copy Files:
+1. Copy public_html to the server
+2. Copy resources to parent folder of public_html
 
 
 ##### Step 2
 
 Change path on index.php file. Path should represent the logic path to config. 
 
+Example: project is located in /public_html/ltw-project and config is located on the parent folder of public_html inside folder resources
+1. Open index.php on line 3: require_once realpath(dirname(__FILE__) . "/../../resources/config.php");
+
 
 ##### Step 3
 
-Must change developers options' urls and cookies path
+Change variables in developer_config.php located in resources folder
+Example: 
+<?php
+$user_url = 'http://paginas.fe.up.pt/~ei10140/ltw-project';
+$cookie_path = '/~ei10140/ltw-project';
+?>
+
+user_url represents the urls of the server
+cookie_path is used to store cookies
 
 ---
+
+### Access Credentials
+**Username** | **Password**
+------ | -----------
+andre | 1234
+tiago | 1234
+pedro | 1234
+maria | 1234
+joana | 1234
+paulo | 1234
+
 
 ### Project Structure
 
@@ -80,29 +110,24 @@ Must change developers options' urls and cookies path
 For each request the flow is as follows:
 
 1. HTTP Request for page **index.php**
+2. **index.php** includes the **config.php** that takes care of configurations and the include of global libraries
 2. **index.php** roots the request by parameter to the correct **view**
-3. **view** does operations fetches data from **models** builds that data in a **"dictionary/variables"** to be used in **templates** and calls the proper **template**
-
-For each test request the flow is as follows:
-
-1. HTTP Request for page **tests.php**
-2. **tests.php** includes the **all_tests.php** and shows the output
-
-Note: Views/User actions must return vars and constant TESTING must be defined. If TESTING is defined library template_functions doesn't render html response.
+3. **view** does operations fetches data from **models** builds that data in a **"dictionary/variables"** to be used in **templates** and calls the proper **template** through the Render Library
 
 
 ##### Folders
 **Folder** | **Description**
 ------ | -----------
 public_html | Holds all public files to be accessed by clients
-+ Img | Location for all the static images of the application
++ img | Location for all the static images of the application
+++ upload | Location for all dynamic images (Polls)
 + css | Location for all css files
++ fonts | Location for fonts
 + js | Location for all js files
 resources | Holds all libraries, configs and any code used as resource in project
 + lib | Location for all libraries
 + models | Location for files to get database data
 + views | Location of files with functions with actions. Control the request and builds the result template
-+ tests | Location for files to run tests to user actions
 + templates | Location for all reusable components that make up the layout
 ++ pages | Location for the non-reusable content of the layout
 
@@ -112,7 +137,7 @@ resources | Holds all libraries, configs and any code used as resource in projec
 
 **File** | **Description**
 ---- | -----------
-db.sqlite3 | Database of the application
+resources/db.sqlite3 | Database of the application
 public_html/index.php | Only accessible page for the clients, serving as root for the application
 resources/config.php | Main configuration page. Should store application wide settings
 resources/developer_config.php | Included and used in config.php and ignored by repo storing environemnt settings for each developer
@@ -125,7 +150,9 @@ resources/session_config.php | Used to configurate and start the Session. This f
 ------- | -----------
 renderTemplate.php | Used to render templates, so devs don't have to include the same common files in each page
 mypdo.php | Used to get data from database easier
-[simpletest](http://www.simpletest.org/en) | 3rd party library to run unit Tests
+databaseVersion.php | Automated script to create the database and populate it
+pageAlerts.php | Used to manage notifications for the user
+userInfo.php | Used to manage SESSION information of the user
 
 ---
 
@@ -140,8 +167,9 @@ poll.php | Class that fetch Poll data from database
 ### Views
 **Model** | **Description**
 -------- | -----------
-user_actions.php | Functions for user actions (Example: Register)
-pages.php | Functions for user actions (Example: Register)
+user_actions.php | Functions that handle user actions and redirect to pages (Example: Register)
+pages.php | Functions that handle the user output (Example: Register Page)
+ajax_request.php | Functions that handle asynchronous requests
 
 ---
 
@@ -157,31 +185,15 @@ navbarBeforeLogin.php |
 ### Templates
 **Page** | **Description**
 -------- | -----------
-editPoll.php | 
-home.php |
-login.php |
-newPoll.php |
-showPoll.php |
-timeline.php |
-viewAllPolls.php |
+editPoll.php | HTML
+home.php | HTML
+login.php | HTML
+newPoll.php | HTML
+showPoll.php | Detailed information about poll also allows the user to vote
+timeline.php | Shows the polls order by date in a timeline
+viewAllPolls.php | Used to manage user Polls
 
-### Tests
-**Model** | **Description**
--------- | -----------
-all_tests.php | Suite test that includes and runs all tests for the application. To include a new test file just add the file with tests and fill one more array position in constructor with the filename.
-testUserStart.php | Unitary Test to register and login user (incomplete)
-testPoll.php | Unitary Test to add Poll, manage it and delete it (incomplete)
-testUserEnd.php | Unitary Test to logout user and delete data of user from database (incomplete)
-
-### Views
-**Model** | **Description**
--------- | -----------
-ajax_request.php |
-pages.php |
-user_actions.php |
-
-Notes: 
-* The file and the class must have the same name
-* For more information read [SimpleTest Documentation](http://www.simpletest.org/en)
-
----
+## Students
+1. Mário Ferreira - ei12105@fe.up.pt
+2. Pedro Faria - ei12097@fe.up.pt
+3. Tiago Tavares - ei10140@fe.up.pt
