@@ -19,7 +19,7 @@ __The minimum expected requirements are the following:__
 - [X] Users should be able to list, search and answer to polls.
 - [X] One user should not be able to answer twice to the same poll.
 - [X] Poll owners and users that already answered a poll, should be able to see the poll results after its closure.
-- [X] Users with no login should be able to vote on polls
+- [X] Users with no login should be able to vote on polls.
 - [X] The following technologies should all be used: HTML, CSS, PHP, Javascript (by means of jQuery), Ajax/JSON, PDO/SQL (using sqlite).
 - [X] Code should be organized and and consistent.
 - [X] The web site should be as secure as possible.
